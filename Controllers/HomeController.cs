@@ -294,7 +294,12 @@ namespace Resolve.Controllers
 
         public IActionResult Privacy()
         {
-            Console.WriteLine("Privacy");
+            //Console.WriteLine("Privacy");
+            return View();
+        }
+
+        public IActionResult NoAuth()
+        {            
             return View();
         }
 
@@ -324,7 +329,7 @@ namespace Resolve.Controllers
         }
 
 
-        public async Task<IActionResult> ByYou(string cases)
+        public async Task<IActionResult> ByYou(string? cases)
         {           
             var PastCases = await _context.LocalUser
             .Include(s => s.Cases.Where(p => p.Processed == 1))
@@ -336,7 +341,7 @@ namespace Resolve.Controllers
             return View(PastCases);          
         }
 
-        public async Task<IActionResult> ToYou(string cases)
+        public async Task<IActionResult> ToYou(string? cases)
         {
             var PastCases = await _context.LocalUser
             .Include(q => q.CasesforApproval.Where(p => p.Case.Processed == 1 || p.Approved != 0))
@@ -381,7 +386,7 @@ namespace Resolve.Controllers
             {
                 filename = $"resolve_admin_guide.pdf";
             }
-            var filepath = $"Documentation/{filename}";
+            var filepath = $"wwwroot/Documentation/{filename}";
             byte[] fileBytes = System.IO.File.ReadAllBytes(filepath);
             return File(fileBytes, "application/x-msdownload", filename);
         }

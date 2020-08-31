@@ -12,6 +12,8 @@ using Resolve.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using static Microsoft.AspNetCore.Hosting.IWebHostEnvironment;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace Resolve.Controllers
 {
@@ -27,6 +29,7 @@ namespace Resolve.Controllers
         }
 
         // GET: CaseAttachments
+        [Authorize("Admin")]
         public async Task<IActionResult> Index()
         {
             var resolveCaseContext = _context.CaseAttachment.Include(c => c.Case).Include(c => c.LocalUser);
@@ -68,6 +71,10 @@ namespace Resolve.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, CaseAttachmentCreateViewModel model)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
             if (ModelState.IsValid)
             {
                 string uniqueFileName = null;
