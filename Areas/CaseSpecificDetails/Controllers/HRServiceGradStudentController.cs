@@ -80,63 +80,107 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,StudentName,GradRequestType,GradJobProfile,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers")] HRServiceGradStudent hrGradStudent)
 
         {
-            /** First check important fields to see if values have changed and if so add to audit log **/
-            string strAudit = "Case Edited. Values updated (old,new). ";
-
-            IQueryable<HRServiceGradStudent> beforeCases = _context.HRServiceGradStudent.Where(c => c.CaseID == id).AsNoTracking<HRServiceGradStudent>();
-            HRServiceGradStudent beforeCase = beforeCases.FirstOrDefault();
-            if (beforeCase == null)
+            if (id != hrGradStudent.CaseID)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
-                if (beforeCase.StudentName != hrGradStudent.StudentName)
+                try
                 {
-                    strAudit += "Student: (" + beforeCase.StudentName + "," + hrGradStudent.StudentName + ") ";
-                }
+                    IQueryable<HRServiceGradStudent> beforeCases = _context.HRServiceGradStudent.Where(c => c.CaseID == id).AsNoTracking<HRServiceGradStudent>();
+                    HRServiceGradStudent beforeCase = beforeCases.FirstOrDefault();
+                    if (beforeCase == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        // Creating an audit log
+                        var audit = new CaseAudit { AuditLog = "Case Specific Details Edited", CaseID = id, LocalUserID = User.Identity.Name };
+                        _context.Add(audit);
+                        await _context.SaveChangesAsync();
+                        // Adding old details to tracking
 
-                if (beforeCase.GradRequestType.ToString() != hrGradStudent.GradRequestType.ToString())
-                {
-                    strAudit += "RequestType: (" + beforeCase.GradRequestType.ToString() + "," + hrGradStudent.GradRequestType.ToString() + ") ";
+                        var old_details = new HRServiceGradStudentTracking
+                        {
+                            Status = "old",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = beforeCase.CaseID,
+                            StudentName = beforeCase.StudentName,
+                            GradRequestType = beforeCase.GradRequestType,
+                            GradJobProfile = beforeCase.GradJobProfile,                            
+                            EffectiveStartDate = beforeCase.EffectiveStartDate,
+                            EffectiveEndDate = beforeCase.EffectiveEndDate,
+                            Department = beforeCase.Department,
+                            StepStipendAllowance = beforeCase.StepStipendAllowance,
+                            Note = beforeCase.Note,
+                            BudgetNumbers = beforeCase.BudgetNumbers
+                        };
+                        _context.Add(old_details);
+                        // Adding current details to tracking
+                        var new_details = new HRServiceGradStudentTracking
+                        {
+                            Status = "new",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = hrGradStudent.CaseID,
+                            StudentName = hrGradStudent.StudentName,
+                            GradRequestType = hrGradStudent.GradRequestType,
+                            GradJobProfile = hrGradStudent.GradJobProfile,
+                            EffectiveStartDate = hrGradStudent.EffectiveStartDate,
+                            EffectiveEndDate = hrGradStudent.EffectiveEndDate,
+                            Department = hrGradStudent.Department,
+                            StepStipendAllowance = hrGradStudent.StepStipendAllowance,
+                            Note = hrGradStudent.Note,
+                            BudgetNumbers = hrGradStudent.BudgetNumbers
+                        };
+                        _context.Add(new_details);
+                        // Adding current details to actual Case Type entity
+                        _context.Update(hrGradStudent);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-                if (beforeCase.GradJobProfile.ToString() != hrGradStudent.GradJobProfile.ToString())
+                catch (DbUpdateConcurrencyException)
                 {
-                    strAudit += "JobProfile: (" + beforeCase.GradJobProfile.ToString() + "," + hrGradStudent.GradJobProfile.ToString() + ") ";
+                    if (!HRServiceGradStudentExists(hrGradStudent.CaseID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                if (beforeCase.EffectiveStartDate.ToShortDateString() != hrGradStudent.EffectiveStartDate.ToShortDateString())
-                {
-                    strAudit += "StartDate: (" + beforeCase.EffectiveStartDate.ToShortDateString() + "," + hrGradStudent.EffectiveStartDate.ToShortDateString() + ") ";
-                }
-                DateTime beforeEffectDate = beforeCase.EffectiveEndDate.GetValueOrDefault();
-                DateTime curEffectDate = hrGradStudent.EffectiveEndDate.GetValueOrDefault();
-                if (beforeEffectDate.ToShortDateString() != curEffectDate.ToShortDateString())
-                {
-                    strAudit += "EndDate: (" + beforeEffectDate.ToShortDateString() + "," + curEffectDate.ToShortDateString() + ") ";
-                }
-                if (beforeCase.Department.ToString() != hrGradStudent.Department.ToString())
-                {
-                    strAudit += "Department: (" + beforeCase.Department.ToString() + "," + hrGradStudent.Department.ToString() + ") ";
-                }
-                if (beforeCase.StepStipendAllowance.ToString() != hrGradStudent.StepStipendAllowance.ToString())
-                {
-                    strAudit += "Allowance: (" + beforeCase.StepStipendAllowance.ToString() + "," + hrGradStudent.StepStipendAllowance.ToString() + ") ";
-                }
-                if (beforeCase.BudgetNumbers.ToString() != hrGradStudent.BudgetNumbers.ToString())
-                {
-                    strAudit += "BudgetNumbers: (" + beforeCase.BudgetNumbers.ToString() + "," + hrGradStudent.BudgetNumbers.ToString() + ") ";
-                }
-
-
-                var audit = new CaseAudit { AuditLog = strAudit, CaseID = id, LocalUserID = User.Identity.Name };
-                _context.Add(audit);
-                _context.Entry(hrGradStudent).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
-                //return RedirectToAction("Index", "Home");
             }
             return View(hrGradStudent);
         }
+        public IActionResult EditLog(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                var logs = _context.HRServiceGradStudentTracking.Where(p => p.CaseAuditID == id).ToList();
+                ViewData["Logs"] = logs;
+                return View();
+            }
+            catch (Exception)
+            {
+                var cid = Convert.ToInt32(id);
+                return RedirectToAction("Details", "Cases", new { id = cid, area = "", err_message = "Can not fetch the edit log details currently!" });
+            }
+
+        }
+
+        private bool HRServiceGradStudentExists(int id)
+        {
+            return _context.CaseAudit.Any(e => e.CaseAuditID == id);
+        }
+
     }
 }

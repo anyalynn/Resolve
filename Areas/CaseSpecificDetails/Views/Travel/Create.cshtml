@@ -1,0 +1,129 @@
+﻿@model Resolve.Models.Travel
+
+@{
+    ViewData["Title"] = "Create Specific Details";
+}
+
+
+<h3>Create Travel Request</h3>
+<hr />
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EmployeeName" class="control-label"></label>
+                <input asp-for="EmployeeName" class="form-control" />
+                <span asp-validation-for="EmployeeName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeEID" class="control-label"></label>
+                <input asp-for="EmployeeEID" class="form-control" />
+                <span asp-validation-for="EmployeeEID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TravelStartDate" class="control-label"></label>
+                <input asp-for="TravelStartDate" class="form-control" />
+                <span asp-validation-for="TravelStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TravelEndDate" class="control-label"></label>
+                <input asp-for="TravelEndDate" class="form-control" />
+                <span asp-validation-for="TravelEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label required-field"></label>
+                <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetType" class="control-label required-field"></label>
+                <select asp-for="BudgetType" asp-items="Html.GetEnumSelectList<BudgetType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="BudgetType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetPurpose" class="control-label required-field"></label>
+                <select asp-for="BudgetPurpose" asp-items="Html.GetEnumSelectList<BudgetPurpose>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="BudgetPurpose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetNumbers" class="control-label"></label>
+                <input asp-for="BudgetNumbers" class="form-control" />
+                <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Destination" class="control-label"></label>
+                <input asp-for="Destination" class="form-control" />
+                <span asp-validation-for="Destination" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Reason" class="control-label"></label>
+                <input asp-for="Reason" class="form-control" />
+                <span asp-validation-for="Reason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airfare" class="control-label"></label>
+                <input asp-for="Airfare" class="form-control" />
+                <span asp-validation-for="Airfare" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Registration" class="control-label"></label>
+                <input asp-for="Registration" class="form-control" />
+                <span asp-validation-for="Registration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Meals" class="control-label"></label>
+                <input asp-for="Meals" class="form-control" />
+                <span asp-validation-for="Meals" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hotels" class="control-label"></label>
+                <input asp-for="Hotels" class="form-control" />
+                <span asp-validation-for="Hotels" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Transportation" class="control-label"></label>
+                <input asp-for="Transportation" class="form-control" />
+                <span asp-validation-for="Transportation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Other1" class="control-label"></label>
+                <input asp-for="Other1" class="form-control" />
+                <span asp-validation-for="Other1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Other2" class="control-label"></label>
+                <input asp-for="Other2" class="form-control" />
+                <span asp-validation-for="Other2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

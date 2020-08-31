@@ -25,13 +25,22 @@ namespace Resolve.Data
         public DbSet<OnBehalf> OnBehalf { get; set; }
         public DbSet<SampleCaseType> SampleCaseType { get; set; }
         public DbSet<SampleCaseTypeTracking> SampleCaseTypeTracking { get; set; }
-        public DbSet<SAR4> SAR4 { get; set; }
         public DbSet<HRServiceStaff> HRServiceStaff { get; set; }
+        public DbSet<HRServiceStaffTracking> HRServiceStaffTracking { get; set; }
         public DbSet<HRServiceFaculty> HRServiceFaculty { get; set; }
+        public DbSet<HRServiceFacultyTracking> HRServiceFacultyTracking { get; set; }
         public DbSet<HRServiceGradStudent> HRServiceGradStudent { get; set; }
         public DbSet<PerioLimitedCare> PerioLimitedCare { get; set; }
         public DbSet<HiringAffiliateFaculty> HiringAffiliateFaculty { get; set; }
+        public DbSet<HiringAffiliateFacultyTracking> HiringAffiliateFacultyTracking { get; set; }
         public DbSet<HRServiceScholarResident> HRServiceScholarResident { get; set; }
+        public DbSet<HRServiceGradStudentTracking> HRServiceGradStudentTracking { get; set; }
+        public DbSet<HRServiceScholarResidentTracking> HRServiceScholarResidentTracking { get; set; }
+        public DbSet<PerioLimitedCareTracking> PerioLimitedCareTracking { get; set; }
+        public DbSet<Travel> Travel { get; set; }
+        public DbSet<FoodEvent> FoodEvent { get; set; }
+        public DbSet<TravelTracking> TravelTracking { get; set; }
+        public DbSet<FoodEventTracking> FoodEventTracking { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -143,8 +152,45 @@ namespace Resolve.Data
                 .HasOne(p => p.CaseAudit)
                 .WithMany(q => q.SampleCaseTypeTrackings)
                 .OnDelete(DeleteBehavior.NoAction);
-        }
-               
 
+            modelBuilder.Entity<HiringAffiliateFacultyTracking>()
+                .HasOne(p => p.CaseAudit)
+                .WithMany(q => q.HiringAffiliateFacultyTrackings)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HRServiceStaffTracking>()
+                .HasOne(p => p.CaseAudit)
+                .WithMany(q => q.HRServiceStaffTrackings)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HRServiceFacultyTracking>()
+               .HasOne(p => p.CaseAudit)
+               .WithMany(q => q.HRServiceFacultyTrackings)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HRServiceGradStudentTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.HRServiceGradStudentTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HRServiceScholarResidentTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.HRServiceScholarResidentTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<PerioLimitedCareTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.PerioLimitedCareTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<FoodEventTracking>()
+           .HasOne(p => p.CaseAudit)
+           .WithMany(q => q.FoodEventTrackings)
+           .OnDelete(DeleteBehavior.NoAction);
+          
+            modelBuilder.Entity<TravelTracking>()
+           .HasOne(p => p.CaseAudit)
+           .WithMany(q => q.TravelTrackings)
+           .OnDelete(DeleteBehavior.NoAction);
+        }
     }
 }

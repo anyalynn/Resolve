@@ -88,176 +88,114 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,FacRequestType,EffectiveStartDate,EffectiveEndDate,TerminationReason,Offboarding,Note,ClosePosition,LeaveWA,Salary,Amount,SupOrg,Department,CurrentFTE,ProposedFTE,JobTitle,EmployeeEID,BudgetNumbers")] HRServiceFaculty hrFaculty)
 
         {
-            IQueryable<HRServiceFaculty> beforeCases = _context.HRServiceFaculty.Where(c => c.CaseID == id).AsNoTracking<HRServiceFaculty>();
-            HRServiceFaculty beforeCase = beforeCases.FirstOrDefault();
-            if (beforeCase == null)
+            if (id != hrFaculty.CaseID)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
-                /** First check fields to see if values have changed and if so add to audit log  **/
-               /** Also clear any fields that were hidden when and not automatically reset in the form **/
-
-                string strAudit = "Case Edited. Values updated (old,new). ";
-               
-                string bcRequest = beforeCase.FacRequestType.ToString();
-                string currRequest = hrFaculty.FacRequestType.ToString();              
-                string bcTerm = beforeCase.TerminationReason.ToString();
-                string currTerm = hrFaculty.TerminationReason.ToString();
-                string bcOff = beforeCase.Offboarding.ToString();
-                string currOff = hrFaculty.Offboarding.ToString();
-                string bcClose = beforeCase.ClosePosition.ToString();
-                string currClose = hrFaculty.ClosePosition.ToString();
-                string bcLeave = beforeCase.LeaveWA.ToString();
-                string currLeave = hrFaculty.LeaveWA.ToString();
-                string bcAmount = "";
-                string currAmount = "";
-                string bcCurrFTE = "";
-                string currCurrFTE = "";
-                string bcPropFTE = "";
-                string currPropFTE = "";
-                string bcSup = beforeCase.SupOrg.ToString();
-                string currSup = hrFaculty.SupOrg.ToString();
-                if (!String.IsNullOrEmpty(beforeCase.Amount))
+                try
                 {
-                    bcAmount = beforeCase.Amount;
-                }
-                if (!String.IsNullOrEmpty(hrFaculty.Amount))
-                {
-                    currAmount = hrFaculty.Amount;
-                }
-                if (!String.IsNullOrEmpty(beforeCase.CurrentFTE))
-                {
-                    bcCurrFTE = beforeCase.CurrentFTE;
-                }
-                if (!String.IsNullOrEmpty(beforeCase.ProposedFTE))
-                {
-                    bcPropFTE = beforeCase.ProposedFTE;
-                }
-                if (!String.IsNullOrEmpty(hrFaculty.CurrentFTE))
-                {
-                    currCurrFTE = hrFaculty.CurrentFTE;
-                }
-                if (!String.IsNullOrEmpty(hrFaculty.ProposedFTE))
-                {
-                    currPropFTE = hrFaculty.ProposedFTE;
-                }
-
-
-                if (beforeCase.EmployeeName != hrFaculty.EmployeeName)
-                {
-                    strAudit += "Employee: (" + beforeCase.EmployeeName + "," + hrFaculty.EmployeeName + ") ";
-                }
-
-                if (bcRequest != currRequest)
-                {
-                    strAudit += "RequestType: (" + beforeCase.FacRequestType.ToString() + "," + hrFaculty.FacRequestType.ToString() + ") ";
-                }
-                if (currRequest != "Termination")
-                {
-                    hrFaculty.TerminationReason = null;
-                    currTerm = "";
-                    hrFaculty.Offboarding = false;
-                    currOff = "False"; 
-                    hrFaculty.ClosePosition = false;
-                    currClose = "False";
-                    hrFaculty.LeaveWA = false;
-                    currLeave = "False";
-                }
-               
-               
-                if (currRequest != "FTE")
-                {
-                    hrFaculty.CurrentFTE = "";
-                    hrFaculty.ProposedFTE = "";
-                    currCurrFTE = "";
-                    currPropFTE = "";
-                }
-                if (currRequest != "Move")
-                {
-                    hrFaculty.SupOrg = null;
-                    currSup = "";
-                }
-               
-                if (bcAmount != currAmount)
-                {
-                    strAudit += "Amount: (" + bcAmount + "," + currAmount + ") ";
-                }
-               
-                if (bcTerm != currTerm)
-                {
-                    strAudit += "TerminationReason: (" + bcTerm + "," + currTerm + ") ";
-                }
-                if (bcOff != currOff)
-                {
-                    strAudit += "Offboarding: (" + bcOff + "," + currOff + ") ";
-                }
-                if (bcLeave != currLeave)
-                {
-                    strAudit += "LeaveWA: (" + bcLeave + "," + currLeave + ") ";
-                }
-                if (bcClose != currClose)
-                {
-                    strAudit += "ClosePosition: (" + bcClose + "," + currClose + ") ";
-                }
-                if (bcCurrFTE != currCurrFTE)
-                {
-                    strAudit += "CurrentFTE: (" + bcCurrFTE + "," + currCurrFTE + ") ";
-                }
-                if (bcPropFTE != currPropFTE)
-                {
-                    strAudit += "PurposedFTE: (" + bcPropFTE + "," + currPropFTE + ") ";
-                }
-                if (bcSup != currSup)
-                {
-                    strAudit += "SupOrg: (" + bcSup+ "," + currSup + ") ";
-                }
-                if (beforeCase.EffectiveStartDate.ToShortDateString() != hrFaculty.EffectiveStartDate.ToShortDateString())
-                {
-                    strAudit += "StartDate: (" + beforeCase.EffectiveStartDate.ToShortDateString() + "," + hrFaculty.EffectiveStartDate.ToShortDateString() + ") ";
-                }
-                DateTime beforeEffectDate = beforeCase.EffectiveEndDate.GetValueOrDefault();
-                DateTime curEffectDate = hrFaculty.EffectiveEndDate.GetValueOrDefault();
-                if (beforeEffectDate.ToShortDateString() != curEffectDate.ToShortDateString())
-                {
-                    strAudit += "EndDate: (" + beforeEffectDate.ToShortDateString() + "," + curEffectDate.ToShortDateString() + ") ";
-                }
-
-                if (beforeCase.Department.ToString() != hrFaculty.Department.ToString())
-                {
-                    strAudit += "Department: (" + beforeCase.Department.ToString() + "," + hrFaculty.Department.ToString() + ") ";
-                }
-
-                if (!String.IsNullOrEmpty(beforeCase.Salary) && !String.IsNullOrEmpty(hrFaculty.Salary))
-                {
-                    if (beforeCase.Salary.ToString() != hrFaculty.Salary.ToString())
+                    IQueryable<HRServiceFaculty> beforeCases = _context.HRServiceFaculty.Where(c => c.CaseID == id).AsNoTracking<HRServiceFaculty>();
+                    HRServiceFaculty beforeCase = beforeCases.FirstOrDefault();
+                    if (beforeCase == null)
                     {
-                        strAudit += "Salary: (" + beforeCase.Salary.ToString() + "," + hrFaculty.Salary.ToString() + ") ";
+                        return NotFound();
+                    }
+                    else
+                    {
+                        // Creating an audit log
+                        var audit = new CaseAudit { AuditLog = "Case Specific Details Edited", CaseID = id, LocalUserID = User.Identity.Name };
+                        _context.Add(audit);
+                        await _context.SaveChangesAsync();
+                        // Adding old details to tracking
+
+                        var old_details = new HRServiceFacultyTracking
+                        {
+                            Status = "old",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = beforeCase.CaseID,
+                            EmployeeName = beforeCase.EmployeeName,
+                            FacRequestType = beforeCase.FacRequestType,
+                            TerminationReason = beforeCase.TerminationReason,
+                            Offboarding = beforeCase.Offboarding,
+                            LeaveWA = beforeCase.LeaveWA,
+                            ClosePosition = beforeCase.ClosePosition,
+                            Amount = beforeCase.Amount,
+                            EffectiveStartDate = beforeCase.EffectiveStartDate,
+                            EffectiveEndDate = beforeCase.EffectiveEndDate,
+                            Department = beforeCase.Department,
+                            EmployeeEID = beforeCase.EmployeeEID,
+                            Note = beforeCase.Note,
+                            BudgetNumbers = beforeCase.BudgetNumbers
+                        };
+                        _context.Add(old_details);
+                        // Adding current details to tracking
+                        var new_details = new HRServiceFacultyTracking
+                        {
+                            Status = "new",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = hrFaculty.CaseID,
+                            EmployeeName = hrFaculty.EmployeeName,
+                            FacRequestType = hrFaculty.FacRequestType,
+                            TerminationReason = hrFaculty.TerminationReason,
+                            Offboarding = hrFaculty.Offboarding,
+                            LeaveWA = hrFaculty.LeaveWA,
+                            ClosePosition = hrFaculty.ClosePosition,
+                            Amount = hrFaculty.Amount,
+                            EffectiveStartDate = hrFaculty.EffectiveStartDate,
+                            EffectiveEndDate = hrFaculty.EffectiveEndDate,
+                            Department = hrFaculty.Department,
+                            EmployeeEID = hrFaculty.EmployeeEID,
+                            Note = hrFaculty.Note,
+                            BudgetNumbers = hrFaculty.BudgetNumbers
+                        };
+                        _context.Add(new_details);
+                        // Adding current details to actual Case Type entity
+                        _context.Update(hrFaculty);
+                        await _context.SaveChangesAsync();
                     }
                 }
-                if (beforeCase.EmployeeEID.ToString() != hrFaculty.EmployeeEID.ToString())
+                catch (DbUpdateConcurrencyException)
                 {
-                    strAudit += "EmployeeEID: (" + beforeCase.EmployeeEID.ToString() + "," + hrFaculty.EmployeeEID.ToString() + ") ";
+                    if (!HRServiceFacultyExists(hrFaculty.CaseID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                if (beforeCase.BudgetNumbers.ToString() != hrFaculty.BudgetNumbers.ToString())
-                {
-                    strAudit += "Budget#: (" + beforeCase.BudgetNumbers.ToString() + "," + hrFaculty.BudgetNumbers.ToString() + ") ";
-                }
-                if (beforeCase.JobTitle.ToString() != hrFaculty.JobTitle.ToString())
-                {
-                    strAudit += "JobTitle: (" + beforeCase.JobTitle.ToString() + "," + hrFaculty.JobTitle.ToString() + ") ";
-                }
-
-                var audit = new CaseAudit { AuditLog = strAudit, CaseID = id, LocalUserID = User.Identity.Name };
-                _context.Add(audit);
-                _context.Entry(hrFaculty).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
-                //return RedirectToAction("Index", "Home");
             }
             return View(hrFaculty);
+        }
+        public IActionResult EditLog(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                var logs = _context.HRServiceFacultyTracking.Where(p => p.CaseAuditID == id).ToList();
+                ViewData["Logs"] = logs;
+                return View();
+            }
+            catch (Exception)
+            {
+                var cid = Convert.ToInt32(id);
+                return RedirectToAction("Details", "Cases", new { id = cid, area = "", err_message = "Can not fetch the edit log details currently!" });
+            }
+
+        }
+
+        private bool HRServiceFacultyExists(int id)
+        {
+            return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }
 
     }

@@ -85,57 +85,107 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,ScholarRequestType,ScholarCompAllowanceChange,ScholarJobProfile,JobTitle,PropTitle,CurrentFTE,ProposedFTE,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers")] HRServiceScholarResident hrScholar)
 
         {
-            /** First check important fields to see if values have changed and if so add to audit log **/
-            string strAudit = "Case Edited. Values updated (old,new). ";
-
-            IQueryable<HRServiceScholarResident> beforeCases = _context.HRServiceScholarResident.Where(c => c.CaseID == id).AsNoTracking<HRServiceScholarResident>();
-            HRServiceScholarResident beforeCase = beforeCases.FirstOrDefault();
-            if (beforeCase == null)
+            if (id != hrScholar.CaseID)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
-                if (beforeCase.Name != hrScholar.Name)
+                try
                 {
-                    strAudit += "Student: (" + beforeCase.Name + "," + hrScholar.Name + ") ";
-                }
+                    IQueryable<HRServiceScholarResident> beforeCases = _context.HRServiceScholarResident.Where(c => c.CaseID == id).AsNoTracking<HRServiceScholarResident>();
+                    HRServiceScholarResident beforeCase = beforeCases.FirstOrDefault();
+                    if (beforeCase == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        // Creating an audit log
+                        var audit = new CaseAudit { AuditLog = "Case Specific Details Edited", CaseID = id, LocalUserID = User.Identity.Name };
+                        _context.Add(audit);
+                        await _context.SaveChangesAsync();
+                        // Adding old details to tracking
 
-               
-                if (beforeCase.EffectiveStartDate.ToShortDateString() != hrScholar.EffectiveStartDate.ToShortDateString())
-                {
-                    strAudit += "StartDate: (" + beforeCase.EffectiveStartDate.ToShortDateString() + "," + hrScholar.EffectiveStartDate.ToShortDateString() + ") ";
+                        var old_details = new HRServiceScholarResidentTracking
+                        {
+                            Status = "old",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = beforeCase.CaseID,
+                            Name = beforeCase.Name,
+                            ScholarJobProfile = beforeCase.ScholarJobProfile,
+                            ScholarRequestType = beforeCase.ScholarRequestType,
+                            EffectiveStartDate = beforeCase.EffectiveStartDate,
+                            EffectiveEndDate = beforeCase.EffectiveEndDate,
+                            Department = beforeCase.Department,
+                            StepStipendAllowance = beforeCase.StepStipendAllowance,
+                            Note = beforeCase.Note,
+                            BudgetNumbers = beforeCase.BudgetNumbers
+                        };
+                        _context.Add(old_details);
+                        // Adding current details to tracking
+                        var new_details = new HRServiceScholarResidentTracking
+                        {
+                            Status = "new",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = hrScholar.CaseID,
+                            Name = hrScholar.Name,
+                            ScholarRequestType = hrScholar.ScholarRequestType,
+                            EffectiveStartDate = hrScholar.EffectiveStartDate,
+                            EffectiveEndDate = hrScholar.EffectiveEndDate,
+                            Department = hrScholar.Department,
+                            ScholarJobProfile = hrScholar.ScholarJobProfile,
+                            StepStipendAllowance = hrScholar.StepStipendAllowance,
+                            Note = hrScholar.Note,
+                            BudgetNumbers = hrScholar.BudgetNumbers
+                        };
+                        _context.Add(new_details);
+                        // Adding current details to actual Case Type entity
+                        _context.Update(hrScholar);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-                DateTime beforeEffectDate = beforeCase.EffectiveEndDate.GetValueOrDefault();
-                DateTime curEffectDate = hrScholar.EffectiveEndDate.GetValueOrDefault();
-                if (beforeEffectDate.ToShortDateString() != curEffectDate.ToShortDateString())
+                catch (DbUpdateConcurrencyException)
                 {
-                    strAudit += "EndDate: (" + beforeEffectDate.ToShortDateString() + "," + curEffectDate.ToShortDateString() + ") ";
+                    if (!HRServiceScholarResidentExists(hrScholar.CaseID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                /*
-                if (beforeCase.Department.ToString() != hrGradStudent.Department.ToString())
-                {
-                    strAudit += "Department: (" + beforeCase.Department.ToString() + "," + hrGradStudent.Department.ToString() + ") ";
-                }
-                if (beforeCase.StepStipendAllowance.ToString() != hrGradStudent.StepStipendAllowance.ToString())
-                {
-                    strAudit += "Allowance: (" + beforeCase.StepStipendAllowance.ToString() + "," + hrGradStudent.StepStipendAllowance.ToString() + ") ";
-                }
-                if (beforeCase.BudgetNumbers.ToString() != hrGradStudent.BudgetNumbers.ToString())
-                {
-                    strAudit += "BudgetNumbers: (" + beforeCase.BudgetNumbers.ToString() + "," + hrGradStudent.BudgetNumbers.ToString() + ") ";
-                }
-                */
-
-                var audit = new CaseAudit { AuditLog = strAudit, CaseID = id, LocalUserID = User.Identity.Name };
-                _context.Add(audit);
-                _context.Entry(hrScholar).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
-                //return RedirectToAction("Index", "Home");
             }
             return View(hrScholar);
         }
+        public IActionResult EditLog(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                var logs = _context.HRServiceScholarResidentTracking.Where(p => p.CaseAuditID == id).ToList();
+                ViewData["Logs"] = logs;
+                return View();
+            }
+            catch (Exception)
+            {
+                var cid = Convert.ToInt32(id);
+                return RedirectToAction("Details", "Cases", new { id = cid, area = "", err_message = "Can not fetch the edit log details currently!" });
+            }
+
+        }
+
+        private bool HRServiceScholarResidentExists(int id)
+        {
+            return _context.CaseAudit.Any(e => e.CaseAuditID == id);
+        }
+
     }
 }

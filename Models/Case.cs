@@ -42,13 +42,14 @@ namespace Resolve.Models
         // Add a line for every new Case Type added to the application
 
         public ICollection<SampleCaseType> SampleCaseType { get; set; }
-        public ICollection<SAR4> SAR4 { get; set; }
         public ICollection<HRServiceGradStudent> HRServiceGradStudent { get; set; }
         public ICollection<HRServiceStaff> HRServiceStaff { get; set; }
         public ICollection<HRServiceFaculty> HRServiceFaculty { get; set; }
         public ICollection<PerioLimitedCare> PerioLimitedCare { get; set; }
         public ICollection<HiringAffiliateFaculty> HiringAffiliateFaculty { get; set; }
         public ICollection<HRServiceScholarResident> HRServiceScholarResident { get; set; }
+        public ICollection<Travel> Travel { get; set; }
+        public ICollection<FoodEvent> FoodEvent { get; set; }
 
     }  
 

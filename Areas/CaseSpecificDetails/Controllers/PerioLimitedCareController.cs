@@ -66,97 +66,114 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,StudentName,PatientName,PatientAddress,PatientPhone,BirthDate,Complaint,TreatmentPlan,bwxrays,paxrays,RestorativeExam,PerioExam,Prophy,Other, OtherProcedure,TChart,Note")] PerioLimitedCare perioLimitedCare)
 
         {
-            /** First check important fields to see if values have changed and if so add to audit log **/
-            string strAudit = "Case Edited. Values updated (old,new). ";
-
-            IQueryable<PerioLimitedCare> beforeCases = _context.PerioLimitedCare.Where(c => c.CaseID == id).AsNoTracking<PerioLimitedCare>();
-            PerioLimitedCare beforeCase = beforeCases.FirstOrDefault();
-            if (beforeCase == null)
+            if (id != perioLimitedCare.CaseID)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
-                if (beforeCase.StudentName != perioLimitedCare.StudentName)
+                try
                 {
-                    strAudit += "Student: (" + beforeCase.StudentName + "," + perioLimitedCare.StudentName + ") ";
-                }
+                    IQueryable<PerioLimitedCare> beforeCases = _context.PerioLimitedCare.Where(c => c.CaseID == id).AsNoTracking<PerioLimitedCare>();
+                    PerioLimitedCare beforeCase = beforeCases.FirstOrDefault();
+                    if (beforeCase == null)
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        // Creating an audit log
+                        var audit = new CaseAudit { AuditLog = "Case Specific Details Edited", CaseID = id, LocalUserID = User.Identity.Name };
+                        _context.Add(audit);
+                        await _context.SaveChangesAsync();
+                        // Adding old details to tracking
 
-                if (beforeCase.PatientName != perioLimitedCare.PatientName)
-                {
-                    strAudit += "Patient: (" + beforeCase.PatientName + "," + perioLimitedCare.PatientName + ") ";
+                        var old_details = new PerioLimitedCareTracking
+                        {
+                            Status = "old",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = beforeCase.CaseID,
+                            BirthDate = beforeCase.BirthDate,
+                            StudentName = beforeCase.StudentName,
+                            PatientName = beforeCase.PatientName,
+                            TreatmentPlan = beforeCase.TreatmentPlan,
+                            Complaint = beforeCase.Complaint,
+                            PatientAddress = beforeCase.PatientAddress,
+                            PatientPhone = beforeCase.PatientPhone,
+                            PerioExam = beforeCase.PerioExam,
+                            OtherProcedure = beforeCase.OtherProcedure,
+                            RestorativeExam = beforeCase.RestorativeExam,
+                            bwxrays = beforeCase.bwxrays,
+                            paxrays = beforeCase.paxrays,
+                            TChart = beforeCase.TChart,
+                        };
+                        _context.Add(old_details);
+                        // Adding current details to tracking
+                        var new_details = new PerioLimitedCareTracking
+                        {
+                            Status = "new",
+                            CaseAuditID = audit.CaseAuditID,
+                            CaseID = perioLimitedCare.CaseID,
+                            BirthDate = perioLimitedCare.BirthDate,
+                            StudentName = perioLimitedCare.StudentName,
+                            PatientName = perioLimitedCare.PatientName,
+                            TreatmentPlan = perioLimitedCare.TreatmentPlan,
+                            Complaint = perioLimitedCare.Complaint,
+                            PatientAddress = perioLimitedCare.PatientAddress,
+                            PatientPhone = perioLimitedCare.PatientPhone,
+                            PerioExam = perioLimitedCare.PerioExam,
+                            OtherProcedure = perioLimitedCare.OtherProcedure,
+                            RestorativeExam = perioLimitedCare.RestorativeExam,
+                            bwxrays = perioLimitedCare.bwxrays,
+                            paxrays = perioLimitedCare.paxrays,
+                            TChart = perioLimitedCare.TChart,
+                        };
+                        _context.Add(new_details);
+                        // Adding current details to actual Case Type entity
+                        _context.Update(perioLimitedCare);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-                if (beforeCase.PatientAddress != perioLimitedCare.PatientAddress)
+                catch (DbUpdateConcurrencyException)
                 {
-                    strAudit += "PatientAddress: (" + beforeCase.PatientAddress + "," + perioLimitedCare.PatientAddress + ") ";
+                    if (!PerioLimitedCareExists(perioLimitedCare.CaseID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
                 }
-                if (beforeCase.PatientPhone != perioLimitedCare.PatientPhone)
-                {
-                    strAudit += "PatientPhone: (" + beforeCase.PatientPhone + "," + perioLimitedCare.PatientPhone + ") ";
-                }
-                if (beforeCase.BirthDate.ToShortDateString() != perioLimitedCare.BirthDate.ToShortDateString())
-                {
-                    strAudit += "BirthDate: (" + beforeCase.BirthDate.ToShortDateString() + "," + perioLimitedCare.BirthDate.ToShortDateString() + ") ";
-                }
-                if (beforeCase.Complaint != perioLimitedCare.Complaint)
-                {
-                    strAudit += "Complaint: (" + beforeCase.Complaint + "," + perioLimitedCare.Complaint + ") ";
-                }
-                if (beforeCase.TreatmentPlan != perioLimitedCare.TreatmentPlan)
-                {
-                    strAudit += "TreatmentPlan: (" + beforeCase.TreatmentPlan + "," + perioLimitedCare.TreatmentPlan + ") ";
-                }
-                if (beforeCase.TChart != perioLimitedCare.TChart)
-                {
-                    strAudit += "TChart: (" + beforeCase.TChart + "," + perioLimitedCare.TChart + ") ";
-                }
-                string bcbwxrays = beforeCase.bwxrays.ToString();
-                string bcpaxrays = beforeCase.paxrays.ToString();
-                string bcPerioExam = beforeCase.PerioExam.ToString();
-                string bcRestoreExam = beforeCase.RestorativeExam.ToString();
-                string bcProphy = beforeCase.Prophy.ToString();
-                string bcOther = beforeCase.Other.ToString();
-                string currProphy = perioLimitedCare.Prophy.ToString();
-                string currOther = perioLimitedCare.Other.ToString();
-                string currRestoreExam = perioLimitedCare.RestorativeExam.ToString();
-                string curbwxrays = perioLimitedCare.bwxrays.ToString();
-                string currpaxrays = perioLimitedCare.paxrays.ToString();
-                string currPerioExam = perioLimitedCare.PerioExam.ToString();
-
-                if (bcbwxrays != curbwxrays)
-                {
-                    strAudit += "BW x-rays: (" + bcbwxrays + "," + curbwxrays + ") ";
-                }
-                if (bcpaxrays != currpaxrays)
-                {
-                    strAudit += "PA x-rays: (" + bcpaxrays + "," + currpaxrays + ") ";
-                }
-                if (bcPerioExam != currPerioExam)
-                {
-                    strAudit += "PerioExam: (" + bcPerioExam + "," + currPerioExam + ") ";
-                }
-                if (bcRestoreExam != currRestoreExam)
-                {
-                    strAudit += "RestoreExam: (" + bcRestoreExam + "," + currRestoreExam + ") ";
-                }
-                if (bcProphy != currProphy)
-                {
-                    strAudit += "Prophy: (" + bcProphy + "," + currProphy + ") ";
-                }
-                if (bcOther != currOther)
-                {
-                    strAudit += "Other: (" + bcOther + "," + currOther + ") ";
-                }
-
-                var audit = new CaseAudit { AuditLog = strAudit, CaseID = id, LocalUserID = User.Identity.Name };
-                _context.Add(audit);
-                _context.Entry(perioLimitedCare).State = EntityState.Modified;
-                await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
-                //return RedirectToAction("Index", "Home");
             }
             return View(perioLimitedCare);
+        }
+        public IActionResult EditLog(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            try
+            {
+                var logs = _context.PerioLimitedCareTracking.Where(p => p.CaseAuditID == id).ToList();
+                ViewData["Logs"] = logs;
+                return View();
+            }
+            catch (Exception)
+            {
+                var cid = Convert.ToInt32(id);
+                return RedirectToAction("Details", "Cases", new { id = cid, area = "", err_message = "Can not fetch the edit log details currently!" });
+            }
+
+        }
+
+        private bool PerioLimitedCareExists(int id)
+        {
+            return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }
 
     }

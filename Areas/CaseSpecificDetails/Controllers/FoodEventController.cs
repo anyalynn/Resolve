@@ -12,12 +12,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class HiringAffiliateFacultyController : Controller
+    public class FoodEventController : Controller
     {
-
+        
         private readonly ResolveCaseContext _context;
 
-        public HiringAffiliateFacultyController(ResolveCaseContext context)
+        public FoodEventController(ResolveCaseContext context)
         {
             _context = context;
         }
@@ -27,41 +27,35 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             return View();
         }
 
+        
         public IActionResult Create(int id)
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, HiringAffiliateFaculty hrAffFaculty)
+        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,Item1,Item2,item3,Item4,Item5,Item6,Item7,Total,Justification,EventDescription")] FoodEvent foodEvent)
         {
             if (ModelState.IsValid)
             {
-                HiringAffiliateFaculty newCase = new HiringAffiliateFaculty
-                {
-                    CaseID = id,
-                    FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle,
-                    Name = hrAffFaculty.Name,
-                    HireDate = hrAffFaculty.HireDate,
-                    Department = hrAffFaculty.Department,
-                    Note = hrAffFaculty.Note
-                };
-                _context.Add(newCase);
+                foodEvent.CaseID = id;
+                _context.Add(foodEvent);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(hrAffFaculty);
+            return View(foodEvent);
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            HiringAffiliateFaculty editCase = _context.HiringAffiliateFaculty.Find(id);
+
+            var editCase = _context.FoodEvent.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -71,9 +65,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,FacAffiliateTitle,HireDate,Department,Note")] HiringAffiliateFaculty hrAffFaculty)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,Item1,Item2,item3,Item4,Item5,Item6,Item7,Total,Justification,EventDescription")] FoodEvent foodEvent)
+
         {
-            if (id != hrAffFaculty.CaseID)
+            if (id != foodEvent.CaseID)
             {
                 return NotFound();
             }
@@ -82,8 +77,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<HiringAffiliateFaculty> beforeCases = _context.HiringAffiliateFaculty.Where(c => c.CaseID == id).AsNoTracking<HiringAffiliateFaculty>();
-                    HiringAffiliateFaculty beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<FoodEvent> beforeCases = _context.FoodEvent.Where(c => c.CaseID == id).AsNoTracking<FoodEvent>();
+                    FoodEvent beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -95,39 +90,45 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         _context.Add(audit);
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
-                        
-                         var old_details = new HiringAffiliateFacultyTracking
+                        var old_details = new FoodEventTracking
                         {
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            HireDate = beforeCase.HireDate,
-                             Department = beforeCase.Department,
-                            Name = beforeCase.Name,
-                            FacAffiliateTitle = beforeCase.FacAffiliateTitle
-        };
+                            EventDescription = beforeCase.EventDescription,
+                            EmployeeName = beforeCase.EmployeeName,
+                            EventDate = beforeCase.EventDate,
+                            Department = beforeCase.Department,
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            BudgetPurpose = beforeCase.BudgetPurpose,
+                            BudgetType = beforeCase.BudgetType,
+                            Total = beforeCase.Total
+                        };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new HiringAffiliateFacultyTracking
+                        var new_details = new FoodEventTracking
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = hrAffFaculty.CaseID,
-                            HireDate = hrAffFaculty.HireDate,
-                            Department = hrAffFaculty.Department,
-                            Name = hrAffFaculty.Name,
-                            
-                            FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle
+                            CaseID = foodEvent.CaseID,
+                            EventDescription = foodEvent.EventDescription,
+                            EmployeeName = foodEvent.EmployeeName,
+                            Department = foodEvent.Department,
+                            EventDate = foodEvent.EventDate,
+                             BudgetNumbers = foodEvent.BudgetNumbers,
+                            BudgetPurpose = foodEvent.BudgetPurpose,
+                            BudgetType = foodEvent.BudgetType,
+                            Total = foodEvent.Total
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(hrAffFaculty);
+                        _context.Update(foodEvent);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HiringAffiliateFacultyExists(hrAffFaculty.CaseID))
+                    if (!FoodEventExists(foodEvent.CaseID))
                     {
                         return NotFound();
                     }
@@ -139,8 +140,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(hrAffFaculty);
+            return View(foodEvent);
         }
+
         public IActionResult EditLog(int? id)
         {
             if (id == null)
@@ -149,7 +151,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.HiringAffiliateFacultyTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.FoodEventTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -161,7 +163,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool HiringAffiliateFacultyExists(int id)
+        private bool FoodEventExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }

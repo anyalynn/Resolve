@@ -1,0 +1,58 @@
+﻿@model Resolve.Models.TravelTracking
+
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>Travel Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<TravelTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+               
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">Department</th>
+                    <th class="th-sm" style="width: 10%">EmployeeName</th>
+                    <th class="th-sm" style="width: 10%">TravelStartDate</th>
+                    <th class="th-sm" style="width: 10%">TravelEndDate</th>
+                    <th class="th-sm" style="width: 10%">Destination</th>
+                    <th class="th-sm" style="width: 10%">BudgetNumbers</th>
+                    <th class="th-sm" style="width: 10%">BudgetType</th>
+                    <th class="th-sm" style="width: 10%">BudgetPurpose</th>
+                    <th class="th-sm" style="width: 10%">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.Department</td>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.TravelStartDate</td>
+                    <td>@item.TravelEndDate</td>
+                    <td>@item.Destination</td>
+                    <td>@item.BudgetNumbers</td>
+                    <td>@item.BudgetType</td>
+                    <td>@item.BudgetPurpose</td>
+                    <td>@item.Total</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+

@@ -12,12 +12,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class HiringAffiliateFacultyController : Controller
+    public class TravelController : Controller
     {
-
+        
         private readonly ResolveCaseContext _context;
 
-        public HiringAffiliateFacultyController(ResolveCaseContext context)
+        public TravelController(ResolveCaseContext context)
         {
             _context = context;
         }
@@ -27,41 +27,35 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             return View();
         }
 
+        
         public IActionResult Create(int id)
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, HiringAffiliateFaculty hrAffFaculty)
+        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,Airfare,EmployeeEID,Registration,Transportation,Other1,Other2,Meals,Hotels,Total,TravelStartDate,TravelEndDate, Department, Destination,Note,Reason")] Travel travel)
         {
             if (ModelState.IsValid)
             {
-                HiringAffiliateFaculty newCase = new HiringAffiliateFaculty
-                {
-                    CaseID = id,
-                    FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle,
-                    Name = hrAffFaculty.Name,
-                    HireDate = hrAffFaculty.HireDate,
-                    Department = hrAffFaculty.Department,
-                    Note = hrAffFaculty.Note
-                };
-                _context.Add(newCase);
+                travel.CaseID = id;
+                _context.Add(travel);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(hrAffFaculty);
+            return View(travel);
         }
+
         public IActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-            HiringAffiliateFaculty editCase = _context.HiringAffiliateFaculty.Find(id);
+
+            var editCase = _context.Travel.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -71,9 +65,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,FacAffiliateTitle,HireDate,Department,Note")] HiringAffiliateFaculty hrAffFaculty)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,EmployeeEID,Airfare,Registration,Transportation,Other1,Other2,Meals,Hotels,Total,TravelStartDate,TravelEndDate, Department,Note,Destination,Reason")] Travel travel)
+
         {
-            if (id != hrAffFaculty.CaseID)
+            if (id != travel.CaseID)
             {
                 return NotFound();
             }
@@ -82,8 +77,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<HiringAffiliateFaculty> beforeCases = _context.HiringAffiliateFaculty.Where(c => c.CaseID == id).AsNoTracking<HiringAffiliateFaculty>();
-                    HiringAffiliateFaculty beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<Travel> beforeCases = _context.Travel.Where(c => c.CaseID == id).AsNoTracking<Travel>();
+                    Travel beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -95,39 +90,47 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         _context.Add(audit);
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
-                        
-                         var old_details = new HiringAffiliateFacultyTracking
+                        var old_details = new TravelTracking
                         {
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            HireDate = beforeCase.HireDate,
-                             Department = beforeCase.Department,
-                            Name = beforeCase.Name,
-                            FacAffiliateTitle = beforeCase.FacAffiliateTitle
-        };
+                            Destination = beforeCase.Destination,
+                            EmployeeName = beforeCase.EmployeeName,
+                            TravelStartDate = beforeCase.TravelStartDate,
+                            TravelEndDate = beforeCase.TravelEndDate,
+                            Reason = beforeCase.Reason,
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            BudgetPurpose = beforeCase.BudgetPurpose,
+                            BudgetType = beforeCase.BudgetType,
+                            Total = beforeCase.Total
+                        };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new HiringAffiliateFacultyTracking
+                        var new_details = new TravelTracking
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = hrAffFaculty.CaseID,
-                            HireDate = hrAffFaculty.HireDate,
-                            Department = hrAffFaculty.Department,
-                            Name = hrAffFaculty.Name,
-                            
-                            FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle
+                            CaseID = travel.CaseID,
+                            Destination = travel.Destination,
+                            EmployeeName = travel.EmployeeName,
+                            TravelStartDate = travel.TravelStartDate,
+                            TravelEndDate = travel.TravelEndDate,
+                            Reason = travel.Reason,
+                            BudgetNumbers = travel.BudgetNumbers,
+                            BudgetPurpose = travel.BudgetPurpose,
+                            BudgetType = travel.BudgetType,
+                            Total = travel.Total
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(hrAffFaculty);
+                        _context.Update(travel);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HiringAffiliateFacultyExists(hrAffFaculty.CaseID))
+                    if (!TravelExists(travel.CaseID))
                     {
                         return NotFound();
                     }
@@ -139,8 +142,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(hrAffFaculty);
+            return View(travel);
         }
+
         public IActionResult EditLog(int? id)
         {
             if (id == null)
@@ -149,7 +153,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.HiringAffiliateFacultyTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.TravelTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -161,10 +165,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool HiringAffiliateFacultyExists(int id)
+        private bool TravelExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }
 
     }
 }
+
+    

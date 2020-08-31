@@ -193,13 +193,14 @@ namespace Resolve.Controllers
                 .Include(a => a.Approvers).ThenInclude(e => e.LocalGroup)
                 .Include(a => a.OnBehalves).ThenInclude(e => e.LocalUser)
                 .Include(p => p.SampleCaseType)
-                .Include(p => p.SAR4)
                 .Include(p => p.HRServiceFaculty)
                 .Include(p => p.HRServiceGradStudent)
                 .Include(p => p.HRServiceStaff)
                  .Include(p => p.HRServiceScholarResident)
                 .Include(p => p.PerioLimitedCare)
                 .Include(p => p.HiringAffiliateFaculty)
+                .Include(p => p.FoodEvent)
+                .Include(p => p.Travel)
                 .FirstOrDefaultAsync(m => m.CaseID == id);
             if (@case == null)
             {

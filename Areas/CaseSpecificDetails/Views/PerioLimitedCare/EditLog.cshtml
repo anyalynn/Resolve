@@ -1,0 +1,57 @@
+﻿@model Resolve.Models.PerioLimitedCareTracking
+
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>Perio Limited Care Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<PerioLimitedCareTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">TChart</th>
+                    <th class="th-sm" style="width: 10%">Student Name</th>
+                    <th class="th-sm" style="width: 10%">Patient Name</th>
+                    <th class="th-sm" style="width: 10%">Complaint</th>
+                    <th class="th-sm" style="width: 10%">Treatment Plan</th>
+                    <th class="th-sm" style="width: 10%">Perio Exam</th>
+                    <th class="th-sm" style="width: 10%">Restorative Exam</th>
+                    <th class="th-sm" style="width: 10%">Prophy</th>
+                    <th class="th-sm" style="width: 10%">Other Procedure</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.TChart</td>
+                    <td>@item.StudentName</td>
+                    <td>@item.PatientName</td>
+                    <td>@item.Complaint</td>
+                    <td>@item.TreatmentPlan</td>
+                    <td>@item.PerioExam</td>
+                    <td>@item.RestorativeExam</td>
+                    <td>@item.Prophy</td>
+                    <td>@item.OtherProcedure</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+
