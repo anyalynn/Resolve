@@ -34,7 +34,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,Item1,Item2,item3,Item4,Item5,Item6,Item7,Total,Justification,EventDescription")] FoodEvent foodEvent)
+        public async Task<IActionResult> Create(int id, [Bind("BudgetDeficit,FoodApprovalForm,EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,Item1,Item2,item3,Item4,Item5,Item6,Item7,Total,Justification,EventDescription")] FoodEvent foodEvent)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,BudgetDeficit,FoodApprovalForm,EmployeeName,EmployeeEID,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
 
         {
             if (id != foodEvent.CaseID)

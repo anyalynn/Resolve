@@ -56,8 +56,10 @@ namespace Resolve.Models
 
         public virtual Department Department { get; set; }
 
+        [Display(Name = "Budget Type")]
         public virtual BudgetType BudgetType { get; set; }
 
+        [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
 
         public string EmployeeEID { get; set; }
@@ -74,21 +76,32 @@ namespace Resolve.Models
 
         public string Reason { get; set; }
 
-        public int? Airfare { get; set; }
+        public string Other1 { get; set; }
 
-        public int? Registration { get; set; }
+        public string Other2 { get; set; }
 
-        public int? Transportation { get; set; }
+        [Display(Name = "Airfare Cost")]
+        public float? AirfareCost { get; set; }
 
-        public int? Meals { get; set; }
+        [Display(Name = "Registration Cost")]
+        public float? RegistrationCost { get; set; }
 
-        public int? Hotels { get; set; }
+        [Display(Name = "Transportation Cost")]
+        public float? TransportationCost { get; set; }
 
-        public int? Other1 { get; set; }
+        [Display(Name = "Meals Cost")]
+        public float? MealsCost { get; set; }
 
-        public int? Other2 { get; set; }
+        [Display(Name = "Hotels Cost")]
+        public float? HotelsCost { get; set; }
 
-        public int? Total { get; set; }
+        [Display(Name = "Other Cost")]
+        public float? OtherCost1 { get; set; }
+
+        [Display(Name = "Other Cost")]
+        public float? OtherCost2 { get; set; }
+
+        public float? Total { get; set; }
       
     }
 }

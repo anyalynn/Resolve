@@ -34,7 +34,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,Airfare,EmployeeEID,Registration,Transportation,Other1,Other2,Meals,Hotels,Total,TravelStartDate,TravelEndDate, Department, Destination,Note,Reason")] Travel travel)
+        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, Department, Destination,Note,Reason")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,EmployeeEID,Airfare,Registration,Transportation,Other1,Other2,Meals,Hotels,Total,TravelStartDate,TravelEndDate, Department,Note,Destination,Reason")] Travel travel)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,EmployeeEID,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, Department,Note,Destination,Reason")] Travel travel)
 
         {
             if (id != travel.CaseID)

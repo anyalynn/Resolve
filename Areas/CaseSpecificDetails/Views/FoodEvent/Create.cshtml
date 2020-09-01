@@ -3,17 +3,39 @@
 @{
     ViewData["Title"] = "Create Specific Details";
 }
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".calc").change(function () {
+                var value1 = $('#item1').val() == '' ? 0 : parseFloat($('#item1').val());
+                var value2 = $('#item2').val() == '' ? 0 : parseFloat($('#item2').val());
+                var value3 = $('#item3').val() == '' ? 0 : parseFloat($('#item3').val());
+                var value4 = $('#item4').val() == '' ? 0 : parseFloat($('#item4').val());
+                var value5 = $('#item5').val() == '' ? 0 : parseFloat($('#item5').val());
+                var value6 = $('#item6').val() == '' ? 0 : parseFloat($('#item6').val());
+                var value7 = $('#item7').val() == '' ? 0 : parseFloat($('#item7').val());
+                var sum = value1 + value2 + value3 + value4 + value5 + value6 + value7;
+                $('#total').val(sum);
+            });
+        });
+
+
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
 
 
 <h3>Create Food/Event Request</h3>
 <hr />
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EmployeeName" class="control-label"></label>
+                <label asp-for="EmployeeName" class="control-label required-field"></label>
                 <input asp-for="EmployeeName" class="form-control" />
                 <span asp-validation-for="EmployeeName" class="text-danger"></span>
             </div>
@@ -23,7 +45,7 @@
                 <span asp-validation-for="EmployeeEID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EventDate" class="control-label"></label>
+                <label asp-for="EventDate" class="control-label required-field"></label>
                 <input asp-for="EventDate" class="form-control" />
                 <span asp-validation-for="EventDate" class="text-danger"></span>
             </div>
@@ -31,6 +53,11 @@
                 <label asp-for="EventDescription" class="control-label"></label>
                 <input asp-for="EventDescription" class="form-control" />
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumberAttending" class="control-label"></label>
+                <input asp-for="NumberAttending" class="form-control" />
+                <span asp-validation-for="NumberAttending" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Department" class="control-label required-field"></label>
@@ -53,55 +80,149 @@
                 </select>
                 <span asp-validation-for="BudgetPurpose" class="text-danger"></span>
             </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input data-related-item="title1" class="form-check-input" asp-for="BudgetDeficit" /> @Html.DisplayNameFor(model => model.BudgetDeficit)
+                </label>
+                <span asp-validation-for="BudgetDeficit" class="text-danger"></span>
+            </div>
             <div class="form-group">
-                <label asp-for="BudgetNumbers" class="control-label"></label>
+                <label asp-for="BudgetNumbers" class="control-label required-field"></label>
                 <input asp-for="BudgetNumbers" class="form-control" />
                 <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Justification" class="control-label"></label>
+                <label asp-for="Justification" class="control-label required-field"></label>
                 <textarea asp-for="Justification" class="form-control"></textarea>
                 <span asp-validation-for="Justification" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Item1" class="control-label"></label>
-                <input asp-for="Item1" class="form-control" />
-                <span asp-validation-for="Item1" class="text-danger"></span>
+                <label asp-for="FoodApprovalForm" class="control-label required-field"></label>
+                <select asp-for="FoodApprovalForm" asp-items="Html.GetEnumSelectList<FoodApprovalForm>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="FoodApprovalForm" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item2" class="control-label"></label>
-                <input asp-for="Item2" class="form-control" />
-                <span asp-validation-for="Item2" class="text-danger"></span>
+                <label asp-for="ItemName1" class="control-label"></label>
+                <input asp-for="ItemName1" class="form-control " />
+                <span asp-validation-for="ItemName1" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item3" class="control-label"></label>
-                <input asp-for="Item3" class="form-control" />
-                <span asp-validation-for="Item3" class="text-danger"></span>
+                <label asp-for="ItemCost1" class="control-label"></label>
+                <input asp-for="ItemCost1" class="form-control calc" id="item1" />
+                <span asp-validation-for="ItemCost1" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item4" class="control-label"></label>
-                <input asp-for="Item4" class="form-control" />
-                <span asp-validation-for="Item4" class="text-danger"></span>
+                <label asp-for="ItemName2" class="control-label"></label>
+                <input asp-for="ItemName2" class="form-control " />
+                <span asp-validation-for="ItemName2" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item5" class="control-label"></label>
-                <input asp-for="Item5" class="form-control" />
-                <span asp-validation-for="Item5" class="text-danger"></span>
+                <label asp-for="ItemCost2" class="control-label"></label>
+                <input asp-for="ItemCost2" class="form-control calc" id="item2" />
+                <span asp-validation-for="ItemCost2" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item6" class="control-label"></label>
-                <input asp-for="Item6" class="form-control" />
-                <span asp-validation-for="Item6" class="text-danger"></span>
+                <label asp-for="ItemName3" class="control-label"></label>
+                <input asp-for="ItemName3" class="form-control " />
+                <span asp-validation-for="ItemName3" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="Item7" class="control-label"></label>
-                <input asp-for="Item7" class="form-control" />
-                <span asp-validation-for="Item7" class="text-danger"></span>
+                <label asp-for="ItemCost3" class="control-label"></label>
+                <input asp-for="ItemCost3" class="form-control calc" id="item3" />
+                <span asp-validation-for="ItemCost3" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemName4" class="control-label"></label>
+                <input asp-for="ItemName4" class="form-control " />
+                <span asp-validation-for="ItemName4" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemCost4" class="control-label"></label>
+                <input asp-for="ItemCost4" class="form-control calc" id="item4" />
+                <span asp-validation-for="ItemCost4" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemName5" class="control-label"></label>
+                <input asp-for="ItemName5" class="form-control " />
+                <span asp-validation-for="ItemName5" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemCost5" class="control-label"></label>
+                <input asp-for="ItemCost5" class="form-control calc" id="item5" />
+                <span asp-validation-for="ItemCost5" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemName6" class="control-label"></label>
+                <input asp-for="ItemName6" class="form-control " />
+                <span asp-validation-for="ItemName6" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemCost6" class="control-label"></label>
+                <input asp-for="ItemCost6" class="form-control calc" id="item6" />
+                <span asp-validation-for="ItemCost6" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemName7" class="control-label"></label>
+                <input asp-for="ItemName7" class="form-control " />
+                <span asp-validation-for="ItemName7" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                <label asp-for="ItemCost7" class="control-label"></label>
+                <input asp-for="ItemCost7" class="form-control calc" id="item7" />
+                <span asp-validation-for="ItemCost7" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
             <div class="form-group">
                 <label asp-for="Total" class="control-label"></label>
-                <input asp-for="Total" class="form-control" />
-                <span asp-validation-for="Total" class="text-danger"></span>
+                <input asp-for="Total" class="form-control" id="total" />
+                <span asp-validation-for="Total" class="text-danger" readonly></span>
             </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
@@ -111,14 +232,10 @@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>
+   
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
