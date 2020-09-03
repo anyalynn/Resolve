@@ -36,8 +36,6 @@ namespace Resolve.Models
 
         public string Justification { get; set; }
 
-        public string EmployeeEID { get; set; }
-
         [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
 

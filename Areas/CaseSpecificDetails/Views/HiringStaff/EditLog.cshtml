@@ -1,0 +1,58 @@
+﻿@model Resolve.Models.HiringStaffTracking
+
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>Hiring Staff/Student Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<HiringStaffTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">Worker Type</th>
+                    <th class="th-sm" style="width: 10%">Hire Reason</th>
+                    <th class="th-sm" style="width: 10%">Position Type</th>
+                    <th class="th-sm" style="width: 10%">Job Title</th>
+                    <th class="th-sm" style="width: 10%">SupOrg</th>
+                    <th class="th-sm" style="width: 10%">Pay Rate</th>
+                    <th class="th-sm" style="width: 10%">FTE</th>
+                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
+                    <th class="th-sm" style="width: 10%">Proposed Hire Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.StaffWorkerType</td>
+                    <td>@item.StaffHireReason</td>
+                    <td>@item.StaffPositionType</td>
+                    <td>@item.JobTitle</td>
+                    <td>@item.SupOrg</td>
+                    <td>@item.PayRate</td>
+                    <td>@item.FTE</td>
+                    <td>@item.BudgetNumbers</td>
+                    <td>@item.HireDate</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+

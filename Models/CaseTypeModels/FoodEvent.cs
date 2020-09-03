@@ -32,15 +32,13 @@ namespace Resolve.Models
         [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
 
-        [Display(Name = "UW Food Approval Form")]
+        [Display(Name = "UW Food Approval Form (UW1798)")]
         public virtual FoodApprovalForm? FoodApprovalForm { get; set; }
 
         [Display(Name = "Event Description")]
         public string EventDescription { get; set; }
 
         public string Justification { get; set; }
-
-        public string EmployeeEID { get; set; }
 
         [Display(Name = "Employee Name"), Required]
         public string EmployeeName { get; set; }
@@ -51,7 +49,7 @@ namespace Resolve.Models
         [Display(Name = "# Attending")]
         public int? NumberAttending { get; set; }
 
-        [Display(Name = "Budget In Deficit")]
+        [Display(Name = "Budget In Deficit?")]
         public bool BudgetDeficit { get; set; }
 
         public string Note { get; set; }

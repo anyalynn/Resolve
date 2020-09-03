@@ -33,6 +33,8 @@ namespace Resolve.Data
         public DbSet<PerioLimitedCare> PerioLimitedCare { get; set; }
         public DbSet<HiringAffiliateFaculty> HiringAffiliateFaculty { get; set; }
         public DbSet<HiringAffiliateFacultyTracking> HiringAffiliateFacultyTracking { get; set; }
+        public DbSet<HiringFaculty> HiringFaculty { get; set; }
+        public DbSet<HiringFacultyTracking> HiringFacultyTracking { get; set; }
         public DbSet<HRServiceScholarResident> HRServiceScholarResident { get; set; }
         public DbSet<HRServiceGradStudentTracking> HRServiceGradStudentTracking { get; set; }
         public DbSet<HRServiceScholarResidentTracking> HRServiceScholarResidentTracking { get; set; }
@@ -41,6 +43,8 @@ namespace Resolve.Data
         public DbSet<FoodEvent> FoodEvent { get; set; }
         public DbSet<TravelTracking> TravelTracking { get; set; }
         public DbSet<FoodEventTracking> FoodEventTracking { get; set; }
+        public DbSet<HiringStaff> HiringStaff { get; set; }
+        public DbSet<HiringStaffTracking> HiringStaffTracking { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -158,6 +162,16 @@ namespace Resolve.Data
                 .WithMany(q => q.HiringAffiliateFacultyTrackings)
                 .OnDelete(DeleteBehavior.NoAction);
 
+            modelBuilder.Entity<HiringFacultyTracking>()
+               .HasOne(p => p.CaseAudit)
+               .WithMany(q => q.HiringFacultyTrackings)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HiringStaffTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.HiringStaffTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<HRServiceStaffTracking>()
                 .HasOne(p => p.CaseAudit)
                 .WithMany(q => q.HRServiceStaffTrackings)
@@ -191,6 +205,14 @@ namespace Resolve.Data
            .HasOne(p => p.CaseAudit)
            .WithMany(q => q.TravelTrackings)
            .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<HiringStaff>()
+             .Property(s => s.OvertimeEligible)
+             .HasDefaultValue(0);
+          
+            modelBuilder.Entity<HiringStaff>()
+            .Property(s => s.Super)
+            .HasDefaultValue(0);
         }
     }
 }

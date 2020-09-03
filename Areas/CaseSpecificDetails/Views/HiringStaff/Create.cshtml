@@ -1,0 +1,285 @@
+﻿@model Resolve.Models.HiringStaff
+
+@{
+    ViewData["Title"] = "Create Specific Details";
+}
+@section Scripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $("#NotReplace").hide();
+            $("#Student").hide();
+            $("#Employee").hide();
+            $("#StaffWorkerType").change(function () {
+                if ($(this).find(':selected').text() == "Student") {
+                    $("#Student").show();
+                    $("#Employee").hide();
+
+                } else {
+                    $("#Employee").show();
+                    $("#Student").hide();
+                }
+            });
+            $("#StaffHireReason").change(function () {
+                if ($(this).find(':selected').text() == "New Position") {
+                    $("#NotReplace").show();
+                  
+                } else if ($(this).find(':selected').text() == "Replacement with New Classification") {
+                    $("#NotReplace").show();
+                }
+                else if ($(this).find(':selected').text() == "Other") {
+                    $("#NotReplace").show();
+                }
+                else if ($(this).find(':selected').text() == "Replacement") {
+                    $("#NotReplace").hide();
+                }
+                else {
+                    $("NotReplace").hide();
+                   
+                }
+            });
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
+
+<h3>Create Hiring Request</h3>
+<h4>Staff/Student</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" id="WorkerType">
+                <label asp-for="StaffWorkerType" class="control-label required-field"></label>
+                <select asp-for="StaffWorkerType" asp-items="Html.GetEnumSelectList<StaffWorkerType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="StaffWorkerType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StaffPositionType" class="control-label required-field"></label>
+                <select asp-for="StaffPositionType" asp-items="Html.GetEnumSelectList<StaffPositionType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="StaffPositionType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StaffHireReason" class="control-label required-field"></label>
+                <select asp-for="StaffHireReason" asp-items="Html.GetEnumSelectList<StaffHireReason>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="StaffHireReason" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupOrg" class="control-label required-field"></label>
+                <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="SupOrg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                <input asp-for="EmployeeReplaced" class="form-control" />
+                <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobTitle" class="control-label required-field"></label>
+                <input asp-for="JobTitle" class="form-control" />
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetNumbers" class="control-label required-field"></label>
+                <input asp-for="BudgetNumbers" class="form-control" />
+                <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p class="control-label">Proposed Salary Range or Pay Rate</p>
+                <input asp-for="PayRate" class="form-control" />
+                <span asp-validation-for="PayRate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetType" class="control-label required-field"></label>
+                <select asp-for="BudgetType" asp-items="Html.GetEnumSelectList<BudgetType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="BudgetType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BudgetPurpose" class="control-label required-field"></label>
+                <select asp-for="BudgetPurpose" asp-items="Html.GetEnumSelectList<BudgetPurpose>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="BudgetPurpose" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <p class="control-label">If Multiple Budgets/Types Explain (include % for each budget/type)</p>
+                <input asp-for="MultipleBudgetsExplain" class="form-control" />
+                <span asp-validation-for="MultipleBudgetsExplain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FTE" class="control-label"></label>
+                <input asp-for="FTE" class="form-control" />
+                <span asp-validation-for="FTE" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="HireDate" class="control-label required-field"></label>
+                <input asp-for="HireDate" class="form-control" />
+                <span asp-validation-for="HireDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                <input asp-for="EndDate" class="form-control" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div id="NotReplace">
+                <div class="form-group">
+                    <p class="control-label">What is the business justification for this position?</p>
+                    <textarea asp-for="Justification" class="form-control"></textarea>
+                    <span asp-validation-for="Justification" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <p class="control-label">What is the barrier to distributing the workload to existing staff?</p>
+                    <textarea asp-for="Barriers" class="form-control"></textarea>
+                    <span asp-validation-for="Barriers" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <p class="control-label">What are the consequences/impact of not filling the position?</p>
+                    <textarea asp-for="Consequences" class="form-control"></textarea>
+                    <span asp-validation-for="Consequences" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupOrgManager" class="control-label"></label>
+                <input asp-for="SupOrgManager" class="form-control" />
+                <span asp-validation-for="SupOrgManager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeeklyHours" class="control-label "></label>
+                <select asp-for="WeeklyHours" asp-items="Html.GetEnumSelectList<WeeklyHours>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="WeeklyHours" class="text-danger"></span>
+            </div>
+            <div id="Employee">
+                <div class="form-group">
+                    <label asp-for="UWHiresContact" class="control-label"></label>
+                    <input asp-for="UWHiresContact" class="form-control" />
+                    <span asp-validation-for="UWHiresContact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CampusBox" class="control-label"></label>
+                    <input asp-for="CampusBox" class="form-control" />
+                    <span asp-validation-for="CampusBox" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input data-related-item="title1" class="form-check-input" asp-for="OvertimeEligible" /> @Html.DisplayNameFor(model => model.OvertimeEligible)
+                    </label>
+                    <span asp-validation-for="OvertimeEligible" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input data-related-item="title1" class="form-check-input" asp-for="Super" /> @Html.DisplayNameFor(model => model.Super)
+                    </label>
+                    <span asp-validation-for="Super" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Supervised" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                    <select asp-for="Supervised" asp-items="Html.GetEnumSelectList<Supervised>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Supervised" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="JobPostingTitle" class="control-label"></label>
+                    <input asp-for="Location" class="form-control" />
+                    <span asp-validation-for="Location" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostDate" class="control-label"></label>
+                    <input asp-for="PostDate" class="form-control" />
+                    <span asp-validation-for="PostDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LimitedRecruitment" class="control-label"></label>
+                    <select asp-for="LimitedRecruitment" asp-items="Html.GetEnumSelectList<LimitedRecruitment>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="LimitedRecruitment" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="RecruitmentRun" class="control-label "></label>
+                    <select asp-for="RecruitmentRun" asp-items="Html.GetEnumSelectList<RecruitmentRun>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="RecruitmentRun" class="text-danger"></span>
+                </div>
+            </div>
+            <div id="Student">
+                <div class="form-group">
+                    <label asp-for="Gender" class="control-label "></label>
+                    <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Citizenship" class="control-label "></label>
+                    <select asp-for="Citizenship" asp-items="Html.GetEnumSelectList<Citizenship>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Citizenship" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input data-related-item="title1" class="form-check-input" asp-for="Workstudy" /> @Html.DisplayNameFor(model => model.Workstudy)
+                    </label>
+                    <span asp-validation-for="Workstudy" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input data-related-item="title1" class="form-check-input" asp-for="CandidateSelected" /> @Html.DisplayNameFor(model => model.CandidateSelected)
+                    </label>
+                    <span asp-validation-for="CandidateSelected" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CandidateName" class="control-label"></label>
+                    <input asp-for="CandidateName" class="form-control" />
+                    <span asp-validation-for="CandidateName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="StudentNum" class="control-label"></label>
+                    <input asp-for="StudentNum" class="form-control" />
+                    <span asp-validation-for="StudentNum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmployeeID" class="control-label"></label> (If known)
+                    <input asp-for="EmployeeID" class="form-control" />
+                    <span asp-validation-for="EmployeeID" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+

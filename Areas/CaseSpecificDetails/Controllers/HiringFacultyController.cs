@@ -12,12 +12,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class TravelController : Controller
+    public class HiringFacultyController : Controller
     {
-        
+
         private readonly ResolveCaseContext _context;
 
-        public TravelController(ResolveCaseContext context)
+        public HiringFacultyController(ResolveCaseContext context)
         {
             _context = context;
         }
@@ -27,25 +27,25 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             return View();
         }
 
-        
         public IActionResult Create(int id)
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, Department, Destination,Note,Reason")] Travel travel)
+        public async Task<IActionResult> Create(int id, [Bind("CandidateName,FacTitle,FacHireReason,BudgetType,BudgetNumbers,HireDate,Department,Note,Salary,AdminRole,EmployeeReplaced,FTE")] HiringFaculty hrFaculty)
         {
             if (ModelState.IsValid)
             {
-                travel.CaseID = id;
-                _context.Add(travel);
+                hrFaculty.CaseID = id;
+                _context.Add(hrFaculty);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(travel);
+            return View(hrFaculty);
         }
 
         public IActionResult Edit(int? id)
@@ -54,8 +54,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-
-            var editCase = _context.Travel.Find(id);
+            HiringFaculty editCase = _context.HiringFaculty.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -65,10 +64,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetType,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, Department,Note,Destination,Reason")] Travel travel)
-
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,FacTitle,HireDate,Department,FacHireReason,FTE,AdminRole,Note,Salary,EmployeeReplaced,CandidateName,BudgetNumbers,BudgetType")] HiringFaculty hrFaculty)
         {
-            if (id != travel.CaseID)
+            if (id != hrFaculty.CaseID)
             {
                 return NotFound();
             }
@@ -77,8 +75,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<Travel> beforeCases = _context.Travel.Where(c => c.CaseID == id).AsNoTracking<Travel>();
-                    Travel beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<HiringFaculty> beforeCases = _context.HiringFaculty.Where(c => c.CaseID == id).AsNoTracking<HiringFaculty>();
+                    HiringFaculty beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -90,47 +88,46 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         _context.Add(audit);
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
-                        var old_details = new TravelTracking
+                        
+                         var old_details = new HiringFacultyTracking
                         {
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            Destination = beforeCase.Destination,
-                            EmployeeName = beforeCase.EmployeeName,
-                            TravelStartDate = beforeCase.TravelStartDate,
-                            TravelEndDate = beforeCase.TravelEndDate,
-                            Reason = beforeCase.Reason,
-                            BudgetNumbers = beforeCase.BudgetNumbers,
-                            BudgetPurpose = beforeCase.BudgetPurpose,
+                            HireDate = beforeCase.HireDate,
+                            Department = beforeCase.Department,
+                            Salary = beforeCase.Salary,
+                            FacTitle = beforeCase.FacTitle,
+                            FacHireReason = beforeCase.FacHireReason,
+                            BudgetNumbers=beforeCase.BudgetNumbers,
                             BudgetType = beforeCase.BudgetType,
-                            Total = beforeCase.Total
-                        };
+                            FTE = beforeCase.FTE
+                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new TravelTracking
+                        var new_details = new HiringFacultyTracking
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = travel.CaseID,
-                            Destination = travel.Destination,
-                            EmployeeName = travel.EmployeeName,
-                            TravelStartDate = travel.TravelStartDate,
-                            TravelEndDate = travel.TravelEndDate,
-                            Reason = travel.Reason,
-                            BudgetNumbers = travel.BudgetNumbers,
-                            BudgetPurpose = travel.BudgetPurpose,
-                            BudgetType = travel.BudgetType,
-                            Total = travel.Total
+                            CaseID = hrFaculty.CaseID,
+                            HireDate = hrFaculty.HireDate,
+                            Department = hrFaculty.Department,
+                            Salary = hrFaculty.Salary,
+                            FacTitle = hrFaculty.FacTitle,
+                            FacHireReason = hrFaculty.FacHireReason,
+                            BudgetNumbers = hrFaculty.BudgetNumbers,
+                            BudgetType = hrFaculty.BudgetType,
+                            FTE = hrFaculty.FTE
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(travel);
+                        _context.Update(hrFaculty);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TravelExists(travel.CaseID))
+                    if (!HiringFacultyExists(hrFaculty.CaseID))
                     {
                         return NotFound();
                     }
@@ -142,9 +139,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(travel);
+            return View(hrFaculty);
         }
-
         public IActionResult EditLog(int? id)
         {
             if (id == null)
@@ -153,7 +149,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.TravelTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.HiringFacultyTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -165,12 +161,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool TravelExists(int id)
+        private bool HiringFacultyExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }
 
     }
 }
-
-    

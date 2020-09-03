@@ -62,8 +62,6 @@ namespace Resolve.Models
         [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
 
-        public string EmployeeEID { get; set; }
-
         [Display(Name = "Employee Name"), Required]
         public string EmployeeName { get; set; }
 
@@ -74,10 +72,13 @@ namespace Resolve.Models
 
         public string Destination { get; set; }
 
+        [Display(Name = "Reason for Travel")]
         public string Reason { get; set; }
 
+        [Display(Name = "Other")]
         public string Other1 { get; set; }
 
+        [Display(Name = "Other")]
         public string Other2 { get; set; }
 
         [Display(Name = "Airfare Cost")]
