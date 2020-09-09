@@ -10,6 +10,12 @@
             @Html.DisplayFor(modelItem => item.EmployeeName)
         </dd>
         <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Total)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Total)
+        </dd>
+        <dt class="col-sm-4">
             @Html.DisplayNameFor(modelItem => item.Department)
         </dt>
         <dd class="col-sm-8">
@@ -22,17 +28,29 @@
             @Html.DisplayFor(modelItem => item.TravelStartDate)
         </dd>
         <dt class="col-sm-4">
-            @Html.DisplayNameFor(modelItem => item.Total)
+            @Html.DisplayNameFor(modelItem => item.TravelEndDate)
         </dt>
         <dd class="col-sm-8">
-            @Html.DisplayFor(modelItem => item.Total)
+            @Html.DisplayFor(modelItem => item.TravelEndDate)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Destination)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Destination)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Reason)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Reason)
         </dd>
         <dt class="col-sm-4">
             @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
         </dt>
         <dd class="col-sm-8">
             @Html.DisplayFor(modelItem => item.BudgetNumbers)
-        </dd>        
+        </dd>
         <dt class="col-sm-4">
             @Html.DisplayNameFor(modelItem => item.BudgetType)
         </dt>
@@ -99,7 +117,7 @@
         <dd class="col-sm-8">
             @Html.DisplayFor(modelItem => item.OtherCost2)
         </dd>
-      
+
 
     </dl>
 }

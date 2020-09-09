@@ -49,6 +49,15 @@ namespace Resolve.Data
         public DbSet<PatientEventTracking> PatientEventTracking { get; set; }
         public DbSet<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
         public DbSet<AxiumFeeScheduleTracking> AxiumFeeScheduleTracking { get; set; }
+        public DbSet<DistributionChange> DistributionChange { get; set; }
+        public DbSet<EndDateChange> EndDateChange { get; set; }
+        public DbSet<FTEChange> FTEChange { get; set; }
+        public DbSet<CompAllowanceChange> CompAllowanceChange { get; set; }
+        public DbSet<CompBasePayChange> CompBasePayChange { get; set; }
+        public DbSet<MoveWorker> MoveWorker { get; set; }
+        public DbSet<SecurityChange> SecurityChange { get; set; }
+        public DbSet<Termination> Termination { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -127,7 +136,15 @@ namespace Resolve.Data
             modelBuilder.Entity<HRServiceStaff>()
                 .Property(h => h.LeaveWA)
                 .HasDefaultValue(0);
-
+            modelBuilder.Entity<Termination>()
+              .Property(h => h.Offboarding)
+              .HasDefaultValue(0);
+            modelBuilder.Entity<Termination>()
+                .Property(h => h.ClosePosition)
+                .HasDefaultValue(0);
+            modelBuilder.Entity<Termination>()
+                .Property(h => h.LeaveWA)
+                .HasDefaultValue(0);
             modelBuilder.Entity<HRServiceFaculty>()
               .Property(i => i.Offboarding)
               .HasDefaultValue(0);
@@ -236,6 +253,14 @@ namespace Resolve.Data
             modelBuilder.Entity<HiringStaff>()
                 .Property(s => s.Super)
                 .HasDefaultValue(0);
+
+            modelBuilder.Entity<HiringStaff>()
+               .Property(s => s.CandidateSelected)
+               .HasDefaultValue(0);
+
+            modelBuilder.Entity<HiringStaff>()
+               .Property(s => s.Workstudy)
+               .HasDefaultValue(0);
         }
     }
 }

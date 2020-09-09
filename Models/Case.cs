@@ -56,7 +56,14 @@ namespace Resolve.Models
         public ICollection<FoodEvent> FoodEvent { get; set; }
         public ICollection<PatientEvent> PatientEvent { get; set; }
         public ICollection<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
+        public ICollection<DistributionChange> DistributionChange { get; set; }
+        public ICollection<EndDateChange> EndDateChange { get; set; }
+        public ICollection<FTEChange> FTEChange { get; set; }
+        public ICollection<CompAllowanceChange> CompAllowanceChange { get; set; }
+        public ICollection<CompBasePayChange> CompBasePayChange { get; set; }
+        public ICollection<MoveWorker> MoveWorker { get; set; }
+        public ICollection<SecurityChange> SecurityChange { get; set; }
+        public ICollection<Termination> Termination { get; set; }
 
     }  
-
 }

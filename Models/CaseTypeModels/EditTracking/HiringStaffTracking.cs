@@ -52,12 +52,13 @@ namespace Resolve.Models
         [Display(Name = "Employee ID")]
         public string EmployeeID { get; set; }
 
-        public virtual SupOrg SupOrg { get; set; }
+        [Display(Name = "Supervisory Organization")]
+        public virtual SupOrg? SupOrg { get; set; }
 
         [Display(Name = "Proposed Pay Rate")]
         public string PayRate { get; set; }
 
-        [Display(Name = "HireeName")]
+        [Display(Name = "Hiree Name")]
         public string HireeName { get; set; }
 
         [Display(Name = "Position Number")]
@@ -90,6 +91,7 @@ namespace Resolve.Models
         [Display(Name = "Supervisory Position?")]
         public bool Super { get; set; }
 
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Explain Multiple Budgets")]
@@ -114,16 +116,16 @@ namespace Resolve.Models
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "Budget Type")]
-        public virtual BudgetType BudgetType { get; set; }
+        public virtual BudgetType? BudgetType { get; set; }
 
         [Display(Name = "Budget Purpose")]
-        public virtual BudgetPurpose BudgetPurpose { get; set; }
+        public virtual BudgetPurpose? BudgetPurpose { get; set; }
 
         [Display(Name = "Gender")]
-        public virtual Gender Gender { get; set; }
+        public virtual Gender? Gender { get; set; }
 
         [Display(Name = "Citizenship Status")]
-        public virtual Citizenship Citizenship { get; set; }
+        public virtual Citizenship? Citizenship { get; set; }
 
         [Display(Name = "Workstudy?")]
         public bool Workstudy { get; set; }
@@ -144,13 +146,13 @@ namespace Resolve.Models
         public virtual Supervised? Supervised { get; set; }
 
         [Display(Name = "Reason for Hire")]
-        public virtual StaffHireReason StaffHireReason { get; set; }
+        public virtual StaffHireReason? StaffHireReason { get; set; }
 
         [Display(Name = "Position Type")]
-        public virtual StaffPositionType StaffPositionType { get; set; }
+        public virtual StaffPositionType? StaffPositionType { get; set; }
 
         [Display(Name = "Worker Type")]
-        public virtual StaffWorkerType StaffWorkerType { get; set; }
+        public virtual StaffWorkerType? StaffWorkerType { get; set; }
 
     }
 }
