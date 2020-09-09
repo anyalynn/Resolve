@@ -1,0 +1,69 @@
+﻿@model Resolve.Models.Case
+
+@foreach (var item in Model.AxiumFeeSchedule)
+{
+    <dl class="row">
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.AxiumSchedRequestType)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.AxiumSchedRequestType)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.AxiumScheduleType)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.AxiumScheduleType)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.AxiumCodeType)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.AxiumCodeType)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Discipline)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Discipline)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Site)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Site)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.ProcedureCode)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.ProcedureCode)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.ProdCodeDescription)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.ProdCodeDescription)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Fee)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Fee)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Justification)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Justification)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.UnitsFactored)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.UnitsFactored)
+        </dd>
+
+    </dl>
+}

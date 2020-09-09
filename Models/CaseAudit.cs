@@ -35,5 +35,7 @@ namespace Resolve.Models
         public ICollection<PerioLimitedCareTracking> PerioLimitedCareTrackings { get; set; }
         public ICollection<TravelTracking> TravelTrackings { get; set; }
         public ICollection<FoodEventTracking> FoodEventTrackings { get; set; }
+        public ICollection<PatientEventTracking> PatientEventTrackings { get; set; }
+        public ICollection<AxiumFeeScheduleTracking> AxiumFeeScheduleTrackings { get; set; }
     }
 }

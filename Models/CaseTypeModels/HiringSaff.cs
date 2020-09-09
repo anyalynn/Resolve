@@ -155,12 +155,13 @@ namespace Resolve.Models
         [Display(Name = "Employee ID")]
         public string EmployeeID { get; set; }
 
+        [Display(Name = "Supervisory Organization")]
         public virtual SupOrg SupOrg { get; set; }
 
         [Display(Name = "Proposed Pay Rate")]
         public string PayRate { get; set; }
 
-        [Display(Name = "HireeName")]
+        [Display(Name = "Hiree Name")]
         public string HireeName{ get; set; }
 
         [Display(Name = "Position Number")]
@@ -193,6 +194,7 @@ namespace Resolve.Models
         [Display(Name = "Supervisory Position?")]
         public bool Super { get; set; }
 
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Explain Multiple Budgets")]

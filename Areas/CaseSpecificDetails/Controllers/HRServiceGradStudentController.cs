@@ -51,6 +51,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     StepStipendAllowance = hrGradStudent.StepStipendAllowance,
                     BudgetNumbers = hrGradStudent.BudgetNumbers,
                     Note = hrGradStudent.Note,
+                    DetailedDescription = hrGradStudent.DetailedDescription
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -77,7 +78,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,StudentName,GradRequestType,GradJobProfile,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers")] HRServiceGradStudent hrGradStudent)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,StudentName,GradRequestType,GradJobProfile,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers,DetailedDescription")] HRServiceGradStudent hrGradStudent)
 
         {
             if (id != hrGradStudent.CaseID)
@@ -116,7 +117,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             StepStipendAllowance = beforeCase.StepStipendAllowance,
                             Note = beforeCase.Note,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            DetailedDescription = beforeCase.DetailedDescription
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -133,7 +135,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = hrGradStudent.Department,
                             StepStipendAllowance = hrGradStudent.StepStipendAllowance,
                             Note = hrGradStudent.Note,
-                            BudgetNumbers = hrGradStudent.BudgetNumbers
+                            BudgetNumbers = hrGradStudent.BudgetNumbers,
+                            DetailedDescription = hrGradStudent.DetailedDescription
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

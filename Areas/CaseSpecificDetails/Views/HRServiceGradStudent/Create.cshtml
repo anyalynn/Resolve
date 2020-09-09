@@ -39,7 +39,7 @@
                 <span asp-validation-for="StudentName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BudgetNumbers" class="control-label"></label>
+                <label asp-for="BudgetNumbers" class="control-label required-field"></label>
                 <input asp-for="BudgetNumbers" class="form-control" />
                 <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
             </div>
@@ -55,11 +55,15 @@
                 <span asp-validation-for="EffectiveStartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EffectiveEndDate" class="control-label"></label>
+                <label asp-for="EffectiveEndDate" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
                 <input asp-for="EffectiveEndDate" class="form-control" />
                 <span asp-validation-for="EffectiveEndDate" class="text-danger"></span>
             </div>
-           
+            <div class="form-group">
+                <label asp-for="DetailedDescription" class="control-label"></label>
+                <textarea asp-for="DetailedDescription" class="form-control"></textarea>
+                <span asp-validation-for="DetailedDescription" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
                 <textarea asp-for="Note" class="form-control"></textarea>

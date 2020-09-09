@@ -118,15 +118,16 @@ namespace Resolve.Models
 
         public virtual Department Department { get; set; }
 
-        [Display(Name = "Proposed Salary")]
+        [Display(Name = "Proposed Salary Range")]
         public string Salary { get; set; }
 
-        [Display(Name = "FTE")]
+        [Display(Name = "%FTE")]
         public string FTE { get; set; }
 
         [Display(Name = "Administrative Role")]
         public string AdminRole { get; set; }
-        
+
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Job Title")]
@@ -141,5 +142,5 @@ namespace Resolve.Models
         [Display(Name = "Budget Type")]
         public virtual BudgetType BudgetType { get; set; }
 
-            }
+    }
 }

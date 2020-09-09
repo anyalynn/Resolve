@@ -35,6 +35,7 @@ namespace Resolve.Models
 
         public string Name { get; set; }
 
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Job Title")]

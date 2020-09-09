@@ -56,7 +56,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     SupOrg = hrStaff.SupOrg,
                     EmployeeEID = hrStaff.EmployeeEID,
                     Note = hrStaff.Note,
-                    BudgetNumbers = hrStaff.BudgetNumbers
+                    BudgetNumbers = hrStaff.BudgetNumbers,
+                    DetailedDescription=hrStaff.DetailedDescription
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -82,7 +83,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,RequestType,BasePayChange,AllowanceChange,EffectiveStartDate,EffectiveEndDate,TerminationReason,Offboarding,Note,ClosePosition,LeaveWA,WorkerType,Amount,SupOrg,EmployeeEID,BudgetNumbers")] HRServiceStaff hrStaff)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,RequestType,BasePayChange,AllowanceChange,EffectiveStartDate,EffectiveEndDate,TerminationReason,Offboarding,Note,ClosePosition,LeaveWA,WorkerType,Amount,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] HRServiceStaff hrStaff)
         {
             if (id != hrStaff.CaseID)
             {
@@ -127,6 +128,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             SupOrg = beforeCase.SupOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
+                            DetailedDescription = beforeCase.DetailedDescription,
                             BudgetNumbers = beforeCase.BudgetNumbers
                         };
                         _context.Add(old_details);
@@ -151,6 +153,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             SupOrg = hrStaff.SupOrg,
                             EmployeeEID = hrStaff.EmployeeEID,
                             Note = hrStaff.Note,
+                            DetailedDescription = hrStaff.DetailedDescription,
                             BudgetNumbers = hrStaff.BudgetNumbers
                         };
                         _context.Add(new_details);

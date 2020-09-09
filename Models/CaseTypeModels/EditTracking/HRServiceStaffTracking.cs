@@ -55,6 +55,9 @@ namespace Resolve.Models
         [MaxLength(1024)]
         public string Note { get; set; }
 
+        [MaxLength(1024)]
+        public string DetailedDescription { get; set; }
+
         [Display(Name = "Offboarding?")]
         public bool Offboarding { get; set; }
 

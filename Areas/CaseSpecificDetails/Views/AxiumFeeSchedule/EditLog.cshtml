@@ -1,0 +1,57 @@
+﻿@model Resolve.Models.AxiumFeeScheduleTracking
+
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>axiUm Fee Schedule Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<AxiumFeeScheduleTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">Request Type</th>
+                    <th class="th-sm" style="width: 10%">Schedule Type</th>
+                    <th class="th-sm" style="width: 10%">Code Type</th>
+                    <th class="th-sm" style="width: 10%">Discipline</th>
+                    <th class="th-sm" style="width: 10%">Site</th>
+                    <th class="th-sm" style="width: 10%">Procedure Code</th>
+                    <th class="th-sm" style="width: 10%">Procedure Code Description</th>
+                    <th class="th-sm" style="width: 10%">Fee</th>
+                    <th class="th-sm" style="width: 10%">Justification</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.AxiumSchedRequestType</td>
+                    <td>@item.AxiumScheduleType</td>
+                    <td>@item.AxiumCodeType</td>
+                    <td>@item.Discipline</td>
+                    <td>@item.Site</td>
+                    <td>@item.ProcedureCode</td>
+                    <td>@item.ProdCodeDescription</td>
+                    <td>@item.Fee</td>
+                    <td>@item.Justification</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+

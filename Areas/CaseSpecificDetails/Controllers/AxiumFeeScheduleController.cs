@@ -12,12 +12,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class HiringStaffController : Controller
+    public class AxiumFeeScheduleController : Controller
     {
-
+        
         private readonly ResolveCaseContext _context;
 
-        public HiringStaffController(ResolveCaseContext context)
+        public AxiumFeeScheduleController(ResolveCaseContext context)
         {
             _context = context;
         }
@@ -27,28 +27,27 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             return View();
         }
 
+        
         public IActionResult Create(int id)
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
-            "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
+        public async Task<IActionResult> Create(int id, [Bind("AxiumSchedRequestType,AxiumScheduleType," +
+            "AxiumCodeType,Discipline,Site,ProcedureCode,ProcedureCodeDescription,Fee,Justification," +
+            "ccMail,UnitsFactored")] AxiumFeeSchedule feeSchedule)
         {
             if (ModelState.IsValid)
             {
-                hrStaff.CaseID = id;
-                _context.Add(hrStaff);
+                feeSchedule.CaseID = id;
+                _context.Add(feeSchedule);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(hrStaff);
+            return View(feeSchedule);
         }
 
         public IActionResult Edit(int? id)
@@ -57,7 +56,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            HiringStaff editCase = _context.HiringStaff.Find(id);
+
+            var editCase = _context.AxiumFeeSchedule.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -67,12 +67,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
-            "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
-        { 
-            if (id != hrStaff.CaseID)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,AxiumSchedRequestType,AxiumScheduleType," +
+            "AxiumCodeType,Discipline,Site,ProcedureCode,ProcedureCodeDescription,Fee,Justification," +
+            "ccMail,UnitsFactored")] AxiumFeeSchedule feeSchedule)
+
+        {
+            if (id != feeSchedule.CaseID)
             {
                 return NotFound();
             }
@@ -81,8 +81,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<HiringStaff> beforeCases = _context.HiringStaff.Where(c => c.CaseID == id).AsNoTracking<HiringStaff>();
-                    HiringStaff beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<AxiumFeeSchedule> beforeCases = _context.AxiumFeeSchedule.Where(c => c.CaseID == id).AsNoTracking<AxiumFeeSchedule>();
+                    AxiumFeeSchedule beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -94,48 +94,46 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         _context.Add(audit);
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
-
-                        var old_details = new HiringStaffTracking
+                        var old_details = new AxiumFeeScheduleTracking
                         {
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            HireDate = beforeCase.HireDate,
-                            SupOrg = beforeCase.SupOrg,
-                            PayRate = beforeCase.PayRate,
-                            JobTitle = beforeCase.JobTitle,
-                            StaffWorkerType = beforeCase.StaffWorkerType,
-                            StaffHireReason = beforeCase.StaffHireReason,
-                            BudgetNumbers=beforeCase.BudgetNumbers,
-                            BudgetType = beforeCase.BudgetType,
-                            FTE = beforeCase.FTE
-                         };
+                            AxiumSchedRequestType = beforeCase.AxiumSchedRequestType,                          
+                            AxiumScheduleType = beforeCase.AxiumScheduleType,
+                            AxiumCodeType = beforeCase.AxiumCodeType,
+                            Fee = beforeCase.Fee,
+                            Site = beforeCase.Site,
+                            Discipline = beforeCase.Discipline,
+                            ProcedureCode = beforeCase.ProcedureCode,
+                            ProdCodeDescription = beforeCase.ProdCodeDescription,
+                            Justification=beforeCase.Justification,
+                        };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new HiringStaffTracking
+                        var new_details = new AxiumFeeScheduleTracking
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = hrStaff.CaseID,
-                            HireDate = hrStaff.HireDate,
-                            SupOrg = hrStaff.SupOrg,
-                            PayRate = hrStaff.PayRate,
-                            JobTitle = hrStaff.JobTitle,
-                            StaffWorkerType = hrStaff.StaffWorkerType,
-                            StaffHireReason = hrStaff.StaffHireReason,
-                            BudgetNumbers = hrStaff.BudgetNumbers,
-                            BudgetType = hrStaff.BudgetType,
-                            FTE = hrStaff.FTE
+                            AxiumSchedRequestType = feeSchedule.AxiumSchedRequestType,
+                            AxiumScheduleType = feeSchedule.AxiumScheduleType,
+                            AxiumCodeType = feeSchedule.AxiumCodeType,
+                            Fee = feeSchedule.Fee,
+                            Site = feeSchedule.Site,
+                            Discipline = feeSchedule.Discipline,
+                            ProcedureCode = feeSchedule.ProcedureCode,
+                            ProdCodeDescription = feeSchedule.ProdCodeDescription,
+                            Justification = feeSchedule.Justification,
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(hrStaff);
+                        _context.Update(feeSchedule);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HiringStaffExists(hrStaff.CaseID))
+                    if (!AxiumFeeScheduleExists(feeSchedule.CaseID))
                     {
                         return NotFound();
                     }
@@ -147,8 +145,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(hrStaff);
+            return View(feeSchedule);
         }
+
         public IActionResult EditLog(int? id)
         {
             if (id == null)
@@ -157,7 +156,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.HiringStaffTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.AxiumFeeScheduleTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -169,7 +168,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool HiringStaffExists(int id)
+        private bool AxiumFeeScheduleExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }

@@ -91,7 +91,7 @@ namespace Resolve.Models
         [Display(Name = "Request Type"), Required]
         public FacRequestType FacRequestType { get; set; }
 
-        [Display(Name = "Proposed SupOrg")]
+        [Display(Name = "Proposed Supervisory Organization")]
         public virtual SupOrg? SupOrg { get; set; }
 
         public virtual Department Department { get; set; }
@@ -99,6 +99,7 @@ namespace Resolve.Models
         [Display(Name = "Termination Reason")]
         public virtual TerminationReason? TerminationReason { get; set; }
 
+        [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
 
         [Display(Name = "Employee Name"), Required]
@@ -116,6 +117,10 @@ namespace Resolve.Models
         [Display(Name = "Budget Numbers")]
         public string BudgetNumbers { get; set; }
 
+        [Display(Name = "Detailed Description")]
+        public string DetailedDescription { get; set; }
+
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Offboarding?")]

@@ -40,6 +40,10 @@ namespace Resolve.Models
 
         public string BudgetNumbers { get; set; }
 
+        [Display(Name = "Detailed Description")]
+        [MaxLength(1024)]
+        public string DetailedDescription { get; set; }
+
         [MaxLength(1024)]
         public string Note { get; set; }
     }

@@ -59,7 +59,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EmployeeEID = hrFaculty.EmployeeEID,
                     BudgetNumbers = hrFaculty.BudgetNumbers,
                     JobTitle = hrFaculty.JobTitle,
-                    Note = hrFaculty.Note
+                    Note = hrFaculty.Note,
+                    DetailedDescription = hrFaculty.DetailedDescription
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -85,7 +86,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,FacRequestType,EffectiveStartDate,EffectiveEndDate,TerminationReason,Offboarding,Note,ClosePosition,LeaveWA,Salary,Amount,SupOrg,Department,CurrentFTE,ProposedFTE,JobTitle,EmployeeEID,BudgetNumbers")] HRServiceFaculty hrFaculty)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,FacRequestType,EffectiveStartDate,EffectiveEndDate,TerminationReason,Offboarding,Note,ClosePosition,LeaveWA,Salary,Amount,SupOrg,Department,CurrentFTE,ProposedFTE,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")] HRServiceFaculty hrFaculty)
 
         {
             if (id != hrFaculty.CaseID)
@@ -128,7 +129,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            DetailedDescription=beforeCase.DetailedDescription
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -149,7 +151,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = hrFaculty.Department,
                             EmployeeEID = hrFaculty.EmployeeEID,
                             Note = hrFaculty.Note,
-                            BudgetNumbers = hrFaculty.BudgetNumbers
+                            BudgetNumbers = hrFaculty.BudgetNumbers,
+                            DetailedDescription = hrFaculty.DetailedDescription
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

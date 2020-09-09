@@ -74,17 +74,18 @@
                 <span asp-validation-for="StaffHireReason" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                <input asp-for="EmployeeReplaced" class="form-control" />
+                <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="SupOrg" class="control-label required-field"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
                 <span asp-validation-for="SupOrg" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
-                <input asp-for="EmployeeReplaced" class="form-control" />
-                <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="JobTitle" class="control-label required-field"></label>
                 <input asp-for="JobTitle" class="form-control" />
@@ -96,7 +97,7 @@
                 <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p class="control-label">Proposed Salary Range or Pay Rate</p>
+                <label for="PayRate" class="control-label required-field">Proposed Salary Range or Pay Rate</label>
                 <input asp-for="PayRate" class="form-control" />
                 <span asp-validation-for="PayRate" class="text-danger"></span>
             </div>
@@ -115,12 +116,12 @@
                 <span asp-validation-for="BudgetPurpose" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <p class="control-label">If Multiple Budgets/Types Explain (include % for each budget/type)</p>
+                <label for="MultipleBudgetExplain" class="control-label">If Multiple Budgets/Types Explain (include % for each budget/type)</label>
                 <input asp-for="MultipleBudgetsExplain" class="form-control" />
                 <span asp-validation-for="MultipleBudgetsExplain" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FTE" class="control-label"></label>
+                <label asp-for="FTE" class="control-label required-field"></label>
                 <input asp-for="FTE" class="form-control" />
                 <span asp-validation-for="FTE" class="text-danger"></span>
             </div>
@@ -137,18 +138,18 @@
             </div>
             <div id="NotReplace">
                 <div class="form-group">
-                    <p class="control-label">What is the business justification for this position?</p>
+                    <label for="Justification" class="control-label">What is the business justification for this position?</label>
                     <textarea asp-for="Justification" class="form-control"></textarea>
                     <span asp-validation-for="Justification" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <p class="control-label">What is the barrier to distributing the workload to existing staff?</p>
+                    <label for="Barriers" class="control-label">What is the barrier to distributing the workload to existing staff?</label>
                     <textarea asp-for="Barriers" class="form-control"></textarea>
                     <span asp-validation-for="Barriers" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <p class="control-label">What are the consequences/impact of not filling the position?</p>
+                    <label for="Consequences" class="control-label">What are the consequences/impact of not filling the position?</label>
                     <textarea asp-for="Consequences" class="form-control"></textarea>
                     <span asp-validation-for="Consequences" class="text-danger"></span>
                 </div>
@@ -204,8 +205,8 @@
 
                 <div class="form-group">
                     <label asp-for="JobPostingTitle" class="control-label"></label>
-                    <input asp-for="Location" class="form-control" />
-                    <span asp-validation-for="Location" class="text-danger"></span>
+                    <input asp-for="JobPostingTitle" class="form-control" />
+                    <span asp-validation-for="JobPostingTitle" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="PostDate" class="control-label"></label>
@@ -255,7 +256,7 @@
                     <span asp-validation-for="CandidateSelected" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="CandidateName" class="control-label"></label>
+                    <label asp-for="CandidateName" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
                     <input asp-for="CandidateName" class="form-control" />
                     <span asp-validation-for="CandidateName" class="text-danger"></span>
                 </div>
@@ -265,7 +266,7 @@
                     <span asp-validation-for="StudentNum" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="EmployeeID" class="control-label"></label> (If known)
+                    <label asp-for="EmployeeID" class="control-label"></label> (<span class="text-danger">*if known</span>)
                     <input asp-for="EmployeeID" class="form-control" />
                     <span asp-validation-for="EmployeeID" class="text-danger"></span>
                 </div>

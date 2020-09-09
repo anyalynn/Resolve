@@ -52,6 +52,9 @@ namespace Resolve.Models
         [Display(Name = "Budget Numbers")]
         public string BudgetNumbers { get; set; }
 
+        [Display(Name = "Detailed Description")]
+        public string DetailedDescription { get; set; }
+        
         public string Note { get; set; }
 
         [Display(Name = "Offboarding?")]

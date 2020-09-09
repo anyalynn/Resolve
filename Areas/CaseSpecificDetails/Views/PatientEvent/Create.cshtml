@@ -1,0 +1,128 @@
+﻿@model Resolve.Models.PatientEvent
+
+@{
+    ViewData["Title"] = "Create Specific Details";
+}
+
+<h3>Create Patient Event</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div class="form-group">
+                <label asp-for="EventDate" class="control-label required-field"></label>
+                <input asp-for="EventDate" class="form-control" />
+                <span asp-validation-for="EventDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDepartment" class="control-label"></label>
+                <select asp-for="EventDepartment" asp-items="Html.GetEnumSelectList<EventDepartment>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="EventDepartment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventLocation" class="control-label"></label>
+                <select asp-for="EventLocation" asp-items="Html.GetEnumSelectList<EventLocation>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="EventLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstReportedBy" class="control-label"></label>
+                <input asp-for="FirstReportedBy" class="form-control" />
+                <span asp-validation-for="FirstReportedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SupervisorName" class="control-label"></label>
+                <input asp-for="SupervisorName" class="form-control" />
+                <span asp-validation-for="SupervisorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PatientName" class="control-label"></label>
+                <input asp-for="PatientName" class="form-control" />
+                <span asp-validation-for="PatientName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <select asp-for="Gender" asp-items="Html.GetEnumSelectList<Gender>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProviderName" class="control-label"></label>
+                <input asp-for="ProviderName" class="form-control" />
+                <span asp-validation-for="ProviderName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotifyDate" class="control-label"></label>
+                <input asp-for="NotifyDate" class="form-control" />
+                <span asp-validation-for="NotifyDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NotifiedName" class="control-label"></label>
+                <input asp-for="NotifiedName" class="form-control" />
+                <span asp-validation-for="NotifiedName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DentalRecordNum" class="control-label"></label>
+                <input asp-for="DentalRecordNum" class="form-control" />
+                <span asp-validation-for="DentalRecordNum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Witness1" class="control-label"></label>
+                <input asp-for="Witness1" class="form-control" />
+                <span asp-validation-for="Witness1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Witness2" class="control-label"></label>
+                <input asp-for="Witness2" class="form-control" />
+                <span asp-validation-for="Witness2" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input data-related-item="title1" class="form-check-input" asp-for="FactsDocumented" /> @Html.DisplayNameFor(model => model.FactsDocumented)
+                </label>
+                <span asp-validation-for="FactsDocumented" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventDescription" class="control-label"></label>
+                <textarea asp-for="EventDescription" class="form-control"></textarea>
+                <span asp-validation-for="EventDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Causes" class="control-label"></label>
+                <textarea asp-for="Causes" class="form-control"></textarea>
+                <span asp-validation-for="Causes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReporterActionTaken" class="control-label"></label>
+                <textarea asp-for="ReporterActionTaken" class="form-control"></textarea>
+                <span asp-validation-for="ReporterActionTaken" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ManagerActionTaken" class="control-label"></label>
+                <textarea asp-for="ManagerActionTaken" class="form-control"></textarea>
+                <span asp-validation-for="ManagerActionTaken" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+       
+    </div>
+</div>

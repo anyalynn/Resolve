@@ -30,6 +30,8 @@ namespace Resolve.Models
         public CaseType CaseType { get; set; }
 
         public int? Processed { get; set; }
+
+        [Display(Name = "Title")]
         public string Description { get; set; }
         // Below are the properties of a Case made accessible
         public ICollection<CaseComment> CaseComments { get; set; }
@@ -52,6 +54,8 @@ namespace Resolve.Models
         public ICollection<HRServiceScholarResident> HRServiceScholarResident { get; set; }
         public ICollection<Travel> Travel { get; set; }
         public ICollection<FoodEvent> FoodEvent { get; set; }
+        public ICollection<PatientEvent> PatientEvent { get; set; }
+        public ICollection<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
 
     }  
 

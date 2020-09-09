@@ -1,0 +1,127 @@
+﻿@model Resolve.Models.Case
+
+@foreach (var item in Model.PatientEvent)
+{
+    <dl class="row">
+
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.EventDate)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.EventDate)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.EventLocation)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.EventLocation)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.EventDepartment)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.EventDepartment)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.EventDescription)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.EventDescription)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.FirstReportedBy)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.FirstReportedBy)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.SupervisorName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.SupervisorName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.ProviderName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.ProviderName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.PatientName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.PatientName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.BirthDate)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Gender)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Gender)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.NotifyDate)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.NotifyDate)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.NotifiedName)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.NotifiedName)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.FactsDocumented)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.FactsDocumented)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.DentalRecordNum)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.DentalRecordNum)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Witness1)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Witness1)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Witness2)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Witness2)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Causes)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Causes)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.ReporterActionTaken)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.ReporterActionTaken)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.ManagerActionTaken)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.ManagerActionTaken)
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.Note)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.Note)
+        </dd>
+    </dl>
+}

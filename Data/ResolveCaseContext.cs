@@ -45,6 +45,10 @@ namespace Resolve.Data
         public DbSet<FoodEventTracking> FoodEventTracking { get; set; }
         public DbSet<HiringStaff> HiringStaff { get; set; }
         public DbSet<HiringStaffTracking> HiringStaffTracking { get; set; }
+        public DbSet<PatientEvent> PatientEvent { get; set; }
+        public DbSet<PatientEventTracking> PatientEventTracking { get; set; }
+        public DbSet<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
+        public DbSet<AxiumFeeScheduleTracking> AxiumFeeScheduleTracking { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -191,28 +195,47 @@ namespace Resolve.Data
               .HasOne(p => p.CaseAudit)
               .WithMany(q => q.HRServiceScholarResidentTrackings)
               .OnDelete(DeleteBehavior.NoAction);
+
             modelBuilder.Entity<PerioLimitedCareTracking>()
               .HasOne(p => p.CaseAudit)
               .WithMany(q => q.PerioLimitedCareTrackings)
               .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<FoodEventTracking>()
-           .HasOne(p => p.CaseAudit)
-           .WithMany(q => q.FoodEventTrackings)
-           .OnDelete(DeleteBehavior.NoAction);
-          
+                .HasOne(p => p.CaseAudit)
+                .WithMany(q => q.FoodEventTrackings)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<PatientEventTracking>()
+                .HasOne(p => p.CaseAudit)
+                .WithMany(q => q.PatientEventTrackings)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<AxiumFeeScheduleTracking>()
+               .HasOne(p => p.CaseAudit)
+               .WithMany(q => q.AxiumFeeScheduleTrackings)
+               .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<AxiumFeeSchedule>()
+                .Property(s => s.UnitsFactored)
+                .HasDefaultValue(0);           
+
+            modelBuilder.Entity<PatientEvent>()
+              .Property(s => s.FactsDocumented)
+              .HasDefaultValue(0);
+
             modelBuilder.Entity<TravelTracking>()
-           .HasOne(p => p.CaseAudit)
-           .WithMany(q => q.TravelTrackings)
-           .OnDelete(DeleteBehavior.NoAction);
+                .HasOne(p => p.CaseAudit)
+                .WithMany(q => q.TravelTrackings)
+                .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<HiringStaff>()
-             .Property(s => s.OvertimeEligible)
-             .HasDefaultValue(0);
+                .Property(s => s.OvertimeEligible)
+                .HasDefaultValue(0);
           
             modelBuilder.Entity<HiringStaff>()
-            .Property(s => s.Super)
-            .HasDefaultValue(0);
+                .Property(s => s.Super)
+                .HasDefaultValue(0);
         }
     }
 }

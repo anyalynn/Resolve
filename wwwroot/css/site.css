@@ -81,3 +81,5 @@ tr.clickable-row {
     color: red;
     margin-left: 2px
 }
+
+label.control-label { font-weight:700;}

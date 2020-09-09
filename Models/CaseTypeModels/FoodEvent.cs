@@ -52,6 +52,7 @@ namespace Resolve.Models
         [Display(Name = "Budget In Deficit?")]
         public bool BudgetDeficit { get; set; }
 
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
         [Display(Name = "Item 1")]

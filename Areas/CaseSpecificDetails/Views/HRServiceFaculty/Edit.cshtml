@@ -77,7 +77,7 @@
                 </select>
                 <span asp-validation-for="FacRequestType" class="text-danger"></span>
             </div>
-           
+
             <div id="FTEChange">
                 <div class="form-group">
                     <label asp-for="CurrentFTE" class="control-label"></label>
@@ -102,7 +102,7 @@
 
 
             </div>
-        
+
             <div id="TerminationReason">
                 <div class="form-group">
                     <label asp-for="TerminationReason" class="control-label"></label>
@@ -132,11 +132,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="Salary" class="control-label"></label> (<span class="text-danger">
-    *EndDate,FTE, Move</span>)
-    <input asp-for="Salary" class="form-control" />
-    <span asp-validation-for="Salary" class="text-danger"></span>
-</div>
-          
+                    *EndDate,FTE, Move
+                </span>)
+                <input asp-for="Salary" class="form-control" />
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Department" class="control-label"></label>
                 <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
@@ -173,6 +174,11 @@
                 <label asp-for="EffectiveEndDate" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
                 <input asp-for="EffectiveEndDate" class="form-control" />
                 <span asp-validation-for="EffectiveEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DetailedDescription" class="control-label"></label>
+                <textarea asp-for="DetailedDescription" class="form-control"></textarea>
+                <span asp-validation-for="DetailedDescription" class="text-danger"></span>
             </div>
 
             <div class="form-group">

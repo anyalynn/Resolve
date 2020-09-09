@@ -55,6 +55,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     StepStipendAllowance = hrScholar.StepStipendAllowance,
                     BudgetNumbers = hrScholar.BudgetNumbers,
                     Note = hrScholar.Note,
+                    DetailedDescription = hrScholar.DetailedDescription
                 };
                 
                 _context.Add(newCase);
@@ -82,7 +83,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,ScholarRequestType,ScholarCompAllowanceChange,ScholarJobProfile,JobTitle,PropTitle,CurrentFTE,ProposedFTE,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers")] HRServiceScholarResident hrScholar)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,ScholarRequestType,ScholarCompAllowanceChange,ScholarJobProfile,JobTitle,PropTitle,CurrentFTE,ProposedFTE,EffectiveStartDate,EffectiveEndDate,StepStipendAllowance,Department,Note,BudgetNumbers,DetailedDescription")] HRServiceScholarResident hrScholar)
 
         {
             if (id != hrScholar.CaseID)
@@ -121,7 +122,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             StepStipendAllowance = beforeCase.StepStipendAllowance,
                             Note = beforeCase.Note,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            DetailedDescription=beforeCase.DetailedDescription
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -138,7 +140,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             ScholarJobProfile = hrScholar.ScholarJobProfile,
                             StepStipendAllowance = hrScholar.StepStipendAllowance,
                             Note = hrScholar.Note,
-                            BudgetNumbers = hrScholar.BudgetNumbers
+                            BudgetNumbers = hrScholar.BudgetNumbers,
+                            DetailedDescription=hrScholar.DetailedDescription
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

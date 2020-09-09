@@ -12,12 +12,12 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class HiringStaffController : Controller
+    public class PatientEventController : Controller
     {
-
+        
         private readonly ResolveCaseContext _context;
 
-        public HiringStaffController(ResolveCaseContext context)
+        public PatientEventController(ResolveCaseContext context)
         {
             _context = context;
         }
@@ -27,28 +27,28 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             return View();
         }
 
+        
         public IActionResult Create(int id)
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
-            "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
+        public async Task<IActionResult> Create(int id, [Bind("NotifyDate,BirthDate,EventDate,EventDepartment," +
+            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName,Birthdate," +
+            "Gender,FirstReportedBy,Causes,ReporterActionTaken,ManagerActionTaken,SupervisorName,EventDescription," +
+            "Note")] PatientEvent patientEvent)
         {
             if (ModelState.IsValid)
             {
-                hrStaff.CaseID = id;
-                _context.Add(hrStaff);
+                patientEvent.CaseID = id;
+                _context.Add(patientEvent);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(hrStaff);
+            return View(patientEvent);
         }
 
         public IActionResult Edit(int? id)
@@ -57,7 +57,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            HiringStaff editCase = _context.HiringStaff.Find(id);
+
+            var editCase = _context.PatientEvent.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -67,12 +68,13 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
-            "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
-        { 
-            if (id != hrStaff.CaseID)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,NotifyDate,BirthDate,EventDate,EventDepartment," +
+            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName,Birthdate," +
+            "Gender,FirstReportedBy,Causes,ReporterActionTaken,ManagerActionTaken,SupervisorName,EventDescription," +
+            "Note")] PatientEvent patientEvent)
+
+        {
+            if (id != patientEvent.CaseID)
             {
                 return NotFound();
             }
@@ -81,8 +83,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<HiringStaff> beforeCases = _context.HiringStaff.Where(c => c.CaseID == id).AsNoTracking<HiringStaff>();
-                    HiringStaff beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<PatientEvent> beforeCases = _context.PatientEvent.Where(c => c.CaseID == id).AsNoTracking<PatientEvent>();
+                    PatientEvent beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -94,48 +96,47 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         _context.Add(audit);
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
-
-                        var old_details = new HiringStaffTracking
+                        var old_details = new PatientEventTracking
                         {
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            HireDate = beforeCase.HireDate,
-                            SupOrg = beforeCase.SupOrg,
-                            PayRate = beforeCase.PayRate,
-                            JobTitle = beforeCase.JobTitle,
-                            StaffWorkerType = beforeCase.StaffWorkerType,
-                            StaffHireReason = beforeCase.StaffHireReason,
-                            BudgetNumbers=beforeCase.BudgetNumbers,
-                            BudgetType = beforeCase.BudgetType,
-                            FTE = beforeCase.FTE
-                         };
+                            EventDescription = beforeCase.EventDescription,                          
+                            EventDate = beforeCase.EventDate,
+                            EventLocation = beforeCase.EventLocation,
+                            EventDepartment = beforeCase.EventDepartment,
+                            DentalRecordNum = beforeCase.DentalRecordNum,
+                            NotifiedName = beforeCase.NotifiedName,
+                            PatientName = beforeCase.PatientName,
+                            ProviderName = beforeCase.ProviderName,
+                            FactsDocumented=beforeCase.FactsDocumented,
+                        };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new HiringStaffTracking
+                        var new_details = new PatientEventTracking
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = hrStaff.CaseID,
-                            HireDate = hrStaff.HireDate,
-                            SupOrg = hrStaff.SupOrg,
-                            PayRate = hrStaff.PayRate,
-                            JobTitle = hrStaff.JobTitle,
-                            StaffWorkerType = hrStaff.StaffWorkerType,
-                            StaffHireReason = hrStaff.StaffHireReason,
-                            BudgetNumbers = hrStaff.BudgetNumbers,
-                            BudgetType = hrStaff.BudgetType,
-                            FTE = hrStaff.FTE
+                            CaseID = patientEvent.CaseID,
+                            EventDescription = patientEvent.EventDescription,                           
+                            EventDate = patientEvent.EventDate,
+                            EventLocation = patientEvent.EventLocation,
+                            EventDepartment = patientEvent.EventDepartment,
+                            DentalRecordNum = patientEvent.DentalRecordNum,
+                            NotifiedName = patientEvent.NotifiedName,
+                            PatientName = patientEvent.PatientName,
+                            ProviderName = patientEvent.ProviderName,
+                            FactsDocumented = patientEvent.FactsDocumented,
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(hrStaff);
+                        _context.Update(patientEvent);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HiringStaffExists(hrStaff.CaseID))
+                    if (!PatientEventExists(patientEvent.CaseID))
                     {
                         return NotFound();
                     }
@@ -147,8 +148,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(hrStaff);
+            return View(patientEvent);
         }
+
         public IActionResult EditLog(int? id)
         {
             if (id == null)
@@ -157,7 +159,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.HiringStaffTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.PatientEventTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -169,7 +171,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool HiringStaffExists(int id)
+        private bool PatientEventExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }

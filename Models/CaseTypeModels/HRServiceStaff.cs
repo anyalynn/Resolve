@@ -245,7 +245,7 @@ namespace Resolve.Models
         public int CaseID { get; set; }
         public Case Case { get; set; }
 
-       [Display(Name = "Effective Start Date")]
+        [Display(Name = "Effective Start Date")]
         [DataType(DataType.Date)]
         public DateTime EffectiveStartDate { get; set; }
 
@@ -268,8 +268,10 @@ namespace Resolve.Models
         [Display(Name = "Termination Reason")]
         public virtual TerminationReason? TerminationReason { get; set; }
 
+        [Display(Name = "Supervisory Organization")]
         public virtual SupOrg? SupOrg { get; set; }
 
+        [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
 
         [Display(Name = "Employee Name"), Required]
@@ -281,9 +283,13 @@ namespace Resolve.Models
         [Display(Name = "Amount/Percent/Step Increase")]
         public string Amount { get; set; }
 
-
+        [Display(Name = "Additional Notes")]
         [MaxLength(1024)]
         public string Note { get; set; }
+
+        [Display(Name = "Detailed Description")]
+        [MaxLength(1024)]
+        public string DetailedDescription { get; set; }
 
         [Display(Name = "Offboarding?")]
         public bool Offboarding { get; set; }

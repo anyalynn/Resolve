@@ -58,7 +58,8 @@ namespace Resolve.Models
 
         [Display(Name = "Other Explanation")]
         public string OtherProcedure { get; set; }
-       
+
+        [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
     }

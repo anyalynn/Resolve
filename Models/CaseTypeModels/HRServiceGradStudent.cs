@@ -83,8 +83,14 @@ namespace Resolve.Models
         [Display(Name = "Step/Stipend/Allowance")]
         public string StepStipendAllowance { get; set; }
 
+        [Display(Name = "Budget Numbers")]
         public string BudgetNumbers { get; set; }
 
+        [Display(Name = "Detailed Description")]
+        [MaxLength(1024)]
+        public string DetailedDescription { get; set; }
+
+        [Display(Name = "Additional Notes")]
         [MaxLength(1024)]
         public string Note { get; set; }
     }

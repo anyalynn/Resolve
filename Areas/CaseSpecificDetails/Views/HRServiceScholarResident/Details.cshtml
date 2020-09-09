@@ -3,7 +3,7 @@
 @foreach (var item in Model.HRServiceScholarResident)
 {
     <dl class="row">
-       
+
         <dt class="col-sm-4">
             @Html.DisplayNameFor(modelItem => item.ScholarRequestType)
         </dt>
@@ -52,6 +52,12 @@
         </dt>
         <dd class="col-sm-8">
             @Html.DisplayFor(modelItem => item.BudgetNumbers)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(modelItem => item.DetailedDescription)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(modelItem => item.DetailedDescription)
         </dd>
         <dt class="col-sm-4">
             @Html.DisplayNameFor(modelItem => item.Note)
