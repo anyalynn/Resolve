@@ -28,14 +28,18 @@ namespace Resolve.Models
         public ICollection<HiringAffiliateFacultyTracking> HiringAffiliateFacultyTrackings { get; set; }
         public ICollection<HiringFacultyTracking> HiringFacultyTrackings { get; set; }
         public ICollection<HiringStaffTracking> HiringStaffTrackings { get; set; }
-        public ICollection<HRServiceStaffTracking> HRServiceStaffTrackings { get; set; }
-        public ICollection<HRServiceFacultyTracking> HRServiceFacultyTrackings { get; set; }
-        public ICollection<HRServiceGradStudentTracking> HRServiceGradStudentTrackings { get; set; }
-        public ICollection<HRServiceScholarResidentTracking> HRServiceScholarResidentTrackings { get; set; }
         public ICollection<PerioLimitedCareTracking> PerioLimitedCareTrackings { get; set; }
         public ICollection<TravelTracking> TravelTrackings { get; set; }
         public ICollection<FoodEventTracking> FoodEventTrackings { get; set; }
         public ICollection<PatientEventTracking> PatientEventTrackings { get; set; }
         public ICollection<AxiumFeeScheduleTracking> AxiumFeeScheduleTrackings { get; set; }
+        public ICollection<CostAllocationChangeTracking> CostAllocationChangeTrackings { get; set; }
+        public ICollection<EndDateChangeTracking> EndDateChangeTrackings { get; set; }
+        public ICollection<FTEChangeTracking> FTEChangeTrackings { get; set; }
+        public ICollection<CompAllowanceChangeTracking> CompAllowanceChangeTrackings { get; set; }
+        public ICollection<CompBasePayChangeTracking> CompBasePayChangeTrackings { get; set; }
+        public ICollection<MoveWorkerTracking> MoveWorkerTrackings { get; set; }
+        public ICollection<SecurityRolesChangeTracking> SecurityRolesChangeTrackings { get; set; }
+        public ICollection<TerminationTracking> TerminationTrackings { get; set; }
     }
 }

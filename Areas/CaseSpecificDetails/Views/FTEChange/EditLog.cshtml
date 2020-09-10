@@ -1,0 +1,55 @@
+﻿@model Resolve.Models.HRServiceGradStudentTracking
+
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>HRServiceGradStudent Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<HRServiceGradStudentTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">Request Type</th>
+                    <th class="th-sm" style="width: 10%">Job Profile</th>
+                    <th class="th-sm" style="width: 10%">Student Name</th>
+                    <th class="th-sm" style="width: 10%">Department</th>
+                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
+                    <th class="th-sm" style="width: 10%">Step/Stipend</th>
+                    <th class="th-sm" style="width: 15%">Effective Start Date</th>
+                    <th class="th-sm" style="width: 15%">Effective End Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.GradRequestType</td>
+                    <td>@item.GradJobProfile</td>
+                    <td>@item.StudentName</td>
+                    <td>@item.Department</td>
+                    <td>@item.BudgetNumbers</td>
+                    <td>@item.StepStipendAllowance</td>
+                    <td>@item.EffectiveStartDate</td>
+                    <td>@item.EffectiveEndDate</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+

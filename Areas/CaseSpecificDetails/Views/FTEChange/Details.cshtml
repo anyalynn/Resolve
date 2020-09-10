@@ -1,0 +1,64 @@
+﻿@model Resolve.Models.Case
+
+@foreach (var item in Model.FTEChange)
+{
+    <dl class="row">
+
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.HireType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.HireType)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.AWorkerType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.AWorkerType)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Name)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Name)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.SupOrg)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.SupOrg)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.EmployeeEID)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.EmployeeEID)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.BudgetNumbers)
+        </dd>
+      
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.EffectiveEndDate)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.EffectiveEndDate)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.DetailedDescription)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.DetailedDescription)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Note)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Note)
+        </dd>
+
+    </dl>
+}

@@ -25,19 +25,11 @@ namespace Resolve.Data
         public DbSet<OnBehalf> OnBehalf { get; set; }
         public DbSet<SampleCaseType> SampleCaseType { get; set; }
         public DbSet<SampleCaseTypeTracking> SampleCaseTypeTracking { get; set; }
-        public DbSet<HRServiceStaff> HRServiceStaff { get; set; }
-        public DbSet<HRServiceStaffTracking> HRServiceStaffTracking { get; set; }
-        public DbSet<HRServiceFaculty> HRServiceFaculty { get; set; }
-        public DbSet<HRServiceFacultyTracking> HRServiceFacultyTracking { get; set; }
-        public DbSet<HRServiceGradStudent> HRServiceGradStudent { get; set; }
         public DbSet<PerioLimitedCare> PerioLimitedCare { get; set; }
         public DbSet<HiringAffiliateFaculty> HiringAffiliateFaculty { get; set; }
         public DbSet<HiringAffiliateFacultyTracking> HiringAffiliateFacultyTracking { get; set; }
         public DbSet<HiringFaculty> HiringFaculty { get; set; }
         public DbSet<HiringFacultyTracking> HiringFacultyTracking { get; set; }
-        public DbSet<HRServiceScholarResident> HRServiceScholarResident { get; set; }
-        public DbSet<HRServiceGradStudentTracking> HRServiceGradStudentTracking { get; set; }
-        public DbSet<HRServiceScholarResidentTracking> HRServiceScholarResidentTracking { get; set; }
         public DbSet<PerioLimitedCareTracking> PerioLimitedCareTracking { get; set; }
         public DbSet<Travel> Travel { get; set; }
         public DbSet<FoodEvent> FoodEvent { get; set; }
@@ -49,14 +41,22 @@ namespace Resolve.Data
         public DbSet<PatientEventTracking> PatientEventTracking { get; set; }
         public DbSet<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
         public DbSet<AxiumFeeScheduleTracking> AxiumFeeScheduleTracking { get; set; }
-        public DbSet<DistributionChange> DistributionChange { get; set; }
+        public DbSet<CostAllocationChange> CostAllocationChange { get; set; }
         public DbSet<EndDateChange> EndDateChange { get; set; }
         public DbSet<FTEChange> FTEChange { get; set; }
         public DbSet<CompAllowanceChange> CompAllowanceChange { get; set; }
         public DbSet<CompBasePayChange> CompBasePayChange { get; set; }
         public DbSet<MoveWorker> MoveWorker { get; set; }
-        public DbSet<SecurityChange> SecurityChange { get; set; }
+        public DbSet<SecurityRolesChange> SecurityRolesChange { get; set; }
         public DbSet<Termination> Termination { get; set; }
+        public DbSet<CostAllocationChangeTracking> CostAllocationChangeTracking { get; set; }
+        public DbSet<EndDateChangeTracking> EndDateChangeTracking { get; set; }
+        public DbSet<FTEChangeTracking> FTEChangeTracking { get; set; }
+        public DbSet<CompAllowanceChangeTracking> CompAllowanceChangeTracking { get; set; }
+        public DbSet<CompBasePayChangeTracking> CompBasePayChangeTracking { get; set; }
+        public DbSet<MoveWorkerTracking> MoveWorkerTracking { get; set; }
+        public DbSet<SecurityRolesChangeTracking> SecurityRolesChangeTracking { get; set; }
+        public DbSet<TerminationTracking> TerminationTracking { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -126,16 +126,7 @@ namespace Resolve.Data
             modelBuilder.Entity<CaseAttachment>()
             .Property(b => b.AttachmentTimestamp)
             .HasDefaultValueSql("getdate()");
-
-            modelBuilder.Entity<HRServiceStaff>()
-               .Property(h => h.Offboarding)
-               .HasDefaultValue(0);
-            modelBuilder.Entity<HRServiceStaff>()
-                .Property(h => h.ClosePosition)
-                .HasDefaultValue(0);
-            modelBuilder.Entity<HRServiceStaff>()
-                .Property(h => h.LeaveWA)
-                .HasDefaultValue(0);
+          
             modelBuilder.Entity<Termination>()
               .Property(h => h.Offboarding)
               .HasDefaultValue(0);
@@ -145,15 +136,7 @@ namespace Resolve.Data
             modelBuilder.Entity<Termination>()
                 .Property(h => h.LeaveWA)
                 .HasDefaultValue(0);
-            modelBuilder.Entity<HRServiceFaculty>()
-              .Property(i => i.Offboarding)
-              .HasDefaultValue(0);
-            modelBuilder.Entity<HRServiceFaculty>()
-                .Property(i => i.ClosePosition)
-                .HasDefaultValue(0);
-            modelBuilder.Entity<HRServiceFaculty>()
-                .Property(i => i.LeaveWA)
-                .HasDefaultValue(0);
+         
             modelBuilder.Entity<PerioLimitedCare>()
                 .Property(i => i.PerioExam)
                 .HasDefaultValue(0);
@@ -191,27 +174,7 @@ namespace Resolve.Data
             modelBuilder.Entity<HiringStaffTracking>()
               .HasOne(p => p.CaseAudit)
               .WithMany(q => q.HiringStaffTrackings)
-              .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<HRServiceStaffTracking>()
-                .HasOne(p => p.CaseAudit)
-                .WithMany(q => q.HRServiceStaffTrackings)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<HRServiceFacultyTracking>()
-               .HasOne(p => p.CaseAudit)
-               .WithMany(q => q.HRServiceFacultyTrackings)
-               .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<HRServiceGradStudentTracking>()
-              .HasOne(p => p.CaseAudit)
-              .WithMany(q => q.HRServiceGradStudentTrackings)
-              .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<HRServiceScholarResidentTracking>()
-              .HasOne(p => p.CaseAudit)
-              .WithMany(q => q.HRServiceScholarResidentTrackings)
-              .OnDelete(DeleteBehavior.NoAction);
+              .OnDelete(DeleteBehavior.NoAction);         
 
             modelBuilder.Entity<PerioLimitedCareTracking>()
               .HasOne(p => p.CaseAudit)
@@ -245,6 +208,38 @@ namespace Resolve.Data
                 .HasOne(p => p.CaseAudit)
                 .WithMany(q => q.TravelTrackings)
                 .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<CompBasePayChangeTracking>()
+               .HasOne(p => p.CaseAudit)
+               .WithMany(q => q.CompBasePayChangeTrackings)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<CompAllowanceChangeTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.CompAllowanceChangeTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<CostAllocationChangeTracking>()
+               .HasOne(p => p.CaseAudit)
+               .WithMany(q => q.CostAllocationChangeTrackings)
+               .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<EndDateChangeTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.EndDateChangeTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<FTEChangeTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.FTEChangeTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<MoveWorkerTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.MoveWorkerTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<SecurityRolesChangeTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.SecurityRolesChangeTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<TerminationTracking>()
+              .HasOne(p => p.CaseAudit)
+              .WithMany(q => q.TerminationTrackings)
+              .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<HiringStaff>()
                 .Property(s => s.OvertimeEligible)

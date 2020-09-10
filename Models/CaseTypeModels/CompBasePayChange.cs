@@ -7,8 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Resolve.Models
 {
-    
-    public enum NBasePayChange
+    public enum BasePayChange
     {
         [Display(Name = "Ingrade – Change in Responsibilities")]
         IngradeChange,
@@ -91,7 +90,7 @@ namespace Resolve.Models
         Professional        
     }
 
-    public enum NGradJobProfile
+    public enum GradJobProfile
     {
         [Display(Name = "Graduate Fellow/Trainee Stipend w/o Benefits")]
         FellowStudentNoBenefits,
@@ -103,7 +102,7 @@ namespace Resolve.Models
         GradTraineeBenefits
     }
 
-    public enum NSupOrg
+    public enum SupOrg
     {
 
         [Display(Name = "Clinical Accounting: Cash Applications (Cooley, Joel)")] Clinical1,
@@ -238,7 +237,7 @@ namespace Resolve.Models
 
     }
 
-    public enum NTerminationReason
+    public enum TerminationReason
     {
         [Display(Name = "Death")]
         Death,
@@ -288,7 +287,7 @@ namespace Resolve.Models
         SeparationTransfer
     }
 
-    public enum JDepartment
+    public enum Department
     {
         [Display(Name = "Endodontics")]
         Endodontics,

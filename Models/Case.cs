@@ -44,25 +44,21 @@ namespace Resolve.Models
         // Add a line for every new Case Type added to the application
 
         public ICollection<SampleCaseType> SampleCaseType { get; set; }
-        public ICollection<HRServiceGradStudent> HRServiceGradStudent { get; set; }
-        public ICollection<HRServiceStaff> HRServiceStaff { get; set; }
-        public ICollection<HRServiceFaculty> HRServiceFaculty { get; set; }
         public ICollection<PerioLimitedCare> PerioLimitedCare { get; set; }
         public ICollection<HiringAffiliateFaculty> HiringAffiliateFaculty { get; set; }
         public ICollection<HiringStaff> HiringStaff { get; set; }
         public ICollection<HiringFaculty> HiringFaculty { get; set; }
-        public ICollection<HRServiceScholarResident> HRServiceScholarResident { get; set; }
         public ICollection<Travel> Travel { get; set; }
         public ICollection<FoodEvent> FoodEvent { get; set; }
         public ICollection<PatientEvent> PatientEvent { get; set; }
         public ICollection<AxiumFeeSchedule> AxiumFeeSchedule { get; set; }
-        public ICollection<DistributionChange> DistributionChange { get; set; }
+        public ICollection<CostAllocationChange> CostAllocationChange { get; set; }
         public ICollection<EndDateChange> EndDateChange { get; set; }
         public ICollection<FTEChange> FTEChange { get; set; }
         public ICollection<CompAllowanceChange> CompAllowanceChange { get; set; }
         public ICollection<CompBasePayChange> CompBasePayChange { get; set; }
         public ICollection<MoveWorker> MoveWorker { get; set; }
-        public ICollection<SecurityChange> SecurityChange { get; set; }
+        public ICollection<SecurityRolesChange> SecurityRolesChange { get; set; }
         public ICollection<Termination> Termination { get; set; }
 
     }  
