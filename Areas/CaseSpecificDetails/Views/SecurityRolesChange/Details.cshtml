@@ -3,19 +3,13 @@
 @foreach (var item in Model.SecurityRolesChange)
 {
     <dl class="row">
-
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HireType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HireType)
-        </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.AWorkerType)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.AWorkerType)
         </dd>
+
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.Name)
         </dt>
@@ -41,12 +35,24 @@
             @Html.DisplayFor(modelItem => item.BudgetNumbers)
         </dd>
         <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.HireType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.HireType)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Department)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Department)
+        </dd>
+        <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.EffectiveStartDate)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.EffectiveStartDate)
         </dd>
-      
+
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.DetailedDescription)
         </dt>

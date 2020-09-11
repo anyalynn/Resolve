@@ -67,7 +67,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            EndDateChange editCase = _context.EndDateChange.Find(id);
+            SecurityRolesChange editCase = _context.SecurityRolesChange.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -77,7 +77,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  SecurityRolesChange securityChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  SecurityRolesChange securityChange)
         {
             if (id != securityChange.CaseID)
             {

@@ -3,18 +3,17 @@
 @foreach (var item in Model.CompBasePayChange)
 {
     <dl class="row">
-
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HireType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HireType)
-        </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.CWorkerType)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.CWorkerType)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.HireType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.HireType)
         </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.BasePayChange)

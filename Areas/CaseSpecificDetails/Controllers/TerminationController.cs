@@ -51,7 +51,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     BudgetNumbers = termination.BudgetNumbers,
                     DetailedDescription = termination.DetailedDescription,
                     Department = termination.Department,
-                    JobTitle = termination.JobTitle
+                    JobTitle = termination.JobTitle,
+                    TerminationReason = termination.TerminationReason,
+                    Offboarding=termination.Offboarding,
+                    LeaveWA=termination.LeaveWA,
+                    ClosePosition=termination.ClosePosition
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -77,7 +81,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  Termination termination)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription,TerminationReason,LeaveWA,Offboarding,ClosePosition")]  Termination termination)
         {
             if (id != termination.CaseID)
             {
@@ -116,7 +120,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            TerminationReason = beforeCase.TerminationReason,
+                            Offboarding = beforeCase.Offboarding,
+                            LeaveWA = beforeCase.LeaveWA,
+                            ClosePosition = beforeCase.ClosePosition
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -134,7 +142,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EmployeeEID = termination.EmployeeEID,
                             Note = termination.Note,
                             DetailedDescription = termination.DetailedDescription,
-                            BudgetNumbers = termination.BudgetNumbers
+                            BudgetNumbers = termination.BudgetNumbers,
+                            TerminationReason = termination.TerminationReason,
+                            Offboarding = termination.Offboarding,
+                            LeaveWA = termination.LeaveWA,
+                            ClosePosition = termination.ClosePosition
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

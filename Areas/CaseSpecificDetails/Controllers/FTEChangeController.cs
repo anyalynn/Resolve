@@ -43,7 +43,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     CaseID = id,
                     Name = fteChange.Name,
                     HireType = fteChange.HireType,
-                    AWorkerType = fteChange.AWorkerType,                    
+                    AWorkerType = fteChange.AWorkerType,
                     EffectiveEndDate = fteChange.EffectiveEndDate,
                     SupOrg = fteChange.SupOrg,
                     EmployeeEID = fteChange.EmployeeEID,
@@ -51,7 +51,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     BudgetNumbers = fteChange.BudgetNumbers,
                     DetailedDescription = fteChange.DetailedDescription,
                     Department = fteChange.Department,
-                    JobTitle = fteChange.JobTitle
+                    JobTitle = fteChange.JobTitle,
+                    CurrentFTE = fteChange.CurrentFTE,
+                    ProposedFTE = fteChange.ProposedFTE
 
                 };
                 _context.Add(newCase);
@@ -68,7 +70,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            EndDateChange editCase = _context.EndDateChange.Find(id);
+            FTEChange editCase = _context.FTEChange.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -78,7 +80,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]   FTEChange fteChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription,CurrentFTE,ProposedFTE")]   FTEChange fteChange)
         {
             if (id != fteChange.CaseID)
             {
@@ -109,6 +111,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
                             AWorkerType = beforeCase.AWorkerType,
+                            HireType = beforeCase.HireType,
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,                            
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
@@ -116,7 +119,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            CurrentFTE = beforeCase.CurrentFTE,
+                            ProposedFTE = beforeCase.ProposedFTE
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -126,6 +131,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = fteChange.CaseID,
                             Name = fteChange.Name,
                             AWorkerType = fteChange.AWorkerType,
+                            HireType = fteChange.HireType,
                             Department = fteChange.Department,
                             JobTitle = fteChange.JobTitle,                          
                             EffectiveEndDate = fteChange.EffectiveEndDate,
@@ -133,7 +139,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EmployeeEID = fteChange.EmployeeEID,
                             Note = fteChange.Note,
                             DetailedDescription = fteChange.DetailedDescription,
-                            BudgetNumbers = fteChange.BudgetNumbers
+                            BudgetNumbers = fteChange.BudgetNumbers,
+                            CurrentFTE = fteChange.CurrentFTE,
+                            ProposedFTE = fteChange.ProposedFTE
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

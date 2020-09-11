@@ -3,13 +3,6 @@
 @foreach (var item in Model.FTEChange)
 {
     <dl class="row">
-
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HireType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HireType)
-        </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.AWorkerType)
         </dt>
@@ -17,17 +10,19 @@
             @Html.DisplayFor(modelItem => item.AWorkerType)
         </dd>
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Name)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Name)
-        </dd>
-        <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.SupOrg)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.SupOrg)
         </dd>
+
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Name)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Name)
+        </dd>
+      
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.EmployeeEID)
         </dt>
@@ -40,7 +35,30 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.BudgetNumbers)
         </dd>
-      
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.CurrentFTE)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.CurrentFTE)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.ProposedFTE)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.ProposedFTE)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.HireType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.HireType)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Department)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Department)
+        </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.EffectiveEndDate)
         </dt>
