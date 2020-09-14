@@ -1,50 +1,60 @@
-﻿@model Resolve.Models.HRServiceGradStudentTracking
+﻿@model Resolve.Models.EndDateChangeTracking
 
 @{
     ViewData["Title"] = "Specific Details Edit Log";
 }
 
-<h1>Edit Log</h1>
+<h3>Edit Log</h3>
 
-<h4>HRServiceGradStudent Edit Tracking</h4>
+<h4>EndDateChange Edit Tracking</h4>
 <hr />
 
 @{
-    var logs = ViewData["Logs"] as List<HRServiceGradStudentTracking>;
+    var logs = ViewData["Logs"] as List<EndDateChangeTracking>;
 
     if (logs != null)
     {
-        <table class="table table-hover table-sm">
-            <thead>
-                <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Request Type</th>
-                    <th class="th-sm" style="width: 10%">Job Profile</th>
-                    <th class="th-sm" style="width: 10%">Student Name</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Step/Stipend</th>
-                    <th class="th-sm" style="width: 15%">Effective Start Date</th>
-                    <th class="th-sm" style="width: 15%">Effective End Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in logs)
-                {
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th class="th-sm" style="width: 10%">Value Type</th>
+                <th class="th-sm" style="width: 10%">Worker Type</th>
+                <th class="th-sm" style="width: 10%">Hire Type/Department</th>
+                <th class="th-sm" style="width: 10%">SupOrg</th>
+                <th class="th-sm" style="width: 10%">Name</th>
+                <th class="th-sm" style="width: 10%">Employee EID</th>
+                <th class="th-sm" style="width: 10%">Budget Numbers</th>
+                <th class="th-sm" style="width: 10%">JobTitle</th>
+                <th class="th-sm" style="width: 10%">Effective Start Date</th>
+                <th class="th-sm" style="width: 10%">Effective End Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in logs)
+            {
                 <tr>
                     <td><b>@item.Status</b></td>
-                    <td>@item.GradRequestType</td>
-                    <td>@item.GradJobProfile</td>
-                    <td>@item.StudentName</td>
-                    <td>@item.Department</td>
+                    <td>@item.AWorkerType</td>
+                    @{ string workertype = item.AWorkerType.ToString(); }
+                    @if (@workertype == "Staff")
+                    {
+                        <td>@item.HireType</td>
+                    }
+                    @if (@workertype != "Staff")
+                    {
+                        <td>@item.Department</td>
+                    }
+                    <td>@item.SupOrg</td>
+                    <td>@item.Name</td>
+                    <td>@item.EmployeeEID</td>
                     <td>@item.BudgetNumbers</td>
-                    <td>@item.StepStipendAllowance</td>
+                    <td>@item.JobTitle</td>
                     <td>@item.EffectiveStartDate</td>
                     <td>@item.EffectiveEndDate</td>
                 </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
     }
     else
     {

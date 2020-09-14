@@ -209,6 +209,8 @@ namespace Resolve.Controllers
                 .Include(p => p.MoveWorker)
                 .Include(p => p.SecurityRolesChange)
                 .Include(p => p.Termination)
+                .Include(p => p.ScholarResGradHire)
+                .Include(p => p.CPPaymentRequest)
                 .FirstOrDefaultAsync(m => m.CaseID == id);
             if (@case == null)
             {

@@ -1,16 +1,23 @@
 ﻿@model Resolve.Models.Case
 
-@foreach (var item in Model.EndDateChange)
+@foreach (var item in Model.ScholarResGradHire)
 {
     <dl class="row">
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.AWorkerType)
+            @Html.DisplayNameFor(modelItem => item.ScholarReqType)
         </dt>
         <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.AWorkerType)
+            @Html.DisplayFor(modelItem => item.ScholarReqType)
         </dd>
-        @{ string workertype = item.AWorkerType.ToString(); }
         <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.DWorkerType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.DWorkerType)
+        </dd>
+        @{ string workertype = item.DWorkerType.ToString(); }
+
+         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.Name)
         </dt>
         <dd class="col-sm-7">
@@ -22,35 +29,36 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.JobTitle)
         </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.SupOrg)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.SupOrg)
-        </dd>
-        @if (@workertype == "Staff")
-        {
+        @if (@workertype != "Grad")        {
+
             <dt class="col-sm-5">
-                @Html.DisplayNameFor(modelItem => item.HireType)
+                @Html.DisplayNameFor(modelItem => item.NewTitle)
             </dt>
             <dd class="col-sm-7">
-                @Html.DisplayFor(modelItem => item.HireType)
+                @Html.DisplayFor(modelItem => item.NewTitle)
             </dd>
-        }
-        @if (@workertype != "Staff")
-        {
             <dt class="col-sm-5">
-                @Html.DisplayNameFor(modelItem => item.Department)
+                @Html.DisplayNameFor(modelItem => item.ScholarJobProfile)
             </dt>
             <dd class="col-sm-7">
-                @Html.DisplayFor(modelItem => item.Department)
+                @Html.DisplayFor(modelItem => item.ScholarJobProfile)
+            </dd>
+
+        }
+        @if (@workertype == "Grad")
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.GradJobProfile)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.GradJobProfile)
             </dd>
         }
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.EmployeeEID)
+            @Html.DisplayNameFor(modelItem => item.StipendAllowance)
         </dt>
         <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.EmployeeEID)
+            @Html.DisplayFor(modelItem => item.StipendAllowance)
         </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
@@ -58,18 +66,24 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.BudgetNumbers)
         </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.SupOrg)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.SupOrg)
+        </dd>
 
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.EffectiveStartDate)
+            @Html.DisplayNameFor(modelItem => item.Department)
         </dt>
         <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.EffectiveStartDate)
+            @Html.DisplayFor(modelItem => item.Department)
         </dd>
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.EffectiveEndDate)
+            @Html.DisplayNameFor(modelItem => item.EffectiveDate)
         </dt>
         <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.EffectiveEndDate)
+            @Html.DisplayFor(modelItem => item.EffectiveDate)
         </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.DetailedDescription)

@@ -12,14 +12,14 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class SecurityRolesChangeController : Controller
+    public class CPPaymentRequestController : Controller
     {
 
         private readonly ResolveCaseContext _context;
 
-        public SecurityRolesChangeController(ResolveCaseContext context)
+        public CPPaymentRequestController(ResolveCaseContext context)
         {
-            _context = context;
+           _context = context;
         }
 
         public IActionResult Index()
@@ -34,32 +34,28 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, SecurityRolesChange securityChange)
+        public async Task<IActionResult> Create(int id, CPPaymentRequest cpPayment)
         {
             if (ModelState.IsValid)
             {
-                SecurityRolesChange newCase = new SecurityRolesChange
+                CPPaymentRequest newCase = new CPPaymentRequest
                 {
                     CaseID = id,
-                    Name = securityChange.Name,
-                    HireType = securityChange.HireType,
-                    AWorkerType = securityChange.AWorkerType,
-                    EffectiveStartDate = securityChange.EffectiveStartDate,
-                    SupOrg = securityChange.SupOrg,
-                    EmployeeEID = securityChange.EmployeeEID,
-                    Note = securityChange.Note,
-                    BudgetNumbers = securityChange.BudgetNumbers,
-                    DetailedDescription = securityChange.DetailedDescription,
-                    Department=securityChange.Department,
-                    JobTitle=securityChange.JobTitle
-                };
+                    RequesterName = cpPayment.RequesterName,
+                    DueDate = cpPayment.DueDate,
+                    Payee = cpPayment.Payee,
+                    Amount = cpPayment.Amount,
+                    Explanation= cpPayment.Explanation,
+                    Note = cpPayment.Note,
+                    BudgetNumber = cpPayment.BudgetNumber
+                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(securityChange);
+            return View(cpPayment);
         }
         public IActionResult Edit(int? id)
         {
@@ -67,7 +63,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            SecurityRolesChange editCase = _context.SecurityRolesChange.Find(id);
+            CPPaymentRequest editCase = _context.CPPaymentRequest.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -77,9 +73,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,Note,AWorkerType,HireType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  SecurityRolesChange securityChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,RequesterName,DueDate,Payee,Amount,BudgetNumber,Explanation,Note")] CPPaymentRequest cpPayment)
         {
-            if (id != securityChange.CaseID)
+            if (id != cpPayment.CaseID)
             {
                 return NotFound();
             }
@@ -88,8 +84,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<SecurityRolesChange> beforeCases = _context.SecurityRolesChange.Where(c => c.CaseID == id).AsNoTracking<SecurityRolesChange>();
-                    SecurityRolesChange beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<CPPaymentRequest> beforeCases = _context.CPPaymentRequest.Where(c => c.CaseID == id).AsNoTracking<CPPaymentRequest>();
+                    CPPaymentRequest beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -102,49 +98,41 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
 
-                        var old_details = new SecurityRolesChangeTracking
-                        {
-                            Status = "old",
+                        var old_details = new CPPaymentRequestTracking
+                        {   Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            Name = beforeCase.Name,
-                            AWorkerType = beforeCase.AWorkerType,
-                            Department = beforeCase.Department,
-                            JobTitle = beforeCase.JobTitle,
-                            EffectiveStartDate = beforeCase.EffectiveStartDate,                            
-                            SupOrg = beforeCase.SupOrg,
-                            EmployeeEID = beforeCase.EmployeeEID,
+                            RequesterName = beforeCase.RequesterName,
+                            DueDate = beforeCase.DueDate,
+                            Payee = beforeCase.Payee,
+                            Amount = beforeCase.Amount,
+                            Explanation = beforeCase.Explanation,
                             Note = beforeCase.Note,
-                            DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumber = beforeCase.BudgetNumber,
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new SecurityRolesChangeTracking
-                        {
-                            Status = "new",
+                        var new_details = new CPPaymentRequestTracking
+                        {   Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = securityChange.CaseID,
-                            Name = securityChange.Name,
-                            AWorkerType = securityChange.AWorkerType,
-                            Department = securityChange.Department,
-                            JobTitle = securityChange.JobTitle,
-                            EffectiveStartDate = securityChange.EffectiveStartDate,
-                            SupOrg = securityChange.SupOrg,
-                            EmployeeEID = securityChange.EmployeeEID,
-                            Note = securityChange.Note,
-                            DetailedDescription = securityChange.DetailedDescription,
-                            BudgetNumbers = securityChange.BudgetNumbers
+                            CaseID = cpPayment.CaseID,
+                            RequesterName = cpPayment.RequesterName,
+                            DueDate = cpPayment.DueDate,
+                            Payee = cpPayment.Payee,
+                            Amount = cpPayment.Amount,
+                            Explanation = cpPayment.Explanation,
+                            Note = cpPayment.Note,
+                            BudgetNumber = cpPayment.BudgetNumber,
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(securityChange);
+                        _context.Update(cpPayment);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SecurityRolesChangeExists(securityChange.CaseID))
+                    if (!CPPaymentRequestExists(cpPayment.CaseID))
                     {
                         return NotFound();
                     }
@@ -156,7 +144,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(securityChange);
+            return View(cpPayment);
         }
         public IActionResult EditLog(int? id)
         {
@@ -166,7 +154,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.SecurityRolesChangeTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.CPPaymentRequestTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -178,7 +166,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool SecurityRolesChangeExists(int id)
+        private bool CPPaymentRequestExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }

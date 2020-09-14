@@ -9,19 +9,55 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.EWorkerType)
         </dd>
+        @{ string workertype = item.EWorkerType.ToString(); }
+        @if (@workertype == "Staff")
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.HireType)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.HireType)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.AllowanceChange)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.AllowanceChange)
+            </dd>
+        }
+        @if (@workertype != "Staff")
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.ScholarCompAllowanceChange)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.ScholarCompAllowanceChange)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Department)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Department)
+            </dd>
+        }
 
         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.AllowanceChange)
+            @Html.DisplayNameFor(modelItem => item.Amount)
         </dt>
         <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.AllowanceChange)
+            @Html.DisplayFor(modelItem => item.Amount)
         </dd>
-
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.Name)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.Name)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.JobTitle)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.JobTitle)
         </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.SupOrg)
@@ -35,18 +71,7 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.EmployeeEID)
         </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HireType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HireType)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Department)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Department)
-        </dd>
+
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
         </dt>

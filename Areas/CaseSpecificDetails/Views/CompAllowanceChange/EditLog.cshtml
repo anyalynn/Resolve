@@ -1,16 +1,15 @@
-﻿@model Resolve.Models.HRServiceStaffTracking
-
+﻿@model Resolve.Models.CompAllowanceChangeTracking
 @{
     ViewData["Title"] = "Specific Details Edit Log";
 }
 
-<h1>Edit Log</h1>
+<h3>Edit Log</h3>
 
-<h4>HRServiceStaff Edit Tracking</h4>
+<h4>CompAllowanceChange Edit Tracking</h4>
 <hr />
 
 @{
-    var logs = ViewData["Logs"] as List<HRServiceStaffTracking>;
+    var logs = ViewData["Logs"] as List<CompAllowanceChangeTracking>;
 
     if (logs != null)
     {
@@ -19,8 +18,8 @@
                 <tr>
                     <th class="th-sm" style="width: 10%">Value Type</th>
                     <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 10%">Request Type</th>
-                    <th class="th-sm" style="width: 10%">Employee Name</th>
+                    <th class="th-sm" style="width: 10%">Allowance</th>
+                    <th class="th-sm" style="width: 10%">Name</th>
                     <th class="th-sm" style="width: 10%">Employee EID</th>
                     <th class="th-sm" style="width: 10%">SupOrg</th>
                     <th class="th-sm" style="width: 10%">Budget Numbers</th>
@@ -34,9 +33,17 @@
                 {
                 <tr>
                     <td><b>@item.Status</b></td>
-                    <td>@item.WorkerType</td>
-                    <td>@item.RequestType</td>
-                    <td>@item.EmployeeName</td>
+                    <td>@item.EWorkerType</td>
+                    @{ string workertype = item.EWorkerType.ToString(); }
+                    @if (@workertype == "Staff")
+                    {
+                        <td>@item.AllowanceChange</td>
+                    }
+                    @if (@workertype != "Staff")
+                    {
+                        <td>@item.ScholarCompAllowanceChange</td>
+                    }
+                    <td>@item.Name</td>
                     <td>@item.EmployeeEID</td>
                     <td>@item.SupOrg</td>
                     <td>@item.BudgetNumbers</td>

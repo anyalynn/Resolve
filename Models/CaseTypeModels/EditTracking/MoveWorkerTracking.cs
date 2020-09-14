@@ -23,7 +23,10 @@ namespace Resolve.Models
         [Display(Name = "Worker Type")]
         public virtual CWorkerType? CWorkerType { get; set; }
 
-        [Display(Name = "Supervisory Organization")]
+        [Display(Name = "Hire Type")]
+        public virtual HireType? HireType { get; set; }
+
+        [Display(Name = "Proposed SupOrg")]
         public virtual SupOrg? SupOrg { get; set; }
 
         [Display(Name = "Employee EID")]
@@ -34,6 +37,9 @@ namespace Resolve.Models
 
         [Display(Name = "Budget Numbers")]
         public string BudgetNumbers { get; set; }
+      
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
 
         [Display(Name = "Additional Notes")]
         [MaxLength(1024)]

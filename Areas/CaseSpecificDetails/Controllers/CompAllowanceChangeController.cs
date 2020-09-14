@@ -46,6 +46,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     ScholarCompAllowanceChange = compallowChange.ScholarCompAllowanceChange,
                     Amount = compallowChange.Amount,
                     HireType = compallowChange.HireType,
+                    JobTitle = compallowChange.JobTitle,
                     EWorkerType = compallowChange.EWorkerType,
                     EffectiveStartDate = compallowChange.EffectiveStartDate,
                     EffectiveEndDate = compallowChange.EffectiveEndDate,
@@ -79,7 +80,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,AllowanceChange,ScholarCompAllowanceChange,EffectiveStartDate,EffectiveEndDate,HireType,Note,EWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompAllowanceChange compallowChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,AllowanceChange,ScholarCompAllowanceChange,Amount,EffectiveStartDate,EffectiveEndDate,HireType,JobTitle,Note,EWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompAllowanceChange compallowChange)
         {
             if (id != compallowChange.CaseID)
             {

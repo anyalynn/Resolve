@@ -60,6 +60,9 @@ namespace Resolve.Models
         public ICollection<MoveWorker> MoveWorker { get; set; }
         public ICollection<SecurityRolesChange> SecurityRolesChange { get; set; }
         public ICollection<Termination> Termination { get; set; }
+        public ICollection<ScholarResGradHire> ScholarResGradHire { get; set; }
+        public ICollection<CPPaymentRequest> CPPaymentRequest { get; set; }
+        
 
     }  
 }

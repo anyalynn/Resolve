@@ -1,0 +1,53 @@
+﻿@model Resolve.Models.CPPaymentRequestTracking
+@{
+    ViewData["Title"] = "Specific Details Edit Log";
+}
+
+<h1>Edit Log</h1>
+
+<h4>CPPaymentRequest Edit Tracking</h4>
+<hr />
+
+@{
+    var logs = ViewData["Logs"] as List<CPPaymentRequestTracking>;
+
+    if (logs != null)
+    {
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th class="th-sm" style="width: 10%">Value Type</th>
+                    <th class="th-sm" style="width: 10%">Requester</th>
+                    <th class="th-sm" style="width: 10%">Due Date</th>
+                    <th class="th-sm" style="width: 10%">Payee</th>
+                    <th class="th-sm" style="width: 10%">Amount</th>
+                    <th class="th-sm" style="width: 10%">Budget Number</th>
+                    <th class="th-sm" style="width: 20%">Explanation</th>
+                    <th class="th-sm" style="width: 20%">Note</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in logs)
+                {
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.RequesterName</td>
+                    <td>@item.DueDate</td>
+                    <td>@item.Payee</td>
+                    <td>@item.Amount</td>
+                    <td>@item.BudgetNumber</td>
+                    <td>@item.Explanation</td>
+                    <td>@item.Note</td>                   
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No logs found currently</p>
+    }
+}
+
+

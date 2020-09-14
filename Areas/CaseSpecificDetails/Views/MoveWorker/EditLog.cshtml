@@ -1,16 +1,16 @@
-﻿@model Resolve.Models.HRServiceGradStudentTracking
+﻿@model Resolve.Models.MoveWorkerTracking
 
 @{
     ViewData["Title"] = "Specific Details Edit Log";
 }
 
-<h1>Edit Log</h1>
+<h31>Edit Log</h31>
 
-<h4>HRServiceGradStudent Edit Tracking</h4>
+<h4>MoveWorker Edit Tracking</h4>
 <hr />
 
 @{
-    var logs = ViewData["Logs"] as List<HRServiceGradStudentTracking>;
+    var logs = ViewData["Logs"] as List<MoveWorkerTracking>;
 
     if (logs != null)
     {
@@ -18,14 +18,13 @@
             <thead>
                 <tr>
                     <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Request Type</th>
-                    <th class="th-sm" style="width: 10%">Job Profile</th>
-                    <th class="th-sm" style="width: 10%">Student Name</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
+                    <th class="th-sm" style="width: 10%">Worker Type</th>
+                    <th class="th-sm" style="width: 10%">Name</th>
+                    <th class="th-sm" style="width: 10%">SupOrg</th>
+                    <th class="th-sm" style="width: 10%">EmployeeEID</th>
                     <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Step/Stipend</th>
                     <th class="th-sm" style="width: 15%">Effective Start Date</th>
-                    <th class="th-sm" style="width: 15%">Effective End Date</th>
+                    <th class="th-sm" style="width: 15%">Hire Type</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,14 +32,13 @@
                 {
                 <tr>
                     <td><b>@item.Status</b></td>
-                    <td>@item.GradRequestType</td>
-                    <td>@item.GradJobProfile</td>
-                    <td>@item.StudentName</td>
-                    <td>@item.Department</td>
-                    <td>@item.BudgetNumbers</td>
-                    <td>@item.StepStipendAllowance</td>
+                    <td>@item.CWorkerType</td>
+                    <td>@item.Name</td>
+                    <td>@item.SupOrg</td>
+                    <td>@item.EmployeeEID</td>
+                    <td>@item.BudgetNumbers</td>                    
                     <td>@item.EffectiveStartDate</td>
-                    <td>@item.EffectiveEndDate</td>
+                    <td></td>
                 </tr>
                 }
             </tbody>

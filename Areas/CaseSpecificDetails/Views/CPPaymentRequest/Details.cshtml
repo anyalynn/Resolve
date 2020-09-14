@@ -1,0 +1,55 @@
+﻿@model Resolve.Models.Case
+
+@foreach (var item in Model.CPPaymentRequest)
+{
+    <dl class="row">
+            
+     
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.RequesterName)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.RequesterName)
+        </dd>
+
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.DueDate)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.DueDate)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.BudgetNumber)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.BudgetNumber)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Payee)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Payee)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Amount)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Amount)
+        </dd>
+
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Explanation)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Explanation)
+        </dd>
+        
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Note)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Note)
+        </dd>
+
+    </dl>
+}

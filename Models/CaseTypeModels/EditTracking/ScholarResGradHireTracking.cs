@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Resolve.Models
-{    
-    public class TerminationTracking
+{
+    public class ScholarResGradHireTracking
     {
-        public int TerminationTrackingID { get; set; }
+        public int ScholarResGradHireTrackingID { get; set; }
         public string Status { get; set; }
         public int CaseAuditID { get; set; }
         public CaseAudit CaseAudit { get; set; }
@@ -18,22 +18,13 @@ namespace Resolve.Models
 
         [Display(Name = "Effective Date")]
         [DataType(DataType.Date)]
-        public DateTime EffectiveStartDate { get; set; }
-            
+        public DateTime EffectiveDate { get; set; }
+
         [Display(Name = "Worker Type")]
-        public virtual AWorkerType? AWorkerType { get; set; }
-
-        [Display(Name = "Hire Type")]
-        public virtual HireType? HireType { get; set; }
-
-        [Display(Name = "Termination Reason")]
-        public virtual TerminationReason? TerminationReason { get; set; }
+        public virtual DWorkerType? DWorkerType { get; set; }
 
         [Display(Name = "Supervisory Organization")]
         public virtual SupOrg? SupOrg { get; set; }
-
-        [Display(Name = "Employee EID")]
-        public string EmployeeEID { get; set; }
 
         [Display(Name = "Name"), Required]
         public string Name { get; set; }
@@ -49,19 +40,25 @@ namespace Resolve.Models
         [MaxLength(1024)]
         public string DetailedDescription { get; set; }
 
-        [Display(Name = "Offboarding?")]
-        public bool Offboarding { get; set; }
-
-        [Display(Name = "Close Position?")]
-        public bool ClosePosition { get; set; }
-
-        [Display(Name = "Leave WA?")]
-        public bool LeaveWA { get; set; }
-
         public virtual Department? Department { get; set; }
 
-        [Display(Name = "Job Title")]
-        public string JobTitle { get; set; }      
-   
+        [Display(Name = "Current Job Title")]
+        public string JobTitle { get; set; }
+
+        [Display(Name = "Proposed Job Title")]
+        public string NewTitle { get; set; }
+
+        [Display(Name = "Stipend/Allowance")]
+        public string StipendAllowance { get; set; }
+
+        [Display(Name = "Scholar/Resident Job Profile")]
+        public virtual ScholarJobProfile? ScholarJobProfile { get; set; }
+
+        [Display(Name = "Graduate Student Job Profile")]
+        public virtual GradJobProfile? GradJobProfile { get; set; }
+
+        [Display(Name = "Request Type")]
+        public virtual ScholarReqType? ScholarReqType { get; set; }
+
     }
 }

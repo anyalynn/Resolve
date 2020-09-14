@@ -43,6 +43,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     CaseID = id,
                     Name = moveWorker.Name,
                     CWorkerType = moveWorker.CWorkerType,
+                    HireType=moveWorker.HireType,
+                    JobTitle=moveWorker.JobTitle,
                     EffectiveStartDate = moveWorker.EffectiveStartDate,
                     SupOrg = moveWorker.SupOrg,
                     EmployeeEID = moveWorker.EmployeeEID,
@@ -74,7 +76,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,Note,CWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  MoveWorker moveWorker)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,JobTitle,EffectiveStartDate,Note,CWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")]  MoveWorker moveWorker)
         {
             if (id != moveWorker.CaseID)
             {
@@ -105,6 +107,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
+                            HireType = beforeCase.HireType,
+                            JobTitle = beforeCase.JobTitle,
                             CWorkerType = beforeCase.CWorkerType,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,                            
                             SupOrg = beforeCase.SupOrg,
@@ -121,6 +125,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = moveWorker.CaseID,
                             Name = moveWorker.Name,
+                            HireType = moveWorker.HireType,
+                            JobTitle = moveWorker.JobTitle,
                             CWorkerType = moveWorker.CWorkerType,
                             EffectiveStartDate = moveWorker.EffectiveStartDate,                           
                             SupOrg = moveWorker.SupOrg,

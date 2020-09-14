@@ -80,7 +80,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription,CurrentFTE,ProposedFTE")]   FTEChange fteChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription,CurrentFTE,ProposedFTE")]   FTEChange fteChange)
         {
             if (id != fteChange.CaseID)
             {

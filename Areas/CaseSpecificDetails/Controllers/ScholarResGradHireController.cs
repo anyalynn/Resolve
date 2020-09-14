@@ -12,14 +12,14 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 {
     [Area("CaseSpecificDetails")]
     //[Route(nameof(CaseTypes) + "/[controller]")]
-    public class SecurityRolesChangeController : Controller
+    public class ScholarResGradHireController : Controller
     {
 
         private readonly ResolveCaseContext _context;
 
-        public SecurityRolesChangeController(ResolveCaseContext context)
+        public ScholarResGradHireController(ResolveCaseContext context)
         {
-            _context = context;
+           _context = context;
         }
 
         public IActionResult Index()
@@ -34,24 +34,28 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, SecurityRolesChange securityChange)
+        public async Task<IActionResult> Create(int id, ScholarResGradHire scholarHire)
         {
             if (ModelState.IsValid)
             {
-                SecurityRolesChange newCase = new SecurityRolesChange
+                ScholarResGradHire newCase = new ScholarResGradHire
                 {
                     CaseID = id,
-                    Name = securityChange.Name,
-                    HireType = securityChange.HireType,
-                    AWorkerType = securityChange.AWorkerType,
-                    EffectiveStartDate = securityChange.EffectiveStartDate,
-                    SupOrg = securityChange.SupOrg,
-                    EmployeeEID = securityChange.EmployeeEID,
-                    Note = securityChange.Note,
-                    BudgetNumbers = securityChange.BudgetNumbers,
-                    DetailedDescription = securityChange.DetailedDescription,
-                    Department=securityChange.Department,
-                    JobTitle=securityChange.JobTitle
+                    Name = scholarHire.Name,
+                    ScholarReqType = scholarHire.ScholarReqType,
+                    DWorkerType = scholarHire.DWorkerType,
+                    EffectiveDate = scholarHire.EffectiveDate,
+                    SupOrg = scholarHire.SupOrg,
+                    GradJobProfile = scholarHire.GradJobProfile,
+                    Note = scholarHire.Note,
+                    BudgetNumbers = scholarHire.BudgetNumbers,
+                    DetailedDescription = scholarHire.DetailedDescription,
+                    Department = scholarHire.Department,
+                    JobTitle = scholarHire.JobTitle,
+                    ScholarJobProfile = scholarHire.ScholarJobProfile,
+                    NewTitle = scholarHire.NewTitle,
+                    StipendAllowance= scholarHire.StipendAllowance,
+                    
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -59,7 +63,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
                 //return RedirectToAction("Index", "Home");
             }
-            return View(securityChange);
+            return View(scholarHire);
         }
         public IActionResult Edit(int? id)
         {
@@ -67,7 +71,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-            SecurityRolesChange editCase = _context.SecurityRolesChange.Find(id);
+            ScholarResGradHire editCase = _context.ScholarResGradHire.Find(id);
             if (editCase == null)
             {
                 return NotFound();
@@ -77,9 +81,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,Note,AWorkerType,HireType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  SecurityRolesChange securityChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveDate,ScholarReqType,Note,DWorkerType,SupOrg,Department,JobTitle,GradJobProfile,ScholarJobProfile,StipendAllowance,BudgetNumbers,DetailedDescription,NewTitle")]   ScholarResGradHire scholarHire)
         {
-            if (id != securityChange.CaseID)
+            if (id != scholarHire.CaseID)
             {
                 return NotFound();
             }
@@ -88,8 +92,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 try
                 {
-                    IQueryable<SecurityRolesChange> beforeCases = _context.SecurityRolesChange.Where(c => c.CaseID == id).AsNoTracking<SecurityRolesChange>();
-                    SecurityRolesChange beforeCase = beforeCases.FirstOrDefault();
+                    IQueryable<ScholarResGradHire> beforeCases = _context.ScholarResGradHire.Where(c => c.CaseID == id).AsNoTracking<ScholarResGradHire>();
+                    ScholarResGradHire beforeCase = beforeCases.FirstOrDefault();
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -102,49 +106,56 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         await _context.SaveChangesAsync();
                         // Adding old details to tracking
 
-                        var old_details = new SecurityRolesChangeTracking
-                        {
-                            Status = "old",
+                        var old_details = new ScholarResGradHireTracking
+                        {   Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
-                            AWorkerType = beforeCase.AWorkerType,
+                            DWorkerType = beforeCase.DWorkerType,
+                            ScholarReqType = beforeCase.ScholarReqType,
                             Department = beforeCase.Department,
-                            JobTitle = beforeCase.JobTitle,
-                            EffectiveStartDate = beforeCase.EffectiveStartDate,                            
+                            JobTitle = beforeCase.JobTitle,                            
+                            EffectiveDate = beforeCase.EffectiveDate,
                             SupOrg = beforeCase.SupOrg,
-                            EmployeeEID = beforeCase.EmployeeEID,
+                            GradJobProfile = beforeCase.GradJobProfile,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            NewTitle = beforeCase.NewTitle,
+                            ScholarJobProfile = beforeCase.ScholarJobProfile,
+                            StipendAllowance=beforeCase.StipendAllowance
+
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
-                        var new_details = new SecurityRolesChangeTracking
-                        {
-                            Status = "new",
+                        var new_details = new ScholarResGradHireTracking
+                        {   Status = "new",
                             CaseAuditID = audit.CaseAuditID,
-                            CaseID = securityChange.CaseID,
-                            Name = securityChange.Name,
-                            AWorkerType = securityChange.AWorkerType,
-                            Department = securityChange.Department,
-                            JobTitle = securityChange.JobTitle,
-                            EffectiveStartDate = securityChange.EffectiveStartDate,
-                            SupOrg = securityChange.SupOrg,
-                            EmployeeEID = securityChange.EmployeeEID,
-                            Note = securityChange.Note,
-                            DetailedDescription = securityChange.DetailedDescription,
-                            BudgetNumbers = securityChange.BudgetNumbers
+                            CaseID = scholarHire.CaseID,
+                            Name = scholarHire.Name,
+                            DWorkerType = scholarHire.DWorkerType,
+                            ScholarReqType = scholarHire.ScholarReqType,
+                            Department = scholarHire.Department,
+                            JobTitle = scholarHire.JobTitle,
+                            EffectiveDate = beforeCase.EffectiveDate,
+                            SupOrg = scholarHire.SupOrg,
+                            GradJobProfile = scholarHire.GradJobProfile,
+                            Note = scholarHire.Note,
+                            DetailedDescription = scholarHire.DetailedDescription,
+                            BudgetNumbers = scholarHire.BudgetNumbers,
+                            NewTitle = scholarHire.NewTitle,
+                            ScholarJobProfile = scholarHire.ScholarJobProfile,
+                            StipendAllowance = scholarHire.StipendAllowance
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
-                        _context.Update(securityChange);
+                        _context.Update(scholarHire);
                         await _context.SaveChangesAsync();
                     }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SecurityRolesChangeExists(securityChange.CaseID))
+                    if (!ScholarResGradHireExists(scholarHire.CaseID))
                     {
                         return NotFound();
                     }
@@ -156,7 +167,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 var cid = id;
                 return RedirectToAction("Details", "Cases", new { id = cid, area = "" });
             }
-            return View(securityChange);
+            return View(scholarHire);
         }
         public IActionResult EditLog(int? id)
         {
@@ -166,7 +177,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             }
             try
             {
-                var logs = _context.SecurityRolesChangeTracking.Where(p => p.CaseAuditID == id).ToList();
+                var logs = _context.ScholarResGradHireTracking.Where(p => p.CaseAuditID == id).ToList();
                 ViewData["Logs"] = logs;
                 return View();
             }
@@ -178,7 +189,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         }
 
-        private bool SecurityRolesChangeExists(int id)
+        private bool ScholarResGradHireExists(int id)
         {
             return _context.CaseAudit.Any(e => e.CaseAuditID == id);
         }

@@ -13,17 +13,6 @@
     <None Remove="Areas\CaseSpecificDetails\Views\DistributionChange\**" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="Areas\CaseSpecificDetails\Views\CompAllowanceChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\CompBasePayChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\CostAllocationChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\EndDateChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\FTEChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\MoveWorker\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\SecurityRolesChange\EditLog.cshtml" />
-    <Content Remove="Areas\CaseSpecificDetails\Views\Termination\EditLog.cshtml" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="FormFactory" Version="5.0.67" />

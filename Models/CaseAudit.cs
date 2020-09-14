@@ -41,5 +41,9 @@ namespace Resolve.Models
         public ICollection<MoveWorkerTracking> MoveWorkerTrackings { get; set; }
         public ICollection<SecurityRolesChangeTracking> SecurityRolesChangeTrackings { get; set; }
         public ICollection<TerminationTracking> TerminationTrackings { get; set; }
+        public ICollection<ScholarResGradHireTracking> ScholarResGradHireTrackings { get; set; }
+        public ICollection<CPPaymentRequestTracking> CPPaymentRequestTrackings { get; set; }
+
+
     }
 }

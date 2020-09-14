@@ -21,12 +21,23 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.BasePayChange)
         </dd>
-
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Amount)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Amount)
+        </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.Name)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.Name)
+        </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.JobTitle)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.JobTitle)
         </dd>
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.SupOrg)

@@ -12,6 +12,20 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
+            <div class="form-group" id="AWorkerType">
+                <label asp-for="CWorkerType" class="control-label required-field"></label>
+                <select asp-for="CWorkerType" asp-items="Html.GetEnumSelectList<CWorkerType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="CWorkerType" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="HireType">
+                <label asp-for="HireType" class="control-label"></label>
+                <select asp-for="HireType" asp-items="Html.GetEnumSelectList<HireType>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="HireType" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="SupOrg" class="control-label"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
@@ -24,6 +38,11 @@
                 <label asp-for="Name" class="control-label required-field"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="JobTitle" class="control-label"></label>
+                <input asp-for="JobTitle" class="form-control" />
+                <span asp-validation-for="JobTitle" class="text-danger"></span>
             </div>
 
             <div class="form-group">

@@ -49,58 +49,48 @@ namespace Resolve.Models
     public enum AWorkerType
     {
         [Display(Name = "Staff/Student")]
-        Student,
+        Staff,
         [Display(Name = "Faculty")]
-        Classified,
-        [Display(Name = "Scholar/Resident")]
-        Professional,
-        [Display(Name = "Grad Student")]
-        Professional2
+        Faculty,
+        [Display(Name = "Postdoctoral Scholar/Resident")]
+        Scholar,
+        [Display(Name = "Graduate Student")]
+        Grad
     }
 
     public enum BWorkerType
     {
         [Display(Name = "Staff/Student")]
         Student,     
-        [Display(Name = "Scholar/Resident")]
-        Professional,
-        [Display(Name = "Grad Student")]
-        Professional2
+        [Display(Name = "Postdoctoral Scholar/Resident")]
+        Scholar,
+        [Display(Name = "Graduate Student")]
+        Grad
     }
 
     public enum CWorkerType
     {
         [Display(Name = "Staff/Student")]
-        Student
+        Staff
     }
 
     public enum DWorkerType
     {
-        [Display(Name = "Scholar/Resident")]
-        Professional,
-        [Display(Name = "Grad Student")]
-        Professional2
+        [Display(Name = "Postdoctoral Scholar/Resident")]
+        Scholar,
+        [Display(Name = "Graduate Student")]
+        Grad
     }
 
     public enum EWorkerType
     {
         [Display(Name = "Staff/Student")]
-        Student,
-        [Display(Name = "Scholar/Resident")]
-        Professional        
+        Staff,
+        [Display(Name = "Postdoctoral Scholar/Resident")]
+        Scholar        
     }
 
-    public enum GradJobProfile
-    {
-        [Display(Name = "Graduate Fellow/Trainee Stipend w/o Benefits")]
-        FellowStudentNoBenefits,
-        [Display(Name = "Graduate Fellow Stipend w / Benefits(Historical 0863 job code)")]
-        FellowStudentBenefits,
-        [Display(Name = "Graduate Trainee Stipend (NE UAW ASE)")]
-        GradTraineeStipend,
-        [Display(Name = "Graduate Trainee Stipend w/Benefits (Historical 0864 job code)")]
-        GradTraineeBenefits
-    }
+    
 
     public enum SupOrg
     {

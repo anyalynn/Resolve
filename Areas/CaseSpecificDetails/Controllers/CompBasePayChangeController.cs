@@ -50,6 +50,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveEndDate = compBasePay.EffectiveEndDate,
                     SupOrg = compBasePay.SupOrg,
                     EmployeeEID = compBasePay.EmployeeEID,
+                    JobTitle = compBasePay.JobTitle,
                     Note = compBasePay.Note,
                     BudgetNumbers = compBasePay.BudgetNumbers,
                     DetailedDescription = compBasePay.DetailedDescription
@@ -78,7 +79,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,BasePayChange,EffectiveStartDate,EffectiveEndDate,Note,CWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompBasePayChange compBasePay)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,BasePayChange,HireType,JobTitle,Amount,EffectiveStartDate,EffectiveEndDate,Note,CWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompBasePayChange compBasePay)
         {
             if (id != compBasePay.CaseID)
             {
@@ -109,8 +110,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
+                            HireType = beforeCase.HireType,
                             BasePayChange = beforeCase.BasePayChange,
                             Amount = beforeCase.Amount,
+                            JobTitle = beforeCase.JobTitle,
                             CWorkerType = beforeCase.CWorkerType,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
@@ -128,8 +131,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = compBasePay.CaseID,
                             Name = compBasePay.Name,
+                            HireType = compBasePay.HireType,                            
                             BasePayChange = compBasePay.BasePayChange,
                             Amount = compBasePay.Amount,
+                            JobTitle = compBasePay.JobTitle,
                             CWorkerType = compBasePay.CWorkerType,
                             EffectiveStartDate = compBasePay.EffectiveStartDate,
                             EffectiveEndDate = compBasePay.EffectiveEndDate,

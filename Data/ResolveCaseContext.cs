@@ -57,7 +57,10 @@ namespace Resolve.Data
         public DbSet<MoveWorkerTracking> MoveWorkerTracking { get; set; }
         public DbSet<SecurityRolesChangeTracking> SecurityRolesChangeTracking { get; set; }
         public DbSet<TerminationTracking> TerminationTracking { get; set; }
-
+        public DbSet<ScholarResGradHire> ScholarResGradHire { get; set; }
+        public DbSet<ScholarResGradHireTracking> ScholarResGradHireTracking { get; set; }
+        public DbSet<CPPaymentRequest> CPPaymentRequest { get; set; }
+        public DbSet<CPPaymentRequestTracking> CPPaymentRequestTracking { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -240,6 +243,16 @@ namespace Resolve.Data
               .HasOne(p => p.CaseAudit)
               .WithMany(q => q.TerminationTrackings)
               .OnDelete(DeleteBehavior.NoAction);
+           
+            modelBuilder.Entity<ScholarResGradHireTracking>()
+            .HasOne(p => p.CaseAudit)
+            .WithMany(q => q.ScholarResGradHireTrackings)
+            .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<CPPaymentRequestTracking>()
+           .HasOne(p => p.CaseAudit)
+           .WithMany(q => q.CPPaymentRequestTrackings)
+           .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<HiringStaff>()
                 .Property(s => s.OvertimeEligible)

@@ -7,19 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Resolve.Models
 {
-    public enum ScholarJobProfile
-    {
-        [Display(Name = "Resident")]
-        Residents,
-        [Display(Name = "Chief Resident")]
-        ChiefResident,
-        [Display(Name = "Postdoctoral Scholar")]
-        PostScholar,
-        [Display(Name = "Postdoctoral Scholar Fellow")]
-        PostFellow,
-        [Display(Name = "Interim Postdoctoral Scholar")]
-        InterimPostFellow
-    }
+    
     public enum ScholarCompAllowanceChange
     {
         [Display(Name = "Chief Resident Supplement")]

@@ -1,4 +1,4 @@
-﻿@model Resolve.Models.CompBasePayChangeTracking
+﻿@model Resolve.Models.ScholarResGradHireTracking
 
 @{
     ViewData["Title"] = "Specific Details Edit Log";
@@ -6,11 +6,13 @@
 
 <h3>Edit Log</h3>
 
-<h4>CompBasePayChange Edit Tracking</h4>
+<h4>Postdoctoral Scholar/Resident-Graduate Student Hire/Rehire/Promotion Edit Tracking</h4>
+   
+
 <hr />
 
 @{
-    var logs = ViewData["Logs"] as List<CompBasePayChangeTracking>;
+    var logs = ViewData["Logs"] as List<ScholarResGradHireTracking>;
 
     if (logs != null)
     {
@@ -19,14 +21,14 @@
                 <tr>
                     <th class="th-sm" style="width: 10%">Value Type</th>
                     <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 10%">Hire Type</th>
+                    <th class="th-sm" style="width: 10%">Request Tupe</th>
                     <th class="th-sm" style="width: 10%">Name</th>
-                    <th class="th-sm" style="width: 10%">Employee EID</th>
-                    <th class="th-sm" style="width: 10%">SupOrg</th>
+                    <th class="th-sm" style="width: 15%">Sup Org</th>
+                    <th class="th-sm" style="width: 10%">Department</th>
                     <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Base Pay Change</th>
-                    <th class="th-sm" style="width: 10%">Effective Start Date</th>
-                    <th class="th-sm" style="width: 10%">Effective End Date</th>
+                    <th class="th-sm" style="width: 10%">Stipend/Allowance</th>
+                    <th class="th-sm" style="width: 15%">Effective Date</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +36,15 @@
                 {
                 <tr>
                     <td><b>@item.Status</b></td>
-                    <td>@item.CWorkerType</td>
-                    <td>@item.HireType</td>
+                    <td>@item.DWorkerType</td>
+                    <td>@item.ScholarReqType</td>
                     <td>@item.Name</td>
                     <td>@item.SupOrg</td>
+                    <td>@item.Department</td>
                     <td>@item.BudgetNumbers</td>
-                    <td>@item.BasePayChange</td>
-                    <td>@item.EffectiveStartDate</td>
-                    <td>@item.EffectiveEndDate</td>
+                    <td>@item.StipendAllowance</td>
+                    <td>@item.EffectiveDate</td>
+
                 </tr>
                 }
             </tbody>

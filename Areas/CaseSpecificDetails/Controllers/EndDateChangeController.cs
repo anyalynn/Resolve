@@ -78,7 +78,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  EndDateChange endChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  EndDateChange endChange)
         {
             if (id != endChange.CaseID)
             {
@@ -110,6 +110,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
                             AWorkerType = beforeCase.AWorkerType,
+                            HireType = beforeCase.HireType,
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
@@ -129,6 +130,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = endChange.CaseID,
                             Name = endChange.Name,
                             AWorkerType = endChange.AWorkerType,
+                            HireType = endChange.HireType,
                             Department = endChange.Department,
                             JobTitle = endChange.JobTitle,
                             EffectiveStartDate = endChange.EffectiveStartDate,
