@@ -225,7 +225,7 @@ namespace Resolve.Controllers
         public IActionResult Create()
         {          
             //ViewData["LocalUserID"] = LUserID[0];
-            ViewData["CaseTypeTitle"] = new SelectList(_context.CaseType, "CaseTypeTitle", "CaseTypeTitle");
+            ViewData["CaseTypeTitle"] = new SelectList(_context.CaseType.OrderBy(s => s.LongDescription), "CaseTypeTitle","LongDescription");
             ViewData["OnBehalfUser"] = new SelectList(_context.LocalUser, "LocalUserID", "LocalUserID");
                        
             return View();
@@ -371,7 +371,7 @@ namespace Resolve.Controllers
                 var redirectFunctionName = CType.CaseTypeTitle;
                 return RedirectToAction("Create", redirectFunctionName, new { id = cid, area = "CaseSpecificDetails" });
             }
-            ViewData["CaseTypeID"] = new SelectList(_context.CaseType, "CaseTypeTitle", "CaseTypeTitle", @case.CaseTypeID);
+            ViewData["CaseTypeID"] = new SelectList(_context.CaseType.OrderBy(s => s.LongDescription), "CaseTypeTitle", "LongDescription", @case.CaseTypeID);
             ViewData["OnBehalfUser"] = new SelectList(_context.LocalUser, "LocalUserID", "LocalUserID");
             return View(@case);
         }
