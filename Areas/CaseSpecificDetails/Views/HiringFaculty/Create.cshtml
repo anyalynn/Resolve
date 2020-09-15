@@ -3,7 +3,30 @@
 @{
     ViewData["Title"] = "Create Specific Details";
 }
+@section Scripts {
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $("#Replacement").hide();
+            $("#NotReplace").hide();
+            
+            $("#FacHireReason").change(function () {
+                if ($(this).find(':selected').text() == "Replacement") {
+                    $("#Replacement").show();
+                    $("#NotReplace").hide();
+                   
 
+                } else {
+                  
+                    $("#Replacement").hide();
+                    $("#NotReplace").show();
+                }
+            });
+           
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
 <h3>Create Hiring Request</h3>
 <h4>Faculty </h4>
 <hr />
@@ -17,74 +40,94 @@
                 </select>
                 <span asp-validation-for="FacHireReason" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
-                <input asp-for="EmployeeReplaced" class="form-control" />
-                <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+            <div id="Replacement">
+                <div class="form-group">
+                    <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                    <input asp-for="EmployeeReplaced" class="form-control" />
+                    <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="FTE" class="control-label required-field"></label>
-                <input asp-for="FTE" class="form-control" />
-                <span asp-validation-for="FTE" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FacTitle" class="control-label required-field"></label>
-                <select asp-for="FacTitle" asp-items="Html.GetEnumSelectList<FacTitle>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="FacTitle" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="FTE" class="control-label required-field"></label>
+                    <input asp-for="FTE" class="form-control" />
+                    <span asp-validation-for="FTE" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FacTitle" class="control-label required-field"></label>
+                    <select asp-for="FacTitle" asp-items="Html.GetEnumSelectList<FacTitle>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="FacTitle" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="Department" class="control-label required-field"></label>
-                <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="Department" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CandidateName" class="control-label"></label>  (<span class="text-danger">*if applicable</span>)
-                <input asp-for="CandidateName" class="form-control" />
-                <span asp-validation-for="CandidateName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Salary" class="control-label required-field"></label>
-                <input asp-for="Salary" class="form-control" />
-                <span asp-validation-for="Salary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="AdminRole" class="control-label">Will this appointment have an administrative role (e.g., Department Chair, Program Director)</label> 
-                <input asp-for="AdminRole" class="form-control" />
-                <span asp-validation-for="AdminRole" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="Department" class="control-label required-field"></label>
+                    <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CandidateName" class="control-label"></label>  (<span class="text-danger">*if applicable</span>)
+                    <input asp-for="CandidateName" class="form-control" />
+                    <span asp-validation-for="CandidateName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Salary" class="control-label required-field"></label>
+                    <input asp-for="Salary" class="form-control" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+                <div id="NotReplace">
+                    <div class="form-group">
+                        <label for="Justification" class="control-label">What is the business justification for this position?</label>
+                        <textarea asp-for="Justification" class="form-control"></textarea>
+                        <span asp-validation-for="Justification" class="text-danger"></span>
+                    </div>
 
-            <div class="form-group">
-                <label asp-for="HireDate" class="control-label required-field"></label>
-                <input asp-for="HireDate" class="form-control" />
-                <span asp-validation-for="HireDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="BudgetType" class="control-label required-field"></label>
-                <select asp-for="BudgetType" asp-items="Html.GetEnumSelectList<BudgetType>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="BudgetType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="BudgetNumbers" class="control-label required-field">Budget Number(s); include percentage if more than one </label>
-                <input asp-for="BudgetNumbers" class="form-control" />
-                <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <p class="text-danger">*After creating this request, please attach an Affordability Statement, if applicable (refer to Faculty Hiring Procedures, see User Guide) </p>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                    <div class="form-group">
+                        <label for="Barriers" class="control-label">What is the barrier to distributing the workload to existing staff?</label>
+                        <textarea asp-for="Barriers" class="form-control"></textarea>
+                        <span asp-validation-for="Barriers" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="Consequences" class="control-label">What are the consequences/impact of not filling the position?</label>
+                        <textarea asp-for="Consequences" class="form-control"></textarea>
+                        <span asp-validation-for="Consequences" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="AdminRole" class="control-label">Will this appointment have an administrative role (e.g., Department Chair, Program Director)</label>
+                    <input asp-for="AdminRole" class="form-control" />
+                    <span asp-validation-for="AdminRole" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="HireDate" class="control-label required-field"></label>
+                    <input asp-for="HireDate" class="form-control" />
+                    <span asp-validation-for="HireDate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BudgetType" class="control-label required-field"></label>
+                    <select asp-for="BudgetType" asp-items="Html.GetEnumSelectList<BudgetType>()" class="form-control">
+                        <option selected="selected" value="">Please select</option>
+                    </select>
+                    <span asp-validation-for="BudgetType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="BudgetNumbers" class="control-label required-field">Budget Number(s); include percentage if more than one </label>
+                    <input asp-for="BudgetNumbers" class="form-control" />
+                    <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+                <p class="text-danger">*After creating this request, please attach an Affordability Statement, if applicable (refer to Faculty Hiring Procedures, see User Guide) </p>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
         </form>
-       
+
     </div>
 </div>

@@ -159,6 +159,12 @@ namespace Resolve.Data
              .Property(i => i.Other)
              .HasDefaultValue(0);
 
+            modelBuilder.Entity<SecurityRolesChange>()
+                .Property(i => i.TrainingCompleted)
+                .HasDefaultValue(0);
+            modelBuilder.Entity<SecurityRolesChange>()
+                .Property(i => i.IncludeSubordinates)
+               .HasDefaultValue(0);
             modelBuilder.Entity<SampleCaseTypeTracking>()
                 .HasOne(p => p.CaseAudit)
                 .WithMany(q => q.SampleCaseTypeTrackings)

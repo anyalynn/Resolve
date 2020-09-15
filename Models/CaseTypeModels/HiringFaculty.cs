@@ -124,6 +124,15 @@ namespace Resolve.Models
         [Display(Name = "%FTE")]
         public string FTE { get; set; }
 
+        [Display(Name = "Justification")]
+        public string Justification { get; set; }
+
+        [Display(Name = "Consequences of not hiring for position")]
+        public string Consequences { get; set; }
+
+        [Display(Name = "Barriers")]
+        public string Barriers { get; set; }
+
         [Display(Name = "Administrative Role")]
         public string AdminRole { get; set; }
 

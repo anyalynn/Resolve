@@ -7,6 +7,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             $("#NotReplace").hide();
+            $("#Replacement").hide();
             $("#Student").hide();
             $("#Employee").hide();
             $("#StaffWorkerType").change(function () {
@@ -22,18 +23,23 @@
             $("#StaffHireReason").change(function () {
                 if ($(this).find(':selected').text() == "New Position") {
                     $("#NotReplace").show();
+                    $("#Replacement").hide();
                   
                 } else if ($(this).find(':selected').text() == "Replacement with New Classification") {
                     $("#NotReplace").show();
+                    $("#Replacement").show();
                 }
                 else if ($(this).find(':selected').text() == "Other") {
                     $("#NotReplace").show();
+                    $("#Replacement").hide();
                 }
                 else if ($(this).find(':selected').text() == "Replacement") {
                     $("#NotReplace").hide();
+                    $("#Replacement").show();
                 }
                 else {
                     $("NotReplace").hide();
+                    $("#Replacement").hide();
                    
                 }
             });
@@ -73,10 +79,12 @@
                 </select>
                 <span asp-validation-for="StaffHireReason" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
-                <input asp-for="EmployeeReplaced" class="form-control" />
-                <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+            <div id="Replacement">
+                <div class="form-group">
+                    <label asp-for="EmployeeReplaced" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                    <input asp-for="EmployeeReplaced" class="form-control" />
+                    <span asp-validation-for="EmployeeReplaced" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="SupOrg" class="control-label required-field"></label>

@@ -44,13 +44,28 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     Name = securityChange.Name,
                     HireType = securityChange.HireType,
                     AWorkerType = securityChange.AWorkerType,
-                    EffectiveStartDate = securityChange.EffectiveStartDate,
+                    EffectiveDate = securityChange.EffectiveDate,
                     SupOrg = securityChange.SupOrg,
                     EmployeeEID = securityChange.EmployeeEID,
                     Note = securityChange.Note,
-                    BudgetNumbers = securityChange.BudgetNumbers,
-                    DetailedDescription = securityChange.DetailedDescription,
-                    Department=securityChange.Department,
+                    UWNetID = securityChange.UWNetID,
+                    SupervisedAccess = securityChange.SupervisedAccess,
+                    TrainingCompleted = securityChange.TrainingCompleted,
+                    IncludeSubordinates = securityChange.IncludeSubordinates,
+                    SecurityRequestType = securityChange.SecurityRequestType,
+                    AcademicChair = securityChange.AcademicChair,
+                    AcademicDean = securityChange.AcademicDean,
+                    HCMInit1 = securityChange.HCMInit1,
+                    HCMInit2 = securityChange.HCMInit2,
+                    I9 = securityChange.I9,
+                    Manager = securityChange.Manager,
+                    UWHiresManager = securityChange.UWHiresManager,
+                    VOStaff = securityChange.VOStaff,
+                    VOStaffCompCost = securityChange.VOStaffCompCost,
+                    VOStaffCompPersonal = securityChange.VOStaffCompPersonal,
+                    TimeAbsenceApprover = securityChange.TimeAbsenceApprover,
+                    TimeAbsenceInitiate = securityChange.TimeAbsenceInitiate,
+                    Department =securityChange.Department,
                     JobTitle=securityChange.JobTitle
                 };
                 _context.Add(newCase);
@@ -77,7 +92,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveStartDate,Note,AWorkerType,HireType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription")]  SecurityRolesChange securityChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveDate,Note,AWorkerType,HireType,SupOrg,Department,JobTitle,EmployeeEID,UWNetID," +
+            "SupervisedAccesss,TrainingCompleted,IncludeSubordinates,SecurityRequestType,AcademicChair,AcademicDean,HCMInit1,HCMInit2,I9,Manager,UWHiresManager,VOStaff," +
+            "VOStaffCompCost,VOStaffCompPersonal,TimeAbsenceApprover,TimeAbsenceInitiate")]  SecurityRolesChange securityChange)
         {
             if (id != securityChange.CaseID)
             {
@@ -111,12 +128,27 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             AWorkerType = beforeCase.AWorkerType,
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,
-                            EffectiveStartDate = beforeCase.EffectiveStartDate,                            
+                            EffectiveDate = beforeCase.EffectiveDate,                            
                             SupOrg = beforeCase.SupOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
-                            DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            UWNetID = beforeCase.UWNetID,
+                            SupervisedAccess = beforeCase.SupervisedAccess,
+                            TrainingCompleted = beforeCase.TrainingCompleted,
+                            IncludeSubordinates = beforeCase.IncludeSubordinates,
+                            SecurityRequestType = beforeCase.SecurityRequestType,
+                            AcademicChair = beforeCase.AcademicChair,
+                            AcademicDean = beforeCase.AcademicDean,
+                            HCMInit1 = beforeCase.HCMInit1,
+                            HCMInit2 = beforeCase.HCMInit2,
+                            I9 = beforeCase.I9,
+                            Manager = beforeCase.Manager,
+                            UWHiresManager = beforeCase.UWHiresManager,
+                            VOStaff = beforeCase.VOStaff,
+                            VOStaffCompCost = beforeCase.VOStaffCompCost,
+                            VOStaffCompPersonal = beforeCase.VOStaffCompPersonal,
+                            TimeAbsenceApprover = beforeCase.TimeAbsenceApprover,
+                            TimeAbsenceInitiate = beforeCase.TimeAbsenceInitiate                            
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -129,12 +161,28 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             AWorkerType = securityChange.AWorkerType,
                             Department = securityChange.Department,
                             JobTitle = securityChange.JobTitle,
-                            EffectiveStartDate = securityChange.EffectiveStartDate,
+                            EffectiveDate = securityChange.EffectiveDate,
                             SupOrg = securityChange.SupOrg,
                             EmployeeEID = securityChange.EmployeeEID,
                             Note = securityChange.Note,
-                            DetailedDescription = securityChange.DetailedDescription,
-                            BudgetNumbers = securityChange.BudgetNumbers
+                            UWNetID = securityChange.UWNetID,
+                            SupervisedAccess = securityChange.SupervisedAccess,
+                            TrainingCompleted = securityChange.TrainingCompleted,
+                            IncludeSubordinates = securityChange.IncludeSubordinates,
+                            SecurityRequestType = securityChange.SecurityRequestType,
+                            AcademicChair = securityChange.AcademicChair,
+                            AcademicDean = securityChange.AcademicDean,
+                            HCMInit1 = securityChange.HCMInit1,
+                            HCMInit2 = securityChange.HCMInit2,
+                            I9 = securityChange.I9,
+                            Manager = securityChange.Manager,
+                            UWHiresManager = securityChange.UWHiresManager,
+                            VOStaff = securityChange.VOStaff,
+                            VOStaffCompCost = securityChange.VOStaffCompCost,
+                            VOStaffCompPersonal = securityChange.VOStaffCompPersonal,
+                            TimeAbsenceApprover = securityChange.TimeAbsenceApprover,
+                            TimeAbsenceInitiate = securityChange.TimeAbsenceInitiate
+                          
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

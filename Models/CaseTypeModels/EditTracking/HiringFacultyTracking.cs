@@ -42,6 +42,15 @@ namespace Resolve.Models
         [Display(Name = "Job Title")]
         public virtual FacTitle FacTitle { get; set; }
 
+        [Display(Name = "Justification")]
+        public string Justification { get; set; }
+
+        [Display(Name = "Consequences of not hiring for position")]
+        public string Consequences { get; set; }
+
+        [Display(Name = "Barriers")]
+        public string Barriers { get; set; }
+
         [Display(Name = "Hire Reason")]
         public virtual FacHireReason FacHireReason { get; set; }
 
