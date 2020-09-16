@@ -103,10 +103,10 @@ namespace Resolve.Models
         [Display(Name = "Requeste Type")]
         public virtual AxiumSchedRequestType? AxiumSchedRequestType { get; set; }
 
-        [Display(Name = "Fee Schedule Type")]
+        [Display(Name = "Fee Schedule")]
         public virtual AxiumScheduleType? AxiumScheduleType { get; set; }
 
-        [Display(Name = "Procedure Code Type")]
+        [Display(Name = "Code Type")]
         public virtual AxiumCodeType? AxiumCodeType { get; set; }
 
         public virtual Discipline? Discipline { get; set; }
