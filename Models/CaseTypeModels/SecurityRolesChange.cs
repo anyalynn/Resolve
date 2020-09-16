@@ -192,7 +192,7 @@ namespace Resolve.Models
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
 
-        [Display(Name = "Supervisees Requiring Additional Access")]
+        [Display(Name = "UWNetIDs Requiring Additional Access")]
         public string SupervisedAccess { get; set; }
 
         [Display(Name = "Name"), Required]

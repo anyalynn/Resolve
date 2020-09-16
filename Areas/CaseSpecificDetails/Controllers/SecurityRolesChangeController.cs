@@ -93,7 +93,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveDate,Note,AWorkerType,HireType,SupOrg,Department,JobTitle,EmployeeEID,UWNetID," +
-            "SupervisedAccesss,TrainingCompleted,IncludeSubordinates,SecurityRequestType,AcademicChair,AcademicDean,HCMInit1,HCMInit2,I9,Manager,UWHiresManager,VOStaff," +
+            "SupervisedAccesss,TrainingCompleted,IncludeSubordinates,SupervisedAccess,SecurityRequestType,AcademicChair,AcademicDean,HCMInit1,HCMInit2,I9,Manager,UWHiresManager,VOStaff," +
             "VOStaffCompCost,VOStaffCompPersonal,TimeAbsenceApprover,TimeAbsenceInitiate")]  SecurityRolesChange securityChange)
         {
             if (id != securityChange.CaseID)

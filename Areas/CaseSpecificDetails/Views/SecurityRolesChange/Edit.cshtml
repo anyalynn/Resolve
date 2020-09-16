@@ -6,7 +6,14 @@
 @section Scripts {
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
+            var MySubType;
             var MyRequestType = "@Model.AWorkerType";
+            if ($('#IncludeSubordinates').is(":checked") == true) {
+                MySubType = true;
+            }
+            else
+                MySubtype = false;
+             
             if (MyRequestType == "Student" || MyRequestType == "Staff/Student") {
                 $("#staff").show();
                 $("#other").hide();
@@ -14,7 +21,16 @@
             else {
                 $("#staff").hide();
                 $("#other").show();
-           }
+            }
+            if (MySubType == true) {
+                $("#supaccess").show();
+
+            }
+
+            else {
+                $("#supaccess").hide();
+
+            }
 
             $("#AWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Staff/Student") {
@@ -28,7 +44,19 @@
 
                 }
             });
+            $("#IncludeSubordinates").change(function () {
+                if (this.checked == true) {
+                    $("#supaccess").show();
+
+                }
+
+                else {
+                    $("#supaccess").hide();
+
+                }
+            });
         });
+
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
@@ -49,7 +77,7 @@
                 <span asp-validation-for="AWorkerType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SupOrg" class="control-label"></label>
+                <label asp-for="SupOrg" class="control-label required-field"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -74,7 +102,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="SecurityRequestType" class="control-label"></label>
+                <label asp-for="SecurityRequestType" class="control-label required-field"></label>
                 <select asp-for="SecurityRequestType" asp-items="Html.GetEnumSelectList<SecurityRequestType>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -91,7 +119,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="JobTitle" class="control-label required-field"></label>
+                <label asp-for="JobTitle" class="control-label"></label>
                 <input asp-for="JobTitle" class="form-control" />
                 <span asp-validation-for="JobTitle" class="text-danger"></span>
             </div>
@@ -101,7 +129,7 @@
                 <span asp-validation-for="EmployeeEID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UWNetID" class="control-label"></label>
+                <label asp-for="UWNetID" class="control-label required-field"></label>
                 <input asp-for="UWNetID" class="form-control" />
                 <span asp-validation-for="UWNetID" class="text-danger"></span>
             </div>
@@ -118,10 +146,12 @@
                 </label>
                 <span asp-validation-for="IncludeSubordinates" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="SupervisedAccess" class="control-label"></label>
-                <textarea asp-for="SupervisedAccess" class="form-control"></textarea>
-                <span asp-validation-for="SupervisedAccess" class="text-danger"></span>
+            <div id="supaccess">
+                <div class="form-group">
+                    <label asp-for="SupervisedAccess" class="control-label"></label>
+                    <textarea asp-for="SupervisedAccess" class="form-control"></textarea>
+                    <span asp-validation-for="SupervisedAccess" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <label asp-for="AcademicChair" class="control-label"></label>

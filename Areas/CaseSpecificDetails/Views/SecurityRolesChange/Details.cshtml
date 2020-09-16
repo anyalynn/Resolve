@@ -77,97 +77,102 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.TrainingCompleted)
         </dd>
+        @{ var suptype = item.IncludeSubordinates; }
+
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.IncludeSubordinates)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.IncludeSubordinates)
         </dd>
+        
+        @if (@suptype == true)
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.SupervisedAccess)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.SupervisedAccess)
+            </dd>
+        }
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.AcademicChair)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.AcademicChair)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.AcademicDean)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.AcademicDean)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.HCMInit1)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.HCMInit1)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.HCMInit2)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.HCMInit2)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.I9)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.I9)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Manager)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Manager)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.UWHiresManager)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.UWHiresManager)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.VOStaff)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.VOStaff)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.VOStaffCompCost)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.VOStaffCompCost)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.VOStaffCompPersonal)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.VOStaffCompPersonal)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.TimeAbsenceApprover)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.TimeAbsenceApprover)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.TimeAbsenceInitiate)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.TimeAbsenceInitiate)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Note)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Note)
+            </dd>
 
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.SupervisedAccess)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.SupervisedAccess)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.AcademicChair)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.AcademicChair)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.AcademicDean)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.AcademicDean)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HCMInit1)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HCMInit1)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HCMInit2)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HCMInit2)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.I9)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.I9)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Manager)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Manager)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.UWHiresManager)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.UWHiresManager)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.VOStaff)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.VOStaff)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.VOStaffCompCost)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.VOStaffCompCost)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.VOStaffCompPersonal)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.VOStaffCompPersonal)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.TimeAbsenceApprover)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.TimeAbsenceApprover)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.TimeAbsenceInitiate)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.TimeAbsenceInitiate)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Note)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Note)
-        </dd>
-
-    </dl>
+        </dl>
 }

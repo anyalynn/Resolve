@@ -9,6 +9,7 @@
 
             $("#staff").hide();
             $("#other").hide();
+            $("#supaccess").hide();
 
             $("#AWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Staff/Student") {
@@ -19,6 +20,17 @@
                 else {
                     $("#staff").hide();
                     $("#other").show();
+
+                }
+            });
+            $("#IncludeSubordinates").change(function () {
+                if (this.checked==true) {
+                    $("#supaccess").show();
+                 
+                }
+
+                else {
+                    $("#supaccess").hide();
 
                 }
             });
@@ -43,7 +55,7 @@
                 <span asp-validation-for="AWorkerType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SupOrg" class="control-label"></label>
+                <label asp-for="SupOrg" class="control-label required-field"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -68,7 +80,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <label asp-for="SecurityRequestType" class="control-label"></label>
+                <label asp-for="SecurityRequestType" class="control-label required-field"></label>
                 <select asp-for="SecurityRequestType" asp-items="Html.GetEnumSelectList<SecurityRequestType>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -85,7 +97,7 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="JobTitle" class="control-label required-field"></label>
+                <label asp-for="JobTitle" class="control-label"></label>
                 <input asp-for="JobTitle" class="form-control" />
                 <span asp-validation-for="JobTitle" class="text-danger"></span>
             </div>
@@ -95,7 +107,7 @@
                 <span asp-validation-for="EmployeeEID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="UWNetID" class="control-label"></label>
+                <label asp-for="UWNetID" class="control-label required-field"></label>
                 <input asp-for="UWNetID" class="form-control" />
                 <span asp-validation-for="UWNetID" class="text-danger"></span>
             </div>
@@ -112,104 +124,94 @@
                 </label>
                 <span asp-validation-for="IncludeSubordinates" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="SupervisedAccess" class="control-label"></label>
-                <textarea asp-for="SupervisedAccess" class="form-control"></textarea>
-                <span asp-validation-for="SupervisedAccess" class="text-danger"></span>
+            <div id="supaccess">
+                <div class="form-group">
+                    <label asp-for="SupervisedAccess" class="control-label"></label>
+                    <textarea asp-for="SupervisedAccess" class="form-control"></textarea>
+                    <span asp-validation-for="SupervisedAccess" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="AcademicChair" class="control-label"></label>
-                <select asp-for="AcademicChair" asp-items="Html.GetEnumSelectList<AcademicChair>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="AcademicChair" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AcademicDean" class="control-label"></label>
-                <select asp-for="AcademicDean" asp-items="Html.GetEnumSelectList<AcademicDean>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="AcademicDean" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HCMInit1" class="control-label"></label>
-                <select asp-for="HCMInit1" asp-items="Html.GetEnumSelectList<HCMInit1>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="HCMInit1" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="HCMInit2" class="control-label"></label>
-                <select asp-for="HCMInit2" asp-items="Html.GetEnumSelectList<HCMInit2>()" class="form-control">
-                  
-                </select>
-                <span asp-validation-for="HCMInit2" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="I9" class="control-label"></label>
-                <select asp-for="I9" asp-items="Html.GetEnumSelectList<I9>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="I9" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Manager" class="control-label"></label>
-                <select asp-for="Manager" asp-items="Html.GetEnumSelectList<Manager>()" class="form-control">
-                  
-                </select>
-                <span asp-validation-for="Manager" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="UWHiresManager" class="control-label"></label>
-                <select asp-for="UWHiresManager" asp-items="Html.GetEnumSelectList<UWHiresManager>()" class="form-control">
-                  
-                </select>
-                <span asp-validation-for="UWHiresManager" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VOStaff" class="control-label"></label>
-                <select asp-for="VOStaff" asp-items="Html.GetEnumSelectList<VOStaff>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="VOStaff" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VOStaffCompCost" class="control-label"></label>
-                <select asp-for="VOStaffCompCost" asp-items="Html.GetEnumSelectList<VOStaffCompCost>()" class="form-control">
-                   
-                </select>
-                <span asp-validation-for="VOStaffCompCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VOStaffCompPersonal" class="control-label"></label>
-                <select asp-for="VOStaffCompPersonal" asp-items="Html.GetEnumSelectList<VOStaffCompPersonal>()" class="form-control">
-                  
-                </select>
-                <span asp-validation-for="VOStaffCompPersonal" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="AcademicChair" class="control-label"></label>
+                    <select asp-for="AcademicChair" asp-items="Html.GetEnumSelectList<AcademicChair>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="AcademicChair" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AcademicDean" class="control-label"></label>
+                    <select asp-for="AcademicDean" asp-items="Html.GetEnumSelectList<AcademicDean>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="AcademicDean" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HCMInit1" class="control-label"></label>
+                    <select asp-for="HCMInit1" asp-items="Html.GetEnumSelectList<HCMInit1>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="HCMInit1" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HCMInit2" class="control-label"></label>
+                    <select asp-for="HCMInit2" asp-items="Html.GetEnumSelectList<HCMInit2>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="HCMInit2" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="I9" class="control-label"></label>
+                    <select asp-for="I9" asp-items="Html.GetEnumSelectList<I9>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="I9" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Manager" class="control-label"></label>
+                    <select asp-for="Manager" asp-items="Html.GetEnumSelectList<Manager>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="Manager" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UWHiresManager" class="control-label"></label>
+                    <select asp-for="UWHiresManager" asp-items="Html.GetEnumSelectList<UWHiresManager>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="UWHiresManager" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VOStaff" class="control-label"></label>
+                    <select asp-for="VOStaff" asp-items="Html.GetEnumSelectList<VOStaff>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="VOStaff" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VOStaffCompCost" class="control-label"></label>
+                    <select asp-for="VOStaffCompCost" asp-items="Html.GetEnumSelectList<VOStaffCompCost>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="VOStaffCompCost" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="VOStaffCompPersonal" class="control-label"></label>
+                    <select asp-for="VOStaffCompPersonal" asp-items="Html.GetEnumSelectList<VOStaffCompPersonal>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="VOStaffCompPersonal" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <label asp-for="TimeAbsenceApprover" class="control-label"></label>
-                <select asp-for="TimeAbsenceApprover" asp-items="Html.GetEnumSelectList<TimeAbsenceApprover>()" class="form-control">
-                   
-                </select>
-                <span asp-validation-for="TimeAbsenceApprover" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="TimeAbsenceInitiate" class="control-label"></label>
-                <select asp-for="TimeAbsenceInitiate" asp-items="Html.GetEnumSelectList<TimeAbsenceInitiate>()" class="form-control">
-                    
-                </select>
-                <span asp-validation-for="TimeAbsenceInitiate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
+                <div class="form-group">
+                    <label asp-for="TimeAbsenceApprover" class="control-label"></label>
+                    <select asp-for="TimeAbsenceApprover" asp-items="Html.GetEnumSelectList<TimeAbsenceApprover>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="TimeAbsenceApprover" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TimeAbsenceInitiate" class="control-label"></label>
+                    <select asp-for="TimeAbsenceInitiate" asp-items="Html.GetEnumSelectList<TimeAbsenceInitiate>()" class="form-control">
+                    </select>
+                    <span asp-validation-for="TimeAbsenceInitiate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Note" class="control-label"></label>
+                    <textarea asp-for="Note" class="form-control"></textarea>
+                    <span asp-validation-for="Note" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
         </form>
 </div>
 </div>
