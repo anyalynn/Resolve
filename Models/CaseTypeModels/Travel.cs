@@ -39,6 +39,48 @@ namespace Resolve.Models
         Other
     }
 
+    public enum TravelFoodDepartment
+    {
+        [Display(Name = "Academic Affairs")]
+        AcademicAffairs,
+        [Display(Name = "CDE - Continuing Dental Education")]
+        CDE,
+        [Display(Name = "CPD - Center for Pediatric Dentistry")]
+        CPD,
+        [Display(Name = "Dean's Office")]
+        Dean,
+        [Display(Name = "Endodontics")]
+        Endo,
+        [Display(Name = "Office of Clinical Services")]
+        Clinicalh,
+        [Display(Name = "OMS - Oral & Maxillofacial Surgery")]
+        OMS,
+        [Display(Name = "Oral Biology")]
+        OralBio,
+        [Display(Name = "Oral Health Sciences")]
+        OHS,
+        [Display(Name = "Oral Medicine")]
+        OralMed,
+        [Display(Name = "Orthodontics")]
+        Ortho,
+        [Display(Name = "Pediatric Dentistry")]
+        Pedo,
+        [Display(Name = "Periodontics")]
+        Perio,
+        [Display(Name = "Prosthodontics")]
+        Pros,
+        [Display(Name = "Radiology")]
+        Radio,
+        [Display(Name = "Research")]
+        Research,
+        [Display(Name = "Restorative Dentistry")]
+        Restore,
+        [Display(Name = "RIDE")]
+        RIDE,
+        [Display(Name = "Student Services")]
+        Student
+    }
+
     public class Travel
 
     {
@@ -54,10 +96,8 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime? TravelEndDate { get; set; }
 
-        public virtual Department Department { get; set; }
-
-        [Display(Name = "Budget Type")]
-        public virtual BudgetType BudgetType { get; set; }
+        [Display(Name = "Department")]
+        public virtual TravelFoodDepartment TravelFoodDepartment { get; set; }
 
         [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
@@ -65,7 +105,7 @@ namespace Resolve.Models
         [Display(Name = "Employee Name"), Required]
         public string EmployeeName { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "Additional Notes")]

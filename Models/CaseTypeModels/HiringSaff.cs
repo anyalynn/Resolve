@@ -139,7 +139,7 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime? BirthDate { get; set; }
 
-        [Display(Name = "Acutal End Date")]
+        [Display(Name = "Actual End Date")]
         [DataType(DataType.Date)]
         public DateTime? ActualEndDate { get; set; }
 

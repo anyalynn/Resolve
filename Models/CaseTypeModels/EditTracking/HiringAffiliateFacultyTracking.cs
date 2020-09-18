@@ -20,13 +20,13 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime HireDate { get; set; }
 
-        public virtual Department Department { get; set; }
+        public virtual Department? Department { get; set; }
 
         public string Name { get; set; }
 
         public string Note { get; set; }
 
         [Display(Name = "Job Title")]
-        public virtual FacAffiliateTitle FacAffiliateTitle { get; set; }
+        public virtual FacAffiliateTitle? FacAffiliateTitle { get; set; }
     }
 }

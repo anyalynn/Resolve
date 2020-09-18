@@ -34,7 +34,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("BudgetDeficit,FoodApprovalForm,EmployeeName,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
+        public async Task<IActionResult> Create(int id, [Bind("BudgetDeficit,FoodApprovalForm,EmployeeName,EventDate,TravelFoodDepartment,BudgetNumbers,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,BudgetDeficit,FoodApprovalForm,EmployeeName,EventDate,Department,BudgetNumbers,BudgetType,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,BudgetDeficit,FoodApprovalForm,EmployeeName,EventDate,TravelFoodDepartment,BudgetNumbers,BudgetPurpose,Note,ItemCost1,ItemCost2,ItemCost3,ItemCost4,ItemCost5,ItemCost6,ItemCost7,ItemName1,ItemName2,ItemName3,ItemName4,ItemName5,ItemName6,ItemName7,NumberAttending,Total,Justification,EventDescription")] FoodEvent foodEvent)
 
         {
             if (id != foodEvent.CaseID)
@@ -98,10 +98,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EventDescription = beforeCase.EventDescription,
                             EmployeeName = beforeCase.EmployeeName,
                             EventDate = beforeCase.EventDate,
-                            Department = beforeCase.Department,
+                            TravelFoodDepartment = beforeCase.TravelFoodDepartment,
                             BudgetNumbers = beforeCase.BudgetNumbers,
                             BudgetPurpose = beforeCase.BudgetPurpose,
-                            BudgetType = beforeCase.BudgetType,
                             Total = beforeCase.Total
                         };
                         _context.Add(old_details);
@@ -113,11 +112,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = foodEvent.CaseID,
                             EventDescription = foodEvent.EventDescription,
                             EmployeeName = foodEvent.EmployeeName,
-                            Department = foodEvent.Department,
+                            TravelFoodDepartment = foodEvent.TravelFoodDepartment,
                             EventDate = foodEvent.EventDate,
                             BudgetNumbers = foodEvent.BudgetNumbers,
-                            BudgetPurpose = foodEvent.BudgetPurpose,
-                            BudgetType = foodEvent.BudgetType,
+                            BudgetPurpose = foodEvent.BudgetPurpose,                          
                             Total = foodEvent.Total
                         };
                         _context.Add(new_details);

@@ -35,11 +35,11 @@
         <div class="col-md-4">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="EmployeeName" class="control-label required-field"></label>
+                <label asp-for="EmployeeName" class="control-label"></label>
                 <input asp-for="EmployeeName" class="form-control" />
                 <span asp-validation-for="EmployeeName" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="EventDate" class="control-label required-field"></label>
                 <input asp-for="EventDate" class="form-control" />
@@ -51,24 +51,18 @@
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NumberAttending" class="control-label"></label>
+                <label asp-for="NumberAttending" class="control-label required-field"></label>
                 <input asp-for="NumberAttending" class="form-control" />
                 <span asp-validation-for="NumberAttending" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Department" class="control-label required-field"></label>
-                <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
+                <label asp-for="TravelFoodDepartment" class="control-label required-field"></label>
+                <select asp-for="TravelFoodDepartment" asp-items="Html.GetEnumSelectList<TravelFoodDepartment>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
-                <span asp-validation-for="Department" class="text-danger"></span>
+                <span asp-validation-for="TravelFoodDepartment" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="BudgetType" class="control-label required-field"></label>
-                <select asp-for="BudgetType" asp-items="Html.GetEnumSelectList<BudgetType>()" class="form-control">
-                    <option selected="selected" value="">Please select</option>
-                </select>
-                <span asp-validation-for="BudgetType" class="text-danger"></span>
-            </div>
+
             <div class="form-group">
                 <label asp-for="BudgetPurpose" class="control-label required-field"></label>
                 <select asp-for="BudgetPurpose" asp-items="Html.GetEnumSelectList<BudgetPurpose>()" class="form-control">
@@ -88,12 +82,17 @@
                 <span asp-validation-for="BudgetNumbers" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Justification" class="control-label required-field"></label>
+                <label asp-for="Note" class="control-label"></label>
+                <textarea asp-for="Note" class="form-control"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Justification" class="control-label"></label>
                 <textarea asp-for="Justification" class="form-control"></textarea>
                 <span asp-validation-for="Justification" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="FoodApprovalForm" class="control-label required-field"></label>
+                <label asp-for="FoodApprovalForm" class="control-label"></label>
                 <select asp-for="FoodApprovalForm" asp-items="Html.GetEnumSelectList<FoodApprovalForm>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -104,14 +103,14 @@
     <div class="row">
         <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="ItemName1" class="control-label"></label>
+                <label asp-for="ItemName1" class="control-label  required-field"></label>
                 <input asp-for="ItemName1" class="form-control " />
                 <span asp-validation-for="ItemName1" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-2">
             <div class="form-group">
-                <label asp-for="ItemCost1" class="control-label"></label>
+                <label asp-for="ItemCost1" class="control-label  required-field"></label>
                 <input asp-for="ItemCost1" class="form-control calc" id="item1" />
                 <span asp-validation-for="ItemCost1" class="text-danger"></span>
             </div>
@@ -220,11 +219,7 @@
                 <input asp-for="Total" class="form-control" id="total" />
                 <span asp-validation-for="Total" class="text-danger" readonly></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
-                <span asp-validation-for="Note" class="text-danger"></span>
-            </div>
+           
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>

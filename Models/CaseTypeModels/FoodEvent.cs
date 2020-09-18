@@ -20,16 +20,14 @@ namespace Resolve.Models
         public int CaseID { get; set; }
         public Case Case { get; set; }
 
-        [Display(Name = "Event Date")]
+        [Display(Name = "Event Date"), Required]
         [DataType(DataType.Date)]
         public DateTime EventDate { get; set; }
 
-        public virtual Department Department { get; set; }
+        [Display(Name = "Department")]
+        public virtual TravelFoodDepartment TravelFoodDepartment { get; set; }
 
-        [Display(Name = "Budget Type")]
-        public virtual BudgetType BudgetType { get; set; }
-
-        [Display(Name = "Budget Purpose")]
+        [Display(Name = "Budget Purpose"), Required]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
 
         [Display(Name = "UW Food Approval Form (UW1798)")]
@@ -40,13 +38,13 @@ namespace Resolve.Models
 
         public string Justification { get; set; }
 
-        [Display(Name = "Employee Name"), Required]
+        [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Primary Budget Number"), Required]
         public string BudgetNumbers { get; set; }
 
-        [Display(Name = "# Attending")]
+        [Display(Name = "# Attending"), Required]
         public int? NumberAttending { get; set; }
 
         [Display(Name = "Budget In Deficit?")]
@@ -55,7 +53,7 @@ namespace Resolve.Models
         [Display(Name = "Additional Notes")]
         public string Note { get; set; }
 
-        [Display(Name = "Item 1")]
+        [Display(Name = "Item 1"), Required]
         public string ItemName1 { get; set; }
 
         [Display(Name = "Item 2")]
@@ -76,7 +74,7 @@ namespace Resolve.Models
         [Display(Name = "Item 7")]
         public string ItemName7 { get; set; }
 
-        [Display(Name = "Cost 1")]
+        [Display(Name = "Cost 1"), Required]
         public float? ItemCost1 { get; set; }
 
         [Display(Name = "Cost 2")]

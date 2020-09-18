@@ -47,6 +47,7 @@ namespace Resolve.Models
         [MaxLength(1024)]
         public string DetailedDescription { get; set; }
 
+        [Display(Name = "Department")]
         public virtual Department? Department { get; set; }
 
         [Display(Name = "Job Title")]

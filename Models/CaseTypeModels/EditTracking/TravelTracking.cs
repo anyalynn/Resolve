@@ -24,10 +24,8 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime? TravelEndDate { get; set; }
 
-        public virtual Department Department { get; set; }
-
-        [Display(Name = "Budget Type")]
-        public virtual BudgetType BudgetType { get; set; }
+        [Display(Name = "Department")]
+        public virtual TravelFoodDepartment TravelFoodDepartment { get; set; }
 
         [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }
@@ -35,7 +33,7 @@ namespace Resolve.Models
         [Display(Name = "Employee Name")]
         public string EmployeeName { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
 
         public string Note { get; set; }

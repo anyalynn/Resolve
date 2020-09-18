@@ -20,10 +20,8 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime EventDate { get; set; }
 
-        public virtual Department Department { get; set; }
-
-        [Display(Name = "Budget Type")]
-        public virtual BudgetType BudgetType { get; set; }
+        [Display(Name = "Department")]
+        public virtual TravelFoodDepartment TravelFoodDepartment { get; set; }
 
         [Display(Name = "Budget Purpose")]
         public virtual BudgetPurpose BudgetPurpose { get; set; }

@@ -39,7 +39,7 @@ namespace Resolve.Models
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
 
-        [Display(Name = "Name"), Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Display(Name = "Budget Numbers")]
