@@ -34,7 +34,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("CandidateName,FacTitle,FacHireReason,BudgetType,BudgetNumbers,HireDate,Department,Note,Salary,AdminRole,EmployeeReplaced,FTE")] HiringFaculty hrFaculty)
+        public async Task<IActionResult> Create(int id, [Bind("Justification,Consequences,Barriers,CandidateName,FacTitle,FacHireReason,BudgetType,BudgetNumbers,HireDate,Department,Note,Salary,AdminRole,EmployeeReplaced,FTE")] HiringFaculty hrFaculty)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +64,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,FacTitle,HireDate,Department,FacHireReason,FTE,AdminRole,Note,Salary,EmployeeReplaced,CandidateName,BudgetNumbers,BudgetType")] HiringFaculty hrFaculty)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,FacTitle,Justification,Consequences,Barriers,HireDate,Department,FacHireReason,FTE,AdminRole,Note,Salary,EmployeeReplaced,CandidateName,BudgetNumbers,BudgetType")] HiringFaculty hrFaculty)
         {
             if (id != hrFaculty.CaseID)
             {

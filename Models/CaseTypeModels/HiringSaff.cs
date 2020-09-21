@@ -215,7 +215,7 @@ namespace Resolve.Models
         [Display(Name = "UW Hires Contact")]
         public string UWHiresContact { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "Budget Type")]

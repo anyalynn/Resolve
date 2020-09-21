@@ -124,16 +124,16 @@ namespace Resolve.Models
         [Display(Name = "%FTE")]
         public string FTE { get; set; }
 
-        [Display(Name = "Justification")]
+        [Display(Name = "Justification"), Required]
         public string Justification { get; set; }
 
-        [Display(Name = "Consequences of not hiring for position")]
+        [Display(Name = "Consequences of not hiring for position"), Required]
         public string Consequences { get; set; }
 
-        [Display(Name = "Barriers")]
+        [Display(Name = "Barriers"), Required]
         public string Barriers { get; set; }
 
-        [Display(Name = "Administrative Role")]
+        [Display(Name = "Administrative Role"), Required]
         public string AdminRole { get; set; }
 
         [Display(Name = "Additional Notes")]
@@ -145,7 +145,7 @@ namespace Resolve.Models
         [Display(Name = "Hire Reason")]
         public virtual FacHireReason FacHireReason { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "Budget Type")]

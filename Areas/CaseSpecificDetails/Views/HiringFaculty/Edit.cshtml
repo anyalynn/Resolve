@@ -11,24 +11,19 @@
             if (MyRequestType == "Replacement")
             {
                 $("#Replacement").show();
-                $("#NotReplace").hide();
             }
 
             else {
                 $("#Replacement").hide();
-                $("#NotReplace").show();
+              
             }
-          
             $("#FacHireReason").change(function () {
                 if ($(this).find(':selected').text() == "Replacement") {
                     $("#Replacement").show();
-                    $("#NotReplace").hide();
-
 
                 } else {
 
                     $("#Replacement").hide();
-                    $("#NotReplace").show();
                 }
             });
 
@@ -92,26 +87,26 @@
                 <input asp-for="Salary" class="form-control" />
                 <span asp-validation-for="Salary" class="text-danger"></span>
             </div>
-            <div id="NotReplace">
+          
                 <div class="form-group">
-                    <label for="Justification" class="control-label">What is the business justification for this position?</label>
+                    <label for="Justification" class="control-label required-field">What is the business justification for this position?</label>
                     <textarea asp-for="Justification" class="form-control"></textarea>
                     <span asp-validation-for="Justification" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="Barriers" class="control-label">What is the barrier to distributing the workload to existing staff?</label>
+                    <label for="Barriers" class="control-label required-field">What is the barrier to distributing the workload to existing staff?</label>
                     <textarea asp-for="Barriers" class="form-control"></textarea>
                     <span asp-validation-for="Barriers" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label for="Consequences" class="control-label">What are the consequences/impact of not filling the position?</label>
+                    <label for="Consequences" class="control-label required-field">What are the consequences/impact of not filling the position?</label>
                     <textarea asp-for="Consequences" class="form-control"></textarea>
                     <span asp-validation-for="Consequences" class="text-danger"></span>
                 </div>
-            </div>
+           
             <div class="form-group">
-                <label for="AdminRole" class="control-label">Will this appointment have an administrative role (e.g., Department Chair, Program Director)</label>
+                <label for="AdminRole" class="control-label required-field">Will this appointment have an administrative role (e.g., Department Chair, Program Director)</label>
                 <input asp-for="AdminRole" class="form-control" />
                 <span asp-validation-for="AdminRole" class="text-danger"></span>
             </div>

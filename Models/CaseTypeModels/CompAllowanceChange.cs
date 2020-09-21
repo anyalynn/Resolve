@@ -90,7 +90,7 @@ namespace Resolve.Models
         [Display(Name = "Name"), Required]
         public string Name { get; set; }
 
-        [Display(Name = "Budget Numbers")]
+        [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "Amount/Percent/Step Increase")]

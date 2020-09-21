@@ -3,47 +3,30 @@
 @foreach (var item in Model.ScholarResGradHire)
 {
     <dl class="row">
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.ScholarReqType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.ScholarReqType)
-        </dd>
+
+        @{ string reqtype = item.ScholarReqType.ToString(); }
         <dt class="col-sm-5">
             @Html.DisplayNameFor(modelItem => item.DWorkerType)
         </dt>
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.DWorkerType)
         </dd>
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.ScholarReqType)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.ScholarReqType)
+        </dd>
         @{ string workertype = item.DWorkerType.ToString(); }
 
-         <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Name)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Name)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.JobTitle)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.JobTitle)
-        </dd>
-        @if (@workertype != "Grad")        {
-
-            <dt class="col-sm-5">
-                @Html.DisplayNameFor(modelItem => item.NewTitle)
-            </dt>
-            <dd class="col-sm-7">
-                @Html.DisplayFor(modelItem => item.NewTitle)
-            </dd>
+        @if (@workertype != "Grad")
+        {
             <dt class="col-sm-5">
                 @Html.DisplayNameFor(modelItem => item.ScholarJobProfile)
             </dt>
             <dd class="col-sm-7">
                 @Html.DisplayFor(modelItem => item.ScholarJobProfile)
             </dd>
-
         }
         @if (@workertype == "Grad")
         {
@@ -52,6 +35,28 @@
             </dt>
             <dd class="col-sm-7">
                 @Html.DisplayFor(modelItem => item.GradJobProfile)
+            </dd>
+        }
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.Name)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.Name)
+        </dd>
+
+        <dt class="col-sm-5">
+            @Html.DisplayNameFor(modelItem => item.JobTitle)
+        </dt>
+        <dd class="col-sm-7">
+            @Html.DisplayFor(modelItem => item.JobTitle)
+        </dd>
+        @if (@reqtype == "Promotion")
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.NewTitle)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.NewTitle)
             </dd>
         }
         <dt class="col-sm-5">
