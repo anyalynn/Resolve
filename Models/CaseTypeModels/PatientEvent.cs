@@ -109,7 +109,11 @@ namespace Resolve.Models
 
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
+
+        [Display(Name = "Event Date/Time")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yy hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? EventDateTime { get; set; }
 
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]
@@ -122,8 +126,10 @@ namespace Resolve.Models
         [Display(Name = "Department")]
         public virtual EventDepartment? EventDepartment { get; set; }
 
-        [Display(Name = "Brief Description of Event")]
+        [MaxLength(1500)]
+        [Display(Name = "Brief Description of Event"), Required]
         public string EventDescription { get; set; }
+
 
         [Display(Name = "Facts Documented?")]
         public bool FactsDocumented { get; set; }
@@ -140,7 +146,7 @@ namespace Resolve.Models
         [Display(Name = "Name of Manager Notified")]
         public string NotifiedName { get; set; }
 
-        [Display(Name = "Supervisor Name")]
+        [Display(Name = "Supervisor Name"), Required]
         public string SupervisorName { get; set; }
 
         [Display(Name = "Visit Provider Name")]
@@ -151,13 +157,16 @@ namespace Resolve.Models
 
         [Display(Name = "First Reported By")]
         public string FirstReportedBy { get; set; }
-     
+
+        [MaxLength(600)]
         [Display(Name = "Causes")]
         public string Causes { get; set; }
 
+        [MaxLength(600)]
         [Display(Name = "Actions Taken by Reporter")]
         public string ReporterActionTaken { get; set; }
 
+        [MaxLength(600)]
         [Display(Name = "Actions Taken by Manager")]
         public string ManagerActionTaken { get; set; }
 

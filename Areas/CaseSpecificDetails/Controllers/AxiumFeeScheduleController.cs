@@ -35,8 +35,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, [Bind("AxiumSchedRequestType,AxiumScheduleType," +
-            "AxiumCodeType,Discipline,Site,ProcedureCode,ProcedureCodeDescription,Fee,Justification," +
-            "ccMail,UnitsFactored")] AxiumFeeSchedule feeSchedule)
+            "AxiumCodeType,Discipline,Site,ProcedureCode,ProdCodeDescription,Fee,Justification," +
+            "UnitsFactored")] AxiumFeeSchedule feeSchedule)
         {
             if (ModelState.IsValid)
             {
@@ -68,8 +68,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,AxiumSchedRequestType,AxiumScheduleType," +
-            "AxiumCodeType,Discipline,Site,ProcedureCode,ProcedureCodeDescription,Fee,Justification," +
-            "ccMail,UnitsFactored")] AxiumFeeSchedule feeSchedule)
+            "AxiumCodeType,Discipline,Site,ProcedureCode,ProdCodeDescription,Fee,Justification," +
+            "UnitsFactored")] AxiumFeeSchedule feeSchedule)
 
         {
             if (id != feeSchedule.CaseID)
@@ -115,6 +115,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         {
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
+                            CaseID = feeSchedule.CaseID,
                             AxiumSchedRequestType = feeSchedule.AxiumSchedRequestType,
                             AxiumScheduleType = feeSchedule.AxiumScheduleType,
                             AxiumCodeType = feeSchedule.AxiumCodeType,

@@ -14,7 +14,7 @@
             else
                 MySubtype = false;
              
-            if (MyRequestType == "Student" || MyRequestType == "Staff/Student") {
+            if (MyRequestType == "Staff" || MyRequestType == "Staff/Student") {
                 $("#staff").show();
                 $("#other").hide();
             }
@@ -238,7 +238,5 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 

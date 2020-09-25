@@ -3,11 +3,7 @@
 @{
     ViewData["Title"] = "Create Specific Details";
 }
-@section Scripts {
-    
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-}
 
 <h3>Create Base Pay Change</h3>
 <h4>Staff/Student</h4>
@@ -54,7 +50,7 @@
                 </select>
                 <span asp-validation-for="SupOrg" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label required-field"></label>
                 <input asp-for="Name" class="form-control" />
@@ -105,4 +101,8 @@
 </div>
 
 
+@section Scripts {
 
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

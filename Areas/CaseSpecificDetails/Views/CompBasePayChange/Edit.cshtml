@@ -3,11 +3,6 @@
 @{
     ViewData["Title"] = "Edit Specific Details";
 }
-@section Scripts {
-   
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
-}
 
 <h3>Edit Base Pay Change</h3>
 <h4>Staff/Student</h4>
@@ -24,7 +19,7 @@
                 </select>
                 <span asp-validation-for="CWorkerType" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group" id="HireType">
                 <label asp-for="HireType" class="control-label required-field"></label>
                 <select asp-for="HireType" asp-items="Html.GetEnumSelectList<HireType>()" class="form-control">
@@ -32,7 +27,7 @@
                 </select>
                 <span asp-validation-for="HireType" class="text-danger"></span>
             </div>
-            
+
             <div id="BasePayChange">
                 <div class="form-group">
                     <label asp-for="BasePayChange" class="control-label"></label>
@@ -54,7 +49,7 @@
                 </select>
                 <span asp-validation-for="SupOrg" class="text-danger"></span>
             </div>
-           
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label required-field"></label>
                 <input asp-for="Name" class="form-control" />
@@ -104,4 +99,9 @@
     </div>
 </div>
 
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
 

@@ -6,7 +6,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             var MyRequestType = "@Model.EWorkerType";
-            if (MyRequestType == "Student" || MyRequestType == "Staff/Student") {
+            if (MyRequestType == "Staff" || MyRequestType == "Staff/Student") {
                 $("#staff").show();
                 $("#other").hide();
                 $("#stafffac").show();
@@ -19,7 +19,7 @@
                 $("#scholar").show();
            }
 
-            $("#AWorkerType").change(function () {
+            $("#EWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Staff/Student") {
                     $("#staff").show();
                     $("#other").hide();

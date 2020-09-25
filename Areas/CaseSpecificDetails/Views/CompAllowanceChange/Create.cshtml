@@ -19,22 +19,13 @@
                     $("#scholar").hide();
 
                 }
-                if ($(this).find(':selected').text() == "Scholar/Resident") {
+                if ($(this).find(':selected').text() == "Postdoctoral Scholar/Resident") {
                     $("#staff").hide();
                     $("#other").show();
                     $("#stafffac").hide();
                     $("#scholar").show();
-
                 }
-                else {
-                    $("#staff").hide();
-                    $("#other").hide();
-                    $("#stafffac").hide();
-                    $("#scholar").hide();
-
-                }
-            });
-          
+             });          
         });
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

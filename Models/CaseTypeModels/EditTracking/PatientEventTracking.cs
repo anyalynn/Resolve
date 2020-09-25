@@ -18,7 +18,11 @@ namespace Resolve.Models
 
         [Display(Name = "Event Date")]
         [DataType(DataType.Date)]
-        public DateTime EventDate { get; set; }
+        public DateTime? EventDate { get; set; }
+
+        [Display(Name = "Event Date/Time")]
+        [DisplayFormat(DataFormatString = "{0: dd/MM/yy hh:mm}", ApplyFormatInEditMode = true)]
+        public DateTime? EventDateTime { get; set; }
 
         [Display(Name = "Birth Date")]
         [DataType(DataType.Date)]

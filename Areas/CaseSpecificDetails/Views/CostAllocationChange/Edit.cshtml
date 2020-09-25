@@ -8,7 +8,7 @@
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
             var MyRequestType = "@Model.AWorkerType";
-            if (MyRequestType == "Student" || MyRequestType == "Staff/Student") {
+            if (MyRequestType == "Staff" || MyRequestType == "Staff/Student") {
                 $("#staff").show();
                 $("#other").hide();
             }
