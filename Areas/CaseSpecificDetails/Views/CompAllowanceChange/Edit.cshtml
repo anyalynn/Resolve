@@ -51,7 +51,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
-            <div class="form-group" id="AWorkerType">
+            <div class="form-group" id="EWorkerType">
                 <label asp-for="EWorkerType" class="control-label required-field"></label>
                 <select asp-for="EWorkerType" asp-items="Html.GetEnumSelectList<EWorkerType>()" class="form-control">
                     <option selected="selected" value="">Please select</option>

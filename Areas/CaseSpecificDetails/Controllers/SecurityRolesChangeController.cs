@@ -103,6 +103,17 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+
+                if (securityChange.AWorkerType.ToString() == "Staff")
+                {
+                    securityChange.Department = null;
+
+                }
+                else
+                {
+                    securityChange.HireType = null;
+
+                }
                 try
                 {
                     IQueryable<SecurityRolesChange> beforeCases = _context.SecurityRolesChange.Where(c => c.CaseID == id).AsNoTracking<SecurityRolesChange>();
@@ -126,6 +137,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
                             AWorkerType = beforeCase.AWorkerType,
+                            HireType = beforeCase.HireType,
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,
                             EffectiveDate = beforeCase.EffectiveDate,                            
@@ -159,6 +171,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = securityChange.CaseID,
                             Name = securityChange.Name,
                             AWorkerType = securityChange.AWorkerType,
+                            HireType = securityChange.HireType,
                             Department = securityChange.Department,
                             JobTitle = securityChange.JobTitle,
                             EffectiveDate = securityChange.EffectiveDate,

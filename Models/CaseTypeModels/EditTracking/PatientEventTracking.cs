@@ -37,6 +37,9 @@ namespace Resolve.Models
         [Display(Name = "Event Description")]
         public string EventDescription { get; set; }
 
+        [Display(Name = "Time of Event"), Required]
+        public string EventTime { get; set; }
+
         [Display(Name = "Facts Documented")]
         public bool FactsDocumented { get; set; }
 

@@ -196,6 +196,7 @@ namespace Resolve.Controllers
             var UCases = await _context.LocalUser
                 // Created by the User
                 .Include(s => s.Cases.Where(p => p.Processed == 0))
+                
                     .ThenInclude(w => w.CaseType)
                     // Including Approvers
                     .Include(s => s.Cases.Where(p => p.Processed == 0))
@@ -242,7 +243,10 @@ namespace Resolve.Controllers
                             .ThenInclude(e => e.Case)
                             .ThenInclude(e => e.Approvers)
                             .ThenInclude(w => w.LocalUser)
+                            
                 .Include(e => e.EmailPreference)
+                
+                
             .FirstOrDefaultAsync(m => m.LocalUserID == ADemail);
             int group_case_count = 0;
             foreach (var item in UCases.UserGroups)
@@ -253,6 +257,7 @@ namespace Resolve.Controllers
                 }
             }
             ViewData["group_case_count"] = group_case_count;
+           
             return View(UCases);
         }
 

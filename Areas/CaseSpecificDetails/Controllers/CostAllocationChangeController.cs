@@ -87,6 +87,17 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (distChange.AWorkerType.ToString() == "Staff")
+                {
+                    distChange.Department = null;
+
+                }
+                else 
+                {
+                    distChange.HireType = null;
+
+                }
+
                 try
                 {
                     IQueryable<CostAllocationChange> beforeCases = _context.CostAllocationChange.Where(c => c.CaseID == id).AsNoTracking<CostAllocationChange>();
@@ -110,7 +121,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
                             AWorkerType = beforeCase.AWorkerType,
-                            Department=beforeCase.Department,
+                            HireType = beforeCase.HireType,
+                            Department =beforeCase.Department,
                             JobTitle=beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
@@ -129,6 +141,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = distChange.CaseID,
                             Name = distChange.Name,                           
                             AWorkerType = distChange.AWorkerType,
+                            HireType = distChange.HireType,
                             Department = distChange.Department,
                             JobTitle = distChange.JobTitle,
                             EffectiveStartDate = distChange.EffectiveStartDate,

@@ -6,7 +6,7 @@
 @section Scripts {
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
-            var MyRequestType = "@Model.StaffHireReason";
+            var MyHireType = "@Model.StaffHireReason";
             var MyWorkerType = "@Model.StaffWorkerType";
             if (MyWorkerType == "Student")
             {
@@ -18,24 +18,17 @@
                 $("#Employee").show();
                 $("#Student").hide();
             }
-            if (MyRequestType == "NewPosition") {
-                $("#NotReplace").show();
-                $("#Replacement").hide();
-            }
-
-            else if (MyRequestType == "ReplaceNew") {
-                $("#NotReplace").show();
-                $("#Replacement").show();
-               }
-
-           else if (MyRequestType == "Other") {
-                $("#NotReplace").show();
-                $("#Replacement").hide();
-               }
-            else if (MyRequestType == "Replacement") {
+            if (MyHireType == "Replace" || MyHireType == "ReplaceNew") {
                 $("#NotReplace").hide();
                 $("#Replacement").show();
             }
+
+           
+           else {
+                $("#NotReplace").show();
+                $("#Replacement").hide();
+               }
+           
             $("#StaffHireReason").change(function () {
                 if ($(this).find(':selected').text() == "New Position") {
                     $("#NotReplace").show();
@@ -276,6 +269,11 @@
                         <option selected="selected" value="">Please select</option>
                     </select>
                     <span asp-validation-for="Citizenship" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="BirthDate" class="control-label"></label>
+                    <input asp-for="BirthDate" class="form-control" />
+                    <span asp-validation-for="BirthDate" class="text-danger"></span>
                 </div>
                 <div class="form-group form-check">
                     <label class="form-check-label">

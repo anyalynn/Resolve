@@ -54,7 +54,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EmployeeEID = compallowChange.EmployeeEID,
                     Note = compallowChange.Note,
                     BudgetNumbers = compallowChange.BudgetNumbers,
-                    DetailedDescription = compallowChange.DetailedDescription
+                    DetailedDescription = compallowChange.DetailedDescription,
+                    Department = compallowChange.Department
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -80,7 +81,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,AllowanceChange,ScholarCompAllowanceChange,Amount,EffectiveStartDate,EffectiveEndDate,HireType,JobTitle,Note,EWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompAllowanceChange compallowChange)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,AllowanceChange,ScholarCompAllowanceChange,Department,Amount,EffectiveStartDate,EffectiveEndDate,HireType,JobTitle,Note,EWorkerType,SupOrg,EmployeeEID,BudgetNumbers,DetailedDescription")] CompAllowanceChange compallowChange)
         {
             if (id != compallowChange.CaseID)
             {
@@ -89,6 +90,18 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if(compallowChange.EWorkerType.ToString()=="Staff")
+                {
+                    compallowChange.ScholarCompAllowanceChange = null;
+                    compallowChange.Department = null;
+
+                }
+                else if (compallowChange.EWorkerType.ToString() == "Scholar")
+                {
+                    compallowChange.AllowanceChange = null;
+                    compallowChange.HireType = null;
+
+                }
                 try
                 {
                     IQueryable<CompAllowanceChange> beforeCases = _context.CompAllowanceChange.Where(c => c.CaseID == id).AsNoTracking<CompAllowanceChange>();
@@ -112,15 +125,20 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             Name = beforeCase.Name,
                             AllowanceChange = beforeCase.AllowanceChange,
+                            ScholarCompAllowanceChange = beforeCase.ScholarCompAllowanceChange,
                             Amount = beforeCase.Amount,
                             EWorkerType = beforeCase.EWorkerType,
+                            HireType = beforeCase.HireType,
+                            JobTitle = beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
                             SupOrg = beforeCase.SupOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers
+                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            Department = beforeCase.Department
+
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -131,15 +149,19 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = compallowChange.CaseID,
                             Name = compallowChange.Name,
                             AllowanceChange = compallowChange.AllowanceChange,
+                            ScholarCompAllowanceChange = compallowChange.ScholarCompAllowanceChange,
                             Amount = compallowChange.Amount,
                             EWorkerType = compallowChange.EWorkerType,
+                            HireType = compallowChange.HireType,
+                            JobTitle = compallowChange.JobTitle,
                             EffectiveStartDate = compallowChange.EffectiveStartDate,
                             EffectiveEndDate = compallowChange.EffectiveEndDate,
                             SupOrg = compallowChange.SupOrg,
                             EmployeeEID = compallowChange.EmployeeEID,
                             Note = compallowChange.Note,
                             DetailedDescription = compallowChange.DetailedDescription,
-                            BudgetNumbers = compallowChange.BudgetNumbers
+                            BudgetNumbers = compallowChange.BudgetNumbers,
+                            Department = compallowChange.Department
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

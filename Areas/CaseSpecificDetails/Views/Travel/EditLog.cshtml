@@ -18,16 +18,40 @@
             <thead>
                
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">EmployeeName</th>
-                    <th class="th-sm" style="width: 10%">TravelStartDate</th>
-                    <th class="th-sm" style="width: 10%">TravelEndDate</th>
-                    <th class="th-sm" style="width: 20%">Destination</th>
-                    <th class="th-sm" style="width: 10%">BudgetNumbers</th>
-                  
-                    <th class="th-sm" style="width: 10%">BudgetPurpose</th>
-                    <th class="th-sm" style="width: 10%">Total</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Department</th>
+                    <th class="th-sm">Employee Name</th>
+                    <th class="th-sm">Travel Start Date</th>
+                    <th class="th-sm">Travel End Date</th>
+                    <th class="th-sm">Destination</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Budget Purpose</th>
+                    <th class="th-sm">Total</th>
+                    <th class="th-sm">
+                        Airfare Cost
+                    </th>
+                    <th class="th-sm">
+                        Registration Cost
+                    </th>
+                    <th class="th-sm">
+                        Transportation Cost
+                    </th>
+                    <th class="th-sm">
+                        Meals Cost
+                    </th>
+                    <th class="th-sm">
+                        Hotels Cost
+                    </th>
+                    <th class="th-sm">
+                        Other1
+                    </th>
+                    <th class="th-sm">
+                        Other Cost1
+                    </th>
+                    <th class="th-sm">
+                        Other2
+                    </th>
+                    <th class="th-sm">Other Cost2</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,9 +65,34 @@
                     <td>@item.TravelEndDate</td>
                     <td>@item.Destination</td>
                     <td>@item.BudgetNumbers</td>
-                   
                     <td>@item.BudgetPurpose</td>
                     <td>@item.Total</td>
+                    <td>
+                        @item.AirfareCost
+                    </td>
+                    <td>
+                        @item.RegistrationCost
+                    </td>
+                    <td>
+                        @item.TransportationCost
+                    </td>
+                    <td>
+                        @item.MealsCost
+                    </td>
+                    <td>
+                        @item.HotelsCost
+                    </td>
+                    <td>
+                        @item.Other1
+                    </td>
+                    <td>
+                        @item.OtherCost1
+                    </td>
+                    <td>
+                        @item.Other2
+                    </td>
+
+                    <td>@item.OtherCost2</td>
                 </tr>
                 }
             </tbody>

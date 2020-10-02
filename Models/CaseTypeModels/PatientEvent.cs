@@ -130,6 +130,9 @@ namespace Resolve.Models
         [Display(Name = "Brief Description of Event"), Required]
         public string EventDescription { get; set; }
 
+       
+        [Display(Name = "Time of Event"), Required]
+        public string EventTime { get; set; }
 
         [Display(Name = "Facts Documented?")]
         public bool FactsDocumented { get; set; }

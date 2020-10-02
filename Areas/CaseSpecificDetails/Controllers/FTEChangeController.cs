@@ -89,6 +89,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (fteChange.AWorkerType.ToString() == "Staff")
+                {
+                    fteChange.Department = null;
+
+                }
+                else
+                {
+                    fteChange.HireType = null;
+
+                }
                 try
                 {
                     IQueryable<FTEChange> beforeCases = _context.FTEChange.Where(c => c.CaseID == id).AsNoTracking<FTEChange>();

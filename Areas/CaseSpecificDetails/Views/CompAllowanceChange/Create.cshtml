@@ -11,7 +11,7 @@
             $("#other").hide();
             $("#stafffac").hide();
             $("#scholar").hide();
-            $("#AWorkerType").change(function () {
+            $("#EWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Staff/Student") {
                     $("#staff").show();
                     $("#other").hide();
@@ -40,7 +40,7 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group" id="AWorkerType">
+            <div class="form-group" id="EWorkerType">
                 <label asp-for="EWorkerType" class="control-label required-field"></label>
                 <select asp-for="EWorkerType" asp-items="Html.GetEnumSelectList<EWorkerType>()" class="form-control">
                     <option selected="selected" value="">Please select</option>

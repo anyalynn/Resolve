@@ -18,7 +18,7 @@ namespace Resolve.Models
 
         [Display(Name = "Effective Start Date")]
         [DataType(DataType.Date)]
-        public DateTime EffectiveStartDate { get; set; }
+        public DateTime? EffectiveStartDate { get; set; }
 
         [Display(Name = "Effective End Date")]
         [DataType(DataType.Date)]

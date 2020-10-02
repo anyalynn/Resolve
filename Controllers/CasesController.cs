@@ -226,8 +226,17 @@ namespace Resolve.Controllers
         {          
             //ViewData["LocalUserID"] = LUserID[0];
             ViewData["CaseTypeTitle"] = new SelectList(_context.CaseType.OrderBy(s => s.LongDescription), "CaseTypeTitle","LongDescription");
-            ViewData["OnBehalfUser"] = new SelectList(_context.LocalUser, "LocalUserID", "LocalUserID");
-                       
+            //  ViewData["OnBehalfUser"] = new SelectList(_context.LocalUser, "LocalUserID", "LocalUserID");
+
+            var stands = _context.LocalUser.OrderBy(s => s.LastName).ToList();
+            IEnumerable<SelectListItem> selectList = from s in stands
+                                                     select new SelectListItem
+                                                     {
+                                                         Value = s.LocalUserID,
+                                                         Text = s.LastName + ", " + s.FirstName
+                                                     };
+           
+            ViewData["OnBehalfUser"] = new SelectList(selectList,"Value","Text");
             return View();
         }
                

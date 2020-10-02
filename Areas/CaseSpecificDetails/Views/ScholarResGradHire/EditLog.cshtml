@@ -6,7 +6,7 @@
 
 <h3>Edit Log</h3>
 
-<h4>Postdoctoral Scholar/Resident-Graduate Student Hire/Rehire/Promotion Edit Tracking</h4>
+<h4>Postdoctoral Scholar/ Resident-Graduate Student Hire/ Rehire/ Promotion Edit Tracking</h4>
    
 
 <hr />
@@ -19,15 +19,18 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 10%">Request Tupe</th>
-                    <th class="th-sm" style="width: 10%">Name</th>
-                    <th class="th-sm" style="width: 15%">Sup Org</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Stipend/Allowance</th>
-                    <th class="th-sm" style="width: 15%">Effective Date</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Worker Type</th>
+                    <th class="th-sm">Request Type</th>
+                    <th class="th-sm">Scholar Profile</th>
+                    <th class="th-sm">Grad Profile</th>
+                    <th class="th-sm">Name</th>
+                    <th class="th-sm">Sup Org</th>
+                    <th class="th-sm">Department</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Stipend/ Allowance</th>
+                    <th class="th-sm">Effective Date</th>
+                    <th class="th-sm">Description</th>
 
                 </tr>
             </thead>
@@ -38,12 +41,15 @@
                     <td><b>@item.Status</b></td>
                     <td>@item.DWorkerType</td>
                     <td>@item.ScholarReqType</td>
+                    <td>@item.ScholarJobProfile</td>
+                    <td>@item.GradJobProfile</td>
                     <td>@item.Name</td>
                     <td>@item.SupOrg</td>
                     <td>@item.Department</td>
                     <td>@item.BudgetNumbers</td>
                     <td>@item.StipendAllowance</td>
                     <td>@item.EffectiveDate</td>
+                    <td>@item.DetailedDescription</td>
 
                 </tr>
                 }

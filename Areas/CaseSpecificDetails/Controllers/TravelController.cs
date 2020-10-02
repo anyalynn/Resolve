@@ -65,7 +65,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, TravelFoodDepartment,Note,Destination,Reason")] Travel travel)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate,TravelFoodDepartment,Note,Destination,Reason")] Travel travel)
 
         {
             if (id != travel.CaseID)
@@ -103,7 +103,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             BudgetNumbers = beforeCase.BudgetNumbers,
                             BudgetPurpose = beforeCase.BudgetPurpose,
                             TravelFoodDepartment = beforeCase.TravelFoodDepartment,
-                            Total = beforeCase.Total
+                            Total = beforeCase.Total,                           
+                            AirfareCost = beforeCase.AirfareCost,
+                            RegistrationCost = beforeCase.RegistrationCost,
+                            TransportationCost = beforeCase.TransportationCost,
+                            MealsCost = beforeCase.MealsCost,
+                            HotelsCost = beforeCase.HotelsCost,                            
+                            Other1 = beforeCase.Other1,
+                            Other2 = beforeCase.Other2,
+                            OtherCost1 = beforeCase.OtherCost1,
+                            OtherCost2 = beforeCase.OtherCost2,
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -120,7 +129,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             BudgetNumbers = travel.BudgetNumbers,
                             BudgetPurpose = travel.BudgetPurpose,
                             TravelFoodDepartment = travel.TravelFoodDepartment,
-                            Total = travel.Total
+                            Total = travel.Total,
+                            AirfareCost = travel.AirfareCost,
+                            RegistrationCost = travel.RegistrationCost,
+                            TransportationCost = travel.TransportationCost,
+                            MealsCost = travel.MealsCost,
+                            HotelsCost = travel.HotelsCost,
+                            Other1 = travel.Other1,
+                            Other2 = travel.Other2,
+                            OtherCost1 = travel.OtherCost1,
+                            OtherCost2 = travel.OtherCost2,
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

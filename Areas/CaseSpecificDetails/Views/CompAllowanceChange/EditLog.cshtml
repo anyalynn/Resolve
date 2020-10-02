@@ -16,16 +16,19 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 10%">Allowance</th>
-                    <th class="th-sm" style="width: 10%">Name</th>
-                    <th class="th-sm" style="width: 10%">Employee EID</th>
-                    <th class="th-sm" style="width: 10%">SupOrg</th>
-                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Note</th>
-                    <th class="th-sm" style="width: 10%">Effective Start Date</th>
-                    <th class="th-sm" style="width: 10%">Effective End Date</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Worker Type</th>
+                    <th class="th-sm">Hire Type </th>
+                    <th class="th-sm" >Job Title </th>
+                    <th class="th-sm">Allowance </th>
+                    <th class="th-sm">Scholar Allowance</th>
+                    <th class="th-sm">Name</th>
+                    <th class="th-sm">Employee EID</th>
+                    <th class="th-sm">SupOrg</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Note</th>
+                    <th class="th-sm">Effective Start Date</th>
+                    <th class="th-sm">Effective End Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,15 +37,10 @@
                 <tr>
                     <td><b>@item.Status</b></td>
                     <td>@item.EWorkerType</td>
-                    @{ string workertype = item.EWorkerType.ToString(); }
-                    @if (@workertype == "Staff")
-                    {
-                        <td>@item.AllowanceChange</td>
-                    }
-                    @if (@workertype != "Staff")
-                    {
-                        <td>@item.ScholarCompAllowanceChange</td>
-                    }
+                    <td>@item.HireType</td>
+                    <td>@item.JobTitle</td>
+                    <td>@item.AllowanceChange</td>
+                    <td>@item.ScholarCompAllowanceChange</td>
                     <td>@item.Name</td>
                     <td>@item.EmployeeEID</td>
                     <td>@item.SupOrg</td>

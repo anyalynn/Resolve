@@ -51,8 +51,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     Note = endChange.Note,
                     BudgetNumbers = endChange.BudgetNumbers,
                     DetailedDescription = endChange.DetailedDescription,
-                    Department=endChange.Department,
-                    JobTitle=endChange.JobTitle
+                    Department = endChange.Department,
+                    JobTitle = endChange.JobTitle
                 };
                 _context.Add(newCase);
                 await _context.SaveChangesAsync();
@@ -87,6 +87,18 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (endChange.AWorkerType.ToString() == "Staff")
+                {
+                    endChange.Department = null;
+
+                }
+                else
+                {
+                    endChange.HireType = null;
+
+                }
+
+
                 try
                 {
                     IQueryable<EndDateChange > beforeCases = _context.EndDateChange.Where(c => c.CaseID == id).AsNoTracking<EndDateChange>();

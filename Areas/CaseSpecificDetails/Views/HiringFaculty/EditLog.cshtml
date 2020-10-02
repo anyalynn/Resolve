@@ -17,15 +17,21 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 20%">HireDate</th>
-                    <th class="th-sm" style="width: 10%">FacHireReason</th>
-                    <th class="th-sm" style="width: 10%">FacTitle</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">Salary</th>
-                    <th class="th-sm" style="width: 10%">FTE</th>
-                    <th class="th-sm" style="width: 10%">BudgetNumbers</th>
-                    <th class="th-sm" style="width: 10%">BudgetType</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Hire Date</th>
+                    <th class="th-sm">FacHire Reason</th>
+                    <th class="th-sm">Fac Title</th>
+                    <th class="th-sm">Department</th>
+                    <th class="th-sm">Salary</th>
+                    <th class="th-sm">FTE</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Budget Type</th>
+                    <th class="th-sm">Admin Role</th>
+                    <th class="th-sm">Employee Replaced</th>
+                    <th class="th-sm">Justification</th>
+                    <th class="th-sm">Barriers</th>
+                    <th class="th-sm">Consequences</th>
+                    <th class="th-sm">Candidate Name</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,6 +47,12 @@
                     <td>@item.FTE</td>
                     <td>@item.BudgetNumbers</td>
                     <td>@item.BudgetType</td>
+                    <td>@item.AdminRole</td>
+                    <td>@item.EmployeeReplaced</td>
+                    <td>@item.Justification</td>
+                    <td>@item.Barriers</td>
+                    <td>@item.Consequences</td>
+                    <td>@item.CandidateName</td>
                 </tr>
                 }
             </tbody>

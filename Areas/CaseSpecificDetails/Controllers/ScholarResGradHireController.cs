@@ -90,6 +90,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (scholarHire.DWorkerType.ToString() == "Grad")
+                {
+                    scholarHire.ScholarJobProfile = null;
+
+                }
+                else
+                {
+                    scholarHire.GradJobProfile = null;
+
+                }
                 try
                 {
                     IQueryable<ScholarResGradHire> beforeCases = _context.ScholarResGradHire.Where(c => c.CaseID == id).AsNoTracking<ScholarResGradHire>();

@@ -17,16 +17,28 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Event Date</th>
-                    <th class="th-sm" style="width: 10%">Event Description</th>
-                    <th class="th-sm" style="width: 10%">Event Location</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">Dental Record #</th>
-                    <th class="th-sm" style="width: 10%">Provder Name</th>
-                    <th class="th-sm" style="width: 10%">Patient Name</th>
-                    <th class="th-sm" style="width: 10%">Notified Name</th>
-                    <th class="th-sm" style="width: 10%">Facts Documented?</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Event Date</th>
+                    <th class="th-sm">Event Time</th>
+                    <th class="th-sm">Event Description</th>
+                    <th class="th-sm">Event Location</th>
+                    <th class="th-sm">Department</th>
+                    <th class="th-sm">Dental Record #</th>
+                    <th class="th-sm">Provder Name</th>
+                    <th class="th-sm">Patient Name</th>
+                    <th class="th-sm">Facts Documented?</th>
+                    <th>Notified Name</th>
+                    <th>Notify Date</th>
+                    <th>Birth Date</th>
+                    <th>Witness1</th>
+                    <th>Witness2</th>
+                    <th>Gender</th>
+                    <th>First Reported By</th>
+                    <th>Causes</th>
+                    <th>Reporter Action Taken </th>
+                    <th>Manager Action Taken</th>
+                    <th>Supervisor Name</th>
+                    <th>Note</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,14 +47,26 @@
                 <tr>
                     <td><b>@item.Status</b></td>
                     <td>@item.EventDate</td>
+                    <td>@item.EventTime</td>
                     <td>@item.EventDescription</td>
                     <td>@item.EventLocation</td>
                     <td>@item.EventDepartment</td>
                     <td>@item.DentalRecordNum</td>
                     <td>@item.ProviderName</td>
                     <td>@item.PatientName</td>
-                    <td>@item.NotifiedName</td>
                     <td>@item.FactsDocumented</td>
+                    <td>@item.NotifiedName</td>
+                    <td>@item.NotifyDate</td>
+                    <td>@item.BirthDate</td>
+                    <td>@item.Witness1</td>
+                    <td>@item.Witness2</td>
+                    <td>@item.Gender</td>
+                    <td>@item.FirstReportedBy</td>
+                    <td>@item.Causes</td>
+                    <td>@item.ReporterActionTaken </td>
+                    <td>@item.ManagerActionTaken</td>
+                    <td>@item.SupervisorName</td>
+                    <td>@item.Note</td>
                 </tr>
                 }
             </tbody>

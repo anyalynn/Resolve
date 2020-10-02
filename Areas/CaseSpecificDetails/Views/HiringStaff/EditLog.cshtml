@@ -17,16 +17,50 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 10%">Hire Reason</th>
-                    <th class="th-sm" style="width: 10%">Position Type</th>
-                    <th class="th-sm" style="width: 10%">Job Title</th>
-                    <th class="th-sm" style="width: 10%">SupOrg</th>
-                    <th class="th-sm" style="width: 10%">Pay Rate</th>
-                    <th class="th-sm" style="width: 10%">FTE</th>
-                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 10%">Proposed Hire Date</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Worker Type</th>
+                    <th class="th-sm">Hire Reason</th>
+                    <th class="th-sm">Position Type</th>
+                    <th class="th-sm">Job Title</th>
+                    <th class="th-sm">SupOrg</th>
+                    <th class="th-sm">Pay Rate</th>
+                    <th class="th-sm">FTE</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Proposed Hire Date</th>
+                    <th class="th-sm">Supervised </th>
+                    <th class="th-sm">Weekly Hours </th>
+                    <th class="th-sm">Recruitment Run</th>
+                    <th class="th-sm">Limited Recruitment </th>
+                    <th class="th-sm">Consequences</th>
+                    <th class="th-sm">Barriers</th>
+                    <th class="th-sm">Justification</th>
+                    <th class="th-sm">Note</th>
+                    <th class="th-sm">Employee Replaced </th>
+                    <th class="th-sm">Candidate Name</th>
+                    <th class="th-sm">Multiple BudgetsExplain                    </th>
+                    <th class="th-sm">Super</th>
+                    <th class="th-sm">Overtime Eligible </th>
+                    <th class="th-sm">EndDate</th>
+                    <th class="th-sm">PostDate</th>
+                    <th class="th-sm">Actual Hire Date</th>
+                    <th class="th-sm">Actual End Date </th>
+                    <th class="th-sm">Hiree Name</th>
+                    <th class="th-sm">PosNum</th>
+                    <th class="th-sm">Workday Req</th>
+                    <th class="th-sm">UWHires Req </th>
+                    <th class="th-sm">JobPosting Title</th>
+                    <th class="th-sm">Campus Box</th>
+                    <th class="th-sm">Location</th>
+                    <th class="th-sm">SupOrg Manager</th>
+                    <th class="th-sm">UWHires Contact</th>
+                    <th class="th-sm">Budget Purpose</th>
+                    <th class="th-sm">Work study</th>
+                    <th class="th-sm">Candidate Selected</th>
+                    <th class="th-sm">Citizenship</th>
+                    <th class="th-sm">Gender</th>
+                    <th class="th-sm">Birth Date</th>
+                    <th class="th-sm">Student Num</th>
+                    <th class="th-sm">Employee ID</th>
 
                 </tr>
             </thead>
@@ -44,6 +78,104 @@
                     <td>@item.FTE</td>
                     <td>@item.BudgetNumbers</td>
                     <td>@item.HireDate</td>
+                    <td> @item.Supervised
+                        </td>
+                    <td>
+                        @item.WeeklyHours
+                    </td>
+                    <td>
+                        @item.RecruitmentRun
+                    </td>
+                    <td>
+                        @item.LimitedRecruitment
+                    </td>
+                    <td>
+                        @item.Consequences
+                    </td>
+                    <td>
+                        @item.Barriers
+                    </td>
+                    <td>
+                        @item.Justification
+                    </td>
+                    <td>
+                        @item.Note
+                    </td>
+                    <td>
+                        @item.EmployeeReplaced
+                    </td>
+                    <td>
+                        @item.CandidateName
+                    </td>
+                    <td>
+                        @item.MultipleBudgetsExplain
+                    </td>
+                    <td>
+                        @item.Super
+                    </td>
+                    <td>
+                        @item.OvertimeEligible
+                    </td>
+                    <td>
+                        @item.EndDate
+                    </td>
+                    <td>
+                        @item.PostDate
+                    </td>
+                    <td>
+                        @item.ActualHireDate
+                    </td>
+                    <td>
+                        @item.ActualEndDate
+                    </td>
+                    <td>
+                        @item.HireeName
+                    </td>
+                    <td>
+                        @item.PosNum
+                    </td>
+                    <td>
+                        @item.WorkdayReq
+                    </td>
+                    <td>
+                        @item.UWHiresReq
+                    </td>
+                    <td>
+                        @item.JobPostingTitle
+                    </td>
+                    <td>
+                        @item.CampusBox
+                    </td>
+                    <td>
+                        @item.Location
+                    </td>
+                    <td>
+                        @item.SupOrgManager
+                    </td>
+                    <td>
+                        @item.UWHiresContact
+                    </td>
+                    <td>
+                        @item.BudgetPurpose
+                    </td>
+                    <td>
+                        @item.Workstudy
+                    </td>
+                    <td>
+                        @item.CandidateSelected
+                    </td>
+                    <td>
+                        @item.Citizenship
+                    </td>
+                    <td>
+                        @item.Gender
+                    </td>
+                       
+                    <td>
+                        @item.BirthDate
+                    </td>>
+                <td>@item.StudentNum     </td>
+                <td>@item.EmployeeID     </td>
                 </tr>
                 }
             </tbody>

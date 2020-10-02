@@ -19,39 +19,37 @@
             <tr>
                 <th class="th-sm" style="width: 10%">Value Type</th>
                 <th class="th-sm" style="width: 10%">Worker Type</th>
-                <th class="th-sm" style="width: 10%">Hire Type/Department</th>
-                <th class="th-sm" style="width: 10%">SupOrg</th>
+                <th class="th-sm" style="width: 10%">Hire Type</th>
                 <th class="th-sm" style="width: 10%">Name</th>
-                <th class="th-sm" style="width: 10%">Employee EID</th>
+                <th class="th-sm" style="width: 10%">Job Title</th>
+                <th class="th-sm" style="width: 10%">EID</th>
+                <th class="th-sm" style="width: 10%">Department</th>
+                <th class="th-sm" style="width: 10%">SupOrg</th>
                 <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                <th class="th-sm" style="width: 10%">JobTitle</th>
                 <th class="th-sm" style="width: 10%">Effective Start Date</th>
                 <th class="th-sm" style="width: 10%">Effective End Date</th>
+                <th class="th-sm" style="width: 10%">Description</th>
+                <th class="th-sm" style="width: 10%">Note</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in logs)
             {
-                <tr>
-                    <td><b>@item.Status</b></td>
-                    <td>@item.AWorkerType</td>
-                    @{ string workertype = item.AWorkerType.ToString(); }
-                    @if (@workertype == "Staff")
-                    {
-                        <td>@item.HireType</td>
-                    }
-                    @if (@workertype != "Staff")
-                    {
-                        <td>@item.Department</td>
-                    }
-                    <td>@item.SupOrg</td>
-                    <td>@item.Name</td>
-                    <td>@item.EmployeeEID</td>
-                    <td>@item.BudgetNumbers</td>
-                    <td>@item.JobTitle</td>
-                    <td>@item.EffectiveStartDate</td>
-                    <td>@item.EffectiveEndDate</td>
-                </tr>
+            <tr>
+                <td><b>@item.Status</b></td>
+                <td>@item.AWorkerType</td>
+                <td>@item.HireType</td>
+                <td>@item.Name</td>
+                <td>@item.JobTitle</td>
+                <td>@item.EmployeeEID</td>
+                <td>@item.Department</td>
+                <td>@item.SupOrg</td>
+                <td>@item.BudgetNumbers</td>
+                <td>@item.EffectiveStartDate</td>
+                <td>@item.EffectiveEndDate</td>
+                <td>@item.DetailedDescription</td>
+                <td>@item.Note</td>
+            </tr>
             }
         </tbody>
     </table>

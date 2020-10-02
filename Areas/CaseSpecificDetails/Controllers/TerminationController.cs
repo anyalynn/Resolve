@@ -90,6 +90,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (termination.AWorkerType.ToString() == "Staff")
+                {
+                    termination.Department = null;
+
+                }
+                else
+                {
+                    termination.HireType = null;
+
+                }
                 try
                 {
                     IQueryable<Termination> beforeCases = _context.Termination.Where(c => c.CaseID == id).AsNoTracking<Termination> ();

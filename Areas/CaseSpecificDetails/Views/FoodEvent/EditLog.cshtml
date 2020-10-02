@@ -16,31 +16,64 @@
     {
         <table class="table table-hover table-sm">
             <thead>
-               
+
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Department</th>
-                    <th class="th-sm" style="width: 10%">EmployeeName</th>
-                    <th class="th-sm" style="width: 10%">EventDate</th>
-                    <th class="th-sm" style="width: 20%">EventDescription</th>
-                    <th class="th-sm" style="width: 10%">BudgetNumbers</th>                   
-                    <th class="th-sm" style="width: 10%">BudgetPurpose</th>
-                    <th class="th-sm" style="width: 10%">Total</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Department</th>
+                    <th class="th-sm">Employee Name</th>
+                    <th class="th-sm">Event Date</th>
+                    <th class="th-sm">Event Description</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Budget Purpose</th>
+                    <th class="th-sm">Total</th>
+                    <th class="th-sm">Item1</th>
+                    <th class="th-sm">Cost1</th>
+                    <th class="th-sm">Item2</th>
+                    <th class="th-sm">Cost2</th>
+                    <th class="th-sm">Item3</th>
+                    <th class="th-sm">Cost3</th>
+                    <th class="th-sm">Item4</th>
+                    <th class="th-sm">Cost4</th>
+                    <th class="th-sm">Item5</th>
+                    <th class="th-sm">Cost5</th>
+                    <th class="th-sm">Item6</th>
+                    <th class="th-sm">Cost6</th>
+                    <th class="th-sm">Item7</th>
+                    <th class="th-sm">Cost7</th>
+                    <th class="th-sm">Justification</th>
+                    <th class="th-sm">#Attending</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in logs)
                 {
-                <tr>
-                    <td><b>@item.Status</b></td>
-                    <td>@item.TravelFoodDepartment</td>
-                    <td>@item.EmployeeName</td>
-                    <td>@item.EventDate</td>
-                    <td>@item.EventDescription</td>
-                    <td>@item.BudgetNumbers</td>                   
-                    <td>@item.BudgetPurpose</td>
-                    <td>@item.Total</td>
-                </tr>
+                    <tr>
+                        <td><b>@item.Status</b></td>
+                        <td>@item.TravelFoodDepartment</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.EventDate</td>
+                        <td>@item.EventDescription</td>
+                        <td>@item.BudgetNumbers</td>
+                        <td>@item.BudgetPurpose</td>
+                        <td>@item.Total</td>
+                        <td>@item.ItemName1</td>
+                        <td>@item.ItemCost1</td>
+                        <td>@item.ItemName2</td>
+                        <td>@item.ItemCost2</td>
+                        <td>@item.ItemName3</td>
+                        <td>@item.ItemCost3</td>
+                        <td>@item.ItemName4</td>
+                        <td>@item.ItemCost4</td>
+                        <td>@item.ItemName5</td>
+                        <td>@item.ItemCost5</td>
+                        <td>@item.ItemName6</td>
+                        <td>@item.ItemCost6 </td>
+                        <td>@item.ItemName7</td>
+                        <td>@item.ItemCost7</td>
+                        <td>@item.Justification</td>
+                        <td>@item.NumberAttending</td>
+
+                    </tr>
                 }
             </tbody>
         </table>

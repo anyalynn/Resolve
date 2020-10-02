@@ -59,13 +59,11 @@ namespace Resolve.Models
         [Display(Name = "Scholar Compensation Allowance Change")]
         public virtual ScholarCompAllowanceChange? ScholarCompAllowanceChange { get; set; }
 
-        public virtual Department Department { get; set; }
+        public virtual Department? Department { get; set; }
 
         [Display(Name = "Job Title")]
         public string JobTitle { get; set; }
 
-        [Display(Name = "Scholar/Resident Job Profile")]
-        public virtual ScholarJobProfile ScholarJobProfile { get; set; }
-
+       
     }
 }

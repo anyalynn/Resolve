@@ -73,6 +73,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (hrFaculty.FacHireReason.ToString() != "Replace" )
+                {
+                    hrFaculty.EmployeeReplaced = null;
+                }
                 try
                 {
                     IQueryable<HiringFaculty> beforeCases = _context.HiringFaculty.Where(c => c.CaseID == id).AsNoTracking<HiringFaculty>();
@@ -91,17 +95,23 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                         
                          var old_details = new HiringFacultyTracking
                         {
-                            Status = "old",
-                            CaseAuditID = audit.CaseAuditID,
-                            CaseID = beforeCase.CaseID,
-                            HireDate = beforeCase.HireDate,
-                            Department = beforeCase.Department,
-                            Salary = beforeCase.Salary,
-                            FacTitle = beforeCase.FacTitle,
-                            FacHireReason = beforeCase.FacHireReason,
-                            BudgetNumbers=beforeCase.BudgetNumbers,
-                            BudgetType = beforeCase.BudgetType,
-                            FTE = beforeCase.FTE
+                             Status = "old",
+                             CaseAuditID = audit.CaseAuditID,
+                             CaseID = beforeCase.CaseID,
+                             HireDate = beforeCase.HireDate,
+                             Department = beforeCase.Department,
+                             Salary = beforeCase.Salary,
+                             FacTitle = beforeCase.FacTitle,
+                             FacHireReason = beforeCase.FacHireReason,
+                             BudgetNumbers = beforeCase.BudgetNumbers,
+                             BudgetType = beforeCase.BudgetType,
+                             FTE = beforeCase.FTE,
+                             AdminRole = beforeCase.AdminRole,
+                             EmployeeReplaced = beforeCase.EmployeeReplaced,
+                             Justification = beforeCase.Justification,
+                             Barriers = beforeCase.Barriers,
+                             Consequences = beforeCase.Consequences,
+                             CandidateName = beforeCase.CandidateName
                          };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -117,7 +127,13 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             FacHireReason = hrFaculty.FacHireReason,
                             BudgetNumbers = hrFaculty.BudgetNumbers,
                             BudgetType = hrFaculty.BudgetType,
-                            FTE = hrFaculty.FTE
+                            FTE = hrFaculty.FTE,
+                            AdminRole = hrFaculty.AdminRole,
+                            EmployeeReplaced = hrFaculty.EmployeeReplaced,
+                            Justification = hrFaculty.Justification,
+                            Barriers = hrFaculty.Barriers,
+                            Consequences = hrFaculty.Consequences,
+                            CandidateName = hrFaculty.CandidateName
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

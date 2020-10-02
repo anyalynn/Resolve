@@ -41,7 +41,7 @@ namespace Resolve.Models
         public string BudgetNumbers { get; set; }
 
         [Display(Name = "# Attending")]
-        public int NumberAttending { get; set; }
+        public int? NumberAttending { get; set; }
 
         [Display(Name = "Budget In Deficit")]
         public bool BudgetDeficit { get; set; }

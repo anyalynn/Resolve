@@ -35,9 +35,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, [Bind("NotifyDate,BirthDate,EventDate,EventDepartment," +
-            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName,Birthdate," +
+            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName," +
             "Gender,FirstReportedBy,Causes,ReporterActionTaken,ManagerActionTaken,SupervisorName,EventDescription," +
-            "Note")] PatientEvent patientEvent)
+            "EventTime,Note")] PatientEvent patientEvent)
         {
             if (ModelState.IsValid)
             {
@@ -69,9 +69,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,NotifyDate,BirthDate,EventDate,EventDepartment," +
-            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName,Birthdate," +
+            "EventLocation,NotifiedName,DentalRecordNum,FactsDocumented,Witness1,Witness2,PatientName,ProviderName," +
             "Gender,FirstReportedBy,Causes,ReporterActionTaken,ManagerActionTaken,SupervisorName,EventDescription," +
-            "Note")] PatientEvent patientEvent)
+            "EventTime,Note")] PatientEvent patientEvent)
 
         {
             if (id != patientEvent.CaseID)
@@ -103,6 +103,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = beforeCase.CaseID,
                             EventDescription = beforeCase.EventDescription,                          
                             EventDate = beforeCase.EventDate,
+                            EventTime = beforeCase.EventTime,
                             EventLocation = beforeCase.EventLocation,
                             EventDepartment = beforeCase.EventDepartment,
                             DentalRecordNum = beforeCase.DentalRecordNum,
@@ -110,6 +111,17 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             PatientName = beforeCase.PatientName,
                             ProviderName = beforeCase.ProviderName,
                             FactsDocumented=beforeCase.FactsDocumented,
+                            NotifyDate = beforeCase.NotifyDate,
+                            BirthDate = beforeCase.BirthDate,                           
+                            Witness1 = beforeCase.Witness1,
+                            Witness2 = beforeCase.Witness2,
+                            Gender = beforeCase.Gender,
+                            FirstReportedBy = beforeCase.FirstReportedBy,
+                            Causes = beforeCase.Causes,
+                            ReporterActionTaken = beforeCase.ReporterActionTaken,
+                            ManagerActionTaken = beforeCase.ManagerActionTaken,
+                            SupervisorName = beforeCase.SupervisorName,                           
+                            Note = beforeCase.Note
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -120,6 +132,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = patientEvent.CaseID,
                             EventDescription = patientEvent.EventDescription,                           
                             EventDate = patientEvent.EventDate,
+                            EventTime = patientEvent.EventTime,
                             EventLocation = patientEvent.EventLocation,
                             EventDepartment = patientEvent.EventDepartment,
                             DentalRecordNum = patientEvent.DentalRecordNum,
@@ -127,6 +140,17 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             PatientName = patientEvent.PatientName,
                             ProviderName = patientEvent.ProviderName,
                             FactsDocumented = patientEvent.FactsDocumented,
+                            NotifyDate = patientEvent.NotifyDate,
+                            BirthDate = patientEvent.BirthDate,
+                            Witness1 = patientEvent.Witness1,
+                            Witness2 = patientEvent.Witness2,
+                            Gender = patientEvent.Gender,
+                            FirstReportedBy = patientEvent.FirstReportedBy,
+                            Causes = patientEvent.Causes,
+                            ReporterActionTaken = patientEvent.ReporterActionTaken,
+                            ManagerActionTaken = patientEvent.ManagerActionTaken,
+                            SupervisorName = patientEvent.SupervisorName,
+                            Note = patientEvent.Note
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

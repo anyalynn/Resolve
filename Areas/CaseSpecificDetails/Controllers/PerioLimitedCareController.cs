@@ -107,6 +107,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             bwxrays = beforeCase.bwxrays,
                             paxrays = beforeCase.paxrays,
                             TChart = beforeCase.TChart,
+                            Prophy = beforeCase.Prophy,
+                            Other = beforeCase.Other,
+                            Note = beforeCase.Note
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -128,6 +131,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             bwxrays = perioLimitedCare.bwxrays,
                             paxrays = perioLimitedCare.paxrays,
                             TChart = perioLimitedCare.TChart,
+                            Prophy = perioLimitedCare.Prophy,
+                            Other = perioLimitedCare.Other,
+                            Note = perioLimitedCare.Note
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

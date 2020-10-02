@@ -101,7 +101,24 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             TravelFoodDepartment = beforeCase.TravelFoodDepartment,
                             BudgetNumbers = beforeCase.BudgetNumbers,
                             BudgetPurpose = beforeCase.BudgetPurpose,
-                            Total = beforeCase.Total
+                            Total = beforeCase.Total,
+                            ItemCost1 = beforeCase.ItemCost1,
+                            ItemCost2 = beforeCase.ItemCost2,
+                            ItemCost3 = beforeCase.ItemCost3,
+                            ItemCost4 = beforeCase.ItemCost4,
+                            ItemCost5 = beforeCase.ItemCost5,
+                            ItemCost6 = beforeCase.ItemCost6,
+                            ItemCost7 = beforeCase.ItemCost7,
+                            ItemName1 = beforeCase.ItemName1,
+                            ItemName2 = beforeCase.ItemName2,
+                            ItemName3 = beforeCase.ItemName3,
+                            ItemName4 = beforeCase.ItemName4,
+                            ItemName5 = beforeCase.ItemName5,
+                            ItemName6 = beforeCase.ItemName6,
+                            ItemName7 = beforeCase.ItemName7,
+                             NumberAttending = beforeCase.NumberAttending,
+                            Justification = beforeCase.Justification
+
                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -116,7 +133,23 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             EventDate = foodEvent.EventDate,
                             BudgetNumbers = foodEvent.BudgetNumbers,
                             BudgetPurpose = foodEvent.BudgetPurpose,                          
-                            Total = foodEvent.Total
+                            Total = foodEvent.Total,
+                            ItemCost1 = foodEvent.ItemCost1,
+                            ItemCost2 = foodEvent.ItemCost2,
+                            ItemCost3 = foodEvent.ItemCost3,
+                            ItemCost4 = foodEvent.ItemCost4,
+                            ItemCost5 = foodEvent.ItemCost5,
+                            ItemCost6 = foodEvent.ItemCost6,
+                            ItemCost7 = foodEvent.ItemCost7,
+                            ItemName1 = foodEvent.ItemName1,
+                            ItemName2 = foodEvent.ItemName2,
+                            ItemName3 = foodEvent.ItemName3,
+                            ItemName4 = foodEvent.ItemName4,
+                            ItemName5 = foodEvent.ItemName5,
+                            ItemName6 = foodEvent.ItemName6,
+                            ItemName7 = foodEvent.ItemName7,
+                            NumberAttending = foodEvent.NumberAttending,
+                            Justification = foodEvent.Justification
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

@@ -17,14 +17,16 @@
         <table class="table table-hover table-sm">
             <thead>
                 <tr>
-                    <th class="th-sm" style="width: 10%">Value Type</th>
-                    <th class="th-sm" style="width: 10%">Worker Type</th>
-                    <th class="th-sm" style="width: 15%">Hire Type</th>
-                    <th class="th-sm" style="width: 10%">Name</th>
-                    <th class="th-sm" style="width: 10%">SupOrg</th>
-                    <th class="th-sm" style="width: 10%">EmployeeEID</th>
-                    <th class="th-sm" style="width: 10%">Budget Numbers</th>
-                    <th class="th-sm" style="width: 15%">Effective Start Date</th>
+                    <th class="th-sm">Value Type</th>
+                    <th class="th-sm">Worker Type</th>
+                    <th class="th-sm">Hire Type</th>
+                    <th class="th-sm">Name</th>
+                    <th class="th-sm">Job Title</th>
+                    <th class="th-sm">SupOrg</th>
+                    <th class="th-sm">EmployeeEID</th>
+                    <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Effective Start Date</th>
+                    <th class="th-sm">Description</th>
 
                 </tr>
             </thead>
@@ -36,10 +38,12 @@
                     <td>@item.CWorkerType</td>
                     <td>@item.HireType</td>
                     <td>@item.Name</td>
+                    <td>@item.JobTitle</td>
                     <td>@item.SupOrg</td>
                     <td>@item.EmployeeEID</td>
                     <td>@item.BudgetNumbers</td>
-                    <td>@item.EffectiveStartDate</td>                   
+                    <td>@item.EffectiveStartDate</td>
+                    <td>@item.DetailedDescription</td>
                 </tr>
                 }
             </tbody>

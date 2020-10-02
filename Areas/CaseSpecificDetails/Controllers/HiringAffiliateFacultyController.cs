@@ -115,8 +115,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseID = hrAffFaculty.CaseID,
                             HireDate = hrAffFaculty.HireDate,
                             Department = hrAffFaculty.Department,
-                            Name = hrAffFaculty.Name,
-                            
+                            Name = hrAffFaculty.Name,                            
                             FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle
                         };
                         _context.Add(new_details);

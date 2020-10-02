@@ -36,8 +36,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int id, [Bind("JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
             "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
+            "MultipleBudgetsExplain,Super,OvertimeEligible,ActualEndDate,PostDate,ActualHireDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
+            "JobPostingTitle,CampusBox,Location,SupOrgManager,UWHiresContact,EndDate,BudgetPurpose,Workstudy,CandidateSelected,Citizenship,Gender,BirthDate,StudentNum,EmployeeID")] HiringStaff hrStaff)
         {
             if (ModelState.IsValid)
             {
@@ -69,8 +69,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("CaseID,JobTitle,HireDate,SupOrg,StaffPositionType,StaffWorkerType,StaffHireReason," +
             "Supervised,WeeklyHours,RecruitmentRun,LimitedRecruitment,Consequences,Barriers,Justification,FTE,Note,PayRate,EmployeeReplaced,CandidateName," +
-            "MultipleBudgetsExplain,Super,OvertimeEligible,EndDate,PostDate,ActualHireDate,ActualEndDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
-            "JobPostingTitle,CampusBox,Location,EmployeeNum,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSElected,Citizenship,Gender,Birthdate,StudentNum,EmployeeID")] HiringStaff hrStaff)
+            "MultipleBudgetsExplain,Super,OvertimeEligible,PostDate,EndDate,ActualHireDate,HireeName,PosNum,WorkdayReq,UWHiresReq,BudgetNumbers,BudgetType," +
+            "JobPostingTitle,CampusBox,Location,SupOrgManager,UWHiresContact,ActualEndDate,BudgetPurpose,Workstudy,CandidateSelected,Citizenship,Gender,BirthDate,StudentNum,EmployeeID")] HiringStaff hrStaff)
         { 
             if (id != hrStaff.CaseID)
             {
@@ -79,6 +79,34 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                if (hrStaff.StaffWorkerType.ToString() == "Student")
+                {
+                    hrStaff.Location = null;
+                    hrStaff.CampusBox = null;
+                    hrStaff.Super = false;
+                    hrStaff.Supervised = null;
+                    hrStaff.OvertimeEligible = false;
+                    hrStaff.JobPostingTitle = null;
+                    hrStaff.RecruitmentRun = null;
+                    hrStaff.LimitedRecruitment = null;
+                    hrStaff.UWHiresContact = null;
+                    hrStaff.PostDate = null;
+
+                }
+                else
+                {
+                    hrStaff.Workstudy = false;
+                    hrStaff.Citizenship = null;
+                    hrStaff.BirthDate = null;
+                    hrStaff.Gender = null;
+                    hrStaff.Workstudy = false;
+                    hrStaff.StudentNum = null;
+                    hrStaff.EmployeeID = null;                  
+                }
+                if (hrStaff.StaffHireReason.ToString() != "Replace" && hrStaff.StaffHireReason.ToString() != "ReplaceNew")
+                {
+                    hrStaff.EmployeeReplaced = null;
+                }
                 try
                 {
                     IQueryable<HiringStaff> beforeCases = _context.HiringStaff.Where(c => c.CaseID == id).AsNoTracking<HiringStaff>();
@@ -109,8 +137,42 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             StaffHireReason = beforeCase.StaffHireReason,
                             BudgetNumbers=beforeCase.BudgetNumbers,
                             BudgetType = beforeCase.BudgetType,
-                            FTE = beforeCase.FTE
-                         };
+                            FTE = beforeCase.FTE,
+                            Supervised = beforeCase.Supervised,
+                            WeeklyHours = beforeCase.WeeklyHours,
+                            RecruitmentRun = beforeCase.RecruitmentRun,
+                            LimitedRecruitment = beforeCase.LimitedRecruitment,
+                            Consequences = beforeCase.Consequences,
+                            Barriers = beforeCase.Barriers,
+                            Justification = beforeCase.Justification,
+                            Note = beforeCase.Note,
+                            EmployeeReplaced = beforeCase.EmployeeReplaced,
+                            CandidateName = beforeCase.CandidateName,
+                            MultipleBudgetsExplain = beforeCase.MultipleBudgetsExplain,
+                            Super = beforeCase.Super,
+                            OvertimeEligible = beforeCase.OvertimeEligible,
+                            EndDate = beforeCase.EndDate,
+                            PostDate = beforeCase.PostDate,
+                            ActualHireDate = beforeCase.ActualHireDate,
+                            ActualEndDate = beforeCase.ActualEndDate,
+                            HireeName = beforeCase.HireeName,
+                            PosNum = beforeCase.PosNum,
+                            WorkdayReq = beforeCase.WorkdayReq,
+                            UWHiresReq = beforeCase.UWHiresReq,
+                            JobPostingTitle = beforeCase.JobPostingTitle,
+                            CampusBox = beforeCase.CampusBox,
+                            Location = beforeCase.Location,                            
+                            SupOrgManager = beforeCase.SupOrgManager,
+                            UWHiresContact = beforeCase.UWHiresContact,                           
+                            BudgetPurpose = beforeCase.BudgetPurpose,
+                            Workstudy = beforeCase.Workstudy,
+                            CandidateSelected = beforeCase.CandidateSelected,
+                            Citizenship = beforeCase.Citizenship,
+                            Gender = beforeCase.Gender,
+                            BirthDate = beforeCase.BirthDate,
+                            StudentNum = beforeCase.StudentNum,
+                            EmployeeID = beforeCase.EmployeeID
+                        };
                         _context.Add(old_details);
                         // Adding current details to tracking
                         var new_details = new HiringStaffTracking
@@ -127,7 +189,41 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             StaffHireReason = hrStaff.StaffHireReason,
                             BudgetNumbers = hrStaff.BudgetNumbers,
                             BudgetType = hrStaff.BudgetType,
-                            FTE = hrStaff.FTE
+                            FTE = hrStaff.FTE,
+                            Supervised = hrStaff.Supervised,
+                            WeeklyHours = hrStaff.WeeklyHours,
+                            RecruitmentRun = hrStaff.RecruitmentRun,
+                            LimitedRecruitment = hrStaff.LimitedRecruitment,
+                            Consequences = hrStaff.Consequences,
+                            Barriers = hrStaff.Barriers,
+                            Justification = hrStaff.Justification,
+                            Note = hrStaff.Note,
+                            EmployeeReplaced = hrStaff.EmployeeReplaced,
+                            CandidateName = hrStaff.CandidateName,
+                            MultipleBudgetsExplain = hrStaff.MultipleBudgetsExplain,
+                            Super = hrStaff.Super,
+                            OvertimeEligible = hrStaff.OvertimeEligible,
+                            EndDate = hrStaff.EndDate,
+                            PostDate = hrStaff.PostDate,
+                            ActualHireDate = hrStaff.ActualHireDate,
+                            ActualEndDate = hrStaff.ActualEndDate,
+                            HireeName = hrStaff.HireeName,
+                            PosNum = hrStaff.PosNum,
+                            WorkdayReq = hrStaff.WorkdayReq,
+                            UWHiresReq = hrStaff.UWHiresReq,
+                            JobPostingTitle = hrStaff.JobPostingTitle,
+                            CampusBox = hrStaff.CampusBox,
+                            Location = hrStaff.Location,
+                            SupOrgManager = hrStaff.SupOrgManager,
+                            UWHiresContact = hrStaff.UWHiresContact,
+                            BudgetPurpose = hrStaff.BudgetPurpose,
+                            Workstudy = hrStaff.Workstudy,
+                            CandidateSelected = hrStaff.CandidateSelected,
+                            Citizenship = hrStaff.Citizenship,
+                            Gender = hrStaff.Gender,
+                            BirthDate = hrStaff.BirthDate,
+                            StudentNum = hrStaff.StudentNum,
+                            EmployeeID = hrStaff.EmployeeID
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity
