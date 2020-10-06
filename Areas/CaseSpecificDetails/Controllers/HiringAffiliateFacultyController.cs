@@ -102,10 +102,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
                             HireDate = beforeCase.HireDate,
-                             Department = beforeCase.Department,
+                            Department = beforeCase.Department,
                             Name = beforeCase.Name,
-                            FacAffiliateTitle = beforeCase.FacAffiliateTitle
-        };
+                            FacAffiliateTitle = beforeCase.FacAffiliateTitle,
+                            Note = beforeCase.Note,
+                         };
                         _context.Add(old_details);
                         // Adding current details to tracking
                         var new_details = new HiringAffiliateFacultyTracking
@@ -116,7 +117,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             HireDate = hrAffFaculty.HireDate,
                             Department = hrAffFaculty.Department,
                             Name = hrAffFaculty.Name,                            
-                            FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle
+                            FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle,
+                            Note = hrAffFaculty.Note,
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

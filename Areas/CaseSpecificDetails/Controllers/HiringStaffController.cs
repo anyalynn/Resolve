@@ -101,11 +101,18 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     hrStaff.Gender = null;
                     hrStaff.Workstudy = false;
                     hrStaff.StudentNum = null;
-                    hrStaff.EmployeeID = null;                  
+                    hrStaff.EmployeeID = null;
+                    hrStaff.CandidateName = null;
+                    hrStaff.CandidateSelected = false;
+
                 }
                 if (hrStaff.StaffHireReason.ToString() != "Replace" && hrStaff.StaffHireReason.ToString() != "ReplaceNew")
                 {
                     hrStaff.EmployeeReplaced = null;
+                }
+                if (hrStaff.Super == false)
+                {
+                    hrStaff.Supervised = null;
                 }
                 try
                 {

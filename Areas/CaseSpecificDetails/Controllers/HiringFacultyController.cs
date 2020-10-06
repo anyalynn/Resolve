@@ -111,7 +111,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                              Justification = beforeCase.Justification,
                              Barriers = beforeCase.Barriers,
                              Consequences = beforeCase.Consequences,
-                             CandidateName = beforeCase.CandidateName
+                             CandidateName = beforeCase.CandidateName,
+                             Note = beforeCase.Note
                          };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -133,7 +134,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Justification = hrFaculty.Justification,
                             Barriers = hrFaculty.Barriers,
                             Consequences = hrFaculty.Consequences,
-                            CandidateName = hrFaculty.CandidateName
+                            CandidateName = hrFaculty.CandidateName,
+                            Note = hrFaculty.Note
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

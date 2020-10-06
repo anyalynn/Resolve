@@ -8,6 +8,7 @@
         jQuery(document).ready(function ($) {
             var MyHireType = "@Model.StaffHireReason";
             var MyWorkerType = "@Model.StaffWorkerType";
+            var MySuper = "@Model.Super";
             if (MyWorkerType == "Student")
             {
                 $("#Student").show();
@@ -28,7 +29,14 @@
                 $("#NotReplace").show();
                 $("#Replacement").hide();
                }
-           
+            if (MySuper == "True")
+                {    $("#Supervised").show();
+                }
+
+            else {
+                $("#Supervised").hide();
+
+                }
             $("#StaffHireReason").change(function () {
                 if ($(this).find(':selected').text() == "New Position") {
                     $("#NotReplace").show();
@@ -59,6 +67,17 @@
                 } else {
                     $("#Employee").show();
                     $("#Student").hide();
+                }
+            });
+            $("#Super").change(function () {
+                if ($(this).is(':checked')) {
+               
+                    $("#Supervised").show();
+                }
+
+                 else {
+                    $("#Supervised").hide();
+
                 }
             });
         });
@@ -222,14 +241,15 @@
                     </label>
                     <span asp-validation-for="Super" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Supervised" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
-                    <select asp-for="Supervised" asp-items="Html.GetEnumSelectList<Supervised>()" class="form-control">
-                        <option selected="selected" value="">Please select</option>
-                    </select>
-                    <span asp-validation-for="Supervised" class="text-danger"></span>
+                <div id="Supervised">
+                    <div class="form-group">
+                        <label asp-for="Supervised" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                        <select asp-for="Supervised" asp-items="Html.GetEnumSelectList<Supervised>()" class="form-control">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                        <span asp-validation-for="Supervised" class="text-danger"></span>
+                    </div>
                 </div>
-
                 <div class="form-group">
                     <label asp-for="JobPostingTitle" class="control-label"></label>
                     <input asp-for="JobPostingTitle" class="form-control" />

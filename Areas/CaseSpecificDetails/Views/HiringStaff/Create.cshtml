@@ -10,6 +10,7 @@
             $("#Replacement").hide();
             $("#Student").hide();
             $("#Employee").hide();
+            $("#Supervised").hide();
             $("#StaffWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Student") {
                     $("#Student").show();
@@ -41,6 +42,17 @@
                     $("NotReplace").hide();
                     $("#Replacement").hide();
                    
+                }
+            });
+            $("#Super").change(function () {
+                if ($(this).is(':checked')) {
+
+                    $("#Supervised").show();
+                }
+
+                else {
+                    $("#Supervised").hide();
+
                 }
             });
         });
@@ -203,12 +215,14 @@
                     </label>
                     <span asp-validation-for="Super" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Supervised" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
-                    <select asp-for="Supervised" asp-items="Html.GetEnumSelectList<Supervised>()" class="form-control">
-                        <option selected="selected" value="">Please select</option>
-                    </select>
-                    <span asp-validation-for="Supervised" class="text-danger"></span>
+                <div id="Supervised">
+                    <div class="form-group">
+                        <label asp-for="Supervised" class="control-label"></label> (<span class="text-danger">*if applicable</span>)
+                        <select asp-for="Supervised" asp-items="Html.GetEnumSelectList<Supervised>()" class="form-control">
+                            <option selected="selected" value="">Please select</option>
+                        </select>
+                        <span asp-validation-for="Supervised" class="text-danger"></span>
+                    </div>
                 </div>
 
                 <div class="form-group">

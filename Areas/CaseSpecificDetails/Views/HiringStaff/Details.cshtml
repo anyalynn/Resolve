@@ -129,19 +129,23 @@
             @Html.DisplayFor(modelItem => item.WeeklyHours)
         </dd>
 
+        @{ var suptype = item.Super; }
+        @if (@suptype == true)
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Super)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Super)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Supervised)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Supervised)
+            </dd>
+        }
 
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.CandidateSelected)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.CandidateSelected)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.CandidateName)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.CandidateName)
-        </dd>
         @if (@workertype != "Student")
         {
             <dt class="col-sm-5">
@@ -156,18 +160,7 @@
             <dd class="col-sm-7">
                 @Html.DisplayFor(modelItem => item.CampusBox)
             </dd>
-            <dt class="col-sm-5">
-                @Html.DisplayNameFor(modelItem => item.Super)
-            </dt>
-            <dd class="col-sm-7">
-                @Html.DisplayFor(modelItem => item.Super)
-            </dd>
-            <dt class="col-sm-5">
-                @Html.DisplayNameFor(modelItem => item.Supervised)
-            </dt>
-            <dd class="col-sm-7">
-                @Html.DisplayFor(modelItem => item.Supervised)
-            </dd>
+
             <dt class="col-sm-5">
                 @Html.DisplayNameFor(modelItem => item.OvertimeEligible)
             </dt>
@@ -212,6 +205,18 @@
 
         @if (@workertype == "Student")
         {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.CandidateSelected)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.CandidateSelected)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.CandidateName)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.CandidateName)
+            </dd>
             <dt class="col-sm-5">
                 @Html.DisplayNameFor(modelItem => item.Workstudy)
             </dt>
