@@ -10,90 +10,95 @@
         <dd class="col-sm-7">
             @Html.DisplayFor(modelItem => item.FacHireReason)
         </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.FacTitle)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.FacTitle)
+        @{ string hirereason = item.FacHireReason.ToString(); }
+        @if (@hirereason == "Replace")
+        {
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.EmployeeReplaced)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.EmployeeReplaced)
+            </dd>
+        }
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.FacTitle)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.FacTitle)
 
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.FTE)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.FTE)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.HireDate)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.HireDate)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Department)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Department)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Salary)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Salary)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.BudgetType)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.BudgetType)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.BudgetNumbers)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Justification)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Justification)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Consequences)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Consequences)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Barriers)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Barriers)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.AdminRole)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.AdminRole)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.EmployeeReplaced)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.EmployeeReplaced)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.CandidateName)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.CandidateName)
-        </dd>
-        <dt class="col-sm-5">
-            @Html.DisplayNameFor(modelItem => item.Note)
-        </dt>
-        <dd class="col-sm-7">
-            @Html.DisplayFor(modelItem => item.Note)
-        </dd>
-    </dl>
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.FTE)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.FTE)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.HireDate)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.HireDate)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Department)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Department)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Salary)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Salary)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.BudgetType)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.BudgetType)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.BudgetNumbers)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.BudgetNumbers)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Justification)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Justification)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Consequences)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Consequences)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Barriers)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Barriers)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.AdminRole)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.AdminRole)
+            </dd>
+
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.CandidateName)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.CandidateName)
+            </dd>
+            <dt class="col-sm-5">
+                @Html.DisplayNameFor(modelItem => item.Note)
+            </dt>
+            <dd class="col-sm-7">
+                @Html.DisplayFor(modelItem => item.Note)
+            </dd>
+        </dl>
 }

@@ -50,7 +50,11 @@
                 <input asp-for="TravelEndDate" class="form-control" />
                 <span asp-validation-for="TravelEndDate" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="NumNights" class="control-label required-field"></label>
+                <input asp-for="NumNights" class="form-control" />
+                <span asp-validation-for="NumNights" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="TravelFoodDepartment" class="control-label required-field"></label>
                 <select asp-for="TravelFoodDepartment" asp-items="Html.GetEnumSelectList<TravelFoodDepartment>()" class="form-control">
@@ -63,7 +67,7 @@
                 <input asp-for="Reason" class="form-control" />
                 <span asp-validation-for="Reason" class="text-danger"></span>
             </div>
-          
+
             <div class="form-group">
                 <label asp-for="BudgetPurpose" class="control-label required-field"></label>
                 <select asp-for="BudgetPurpose" asp-items="Html.GetEnumSelectList<BudgetPurpose>()" class="form-control">

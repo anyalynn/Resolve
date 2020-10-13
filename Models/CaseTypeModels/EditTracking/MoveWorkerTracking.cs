@@ -26,6 +26,9 @@ namespace Resolve.Models
         [Display(Name = "Hire Type")]
         public virtual HireType? HireType { get; set; }
 
+        [Display(Name = "Original SupOrg")]
+        public virtual SupOrg? OSupOrg { get; set; }
+
         [Display(Name = "Proposed SupOrg")]
         public virtual SupOrg? SupOrg { get; set; }
 

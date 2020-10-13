@@ -147,7 +147,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             ScholarReqType = scholarHire.ScholarReqType,
                             Department = scholarHire.Department,
                             JobTitle = scholarHire.JobTitle,
-                            EffectiveDate = beforeCase.EffectiveDate,
+                            EffectiveDate = scholarHire.EffectiveDate,
                             SupOrg = scholarHire.SupOrg,
                             GradJobProfile = scholarHire.GradJobProfile,
                             Note = scholarHire.Note,

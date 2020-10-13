@@ -23,8 +23,13 @@
                     <th class="th-sm">Employee Name</th>
                     <th class="th-sm">Event Date</th>
                     <th class="th-sm">Event Description</th>
+                    <th class="th-sm">Budget Deficit</th>
+                    <th class="th-sm">Approval Form</th>
                     <th class="th-sm">Budget Numbers</th>
+                    <th class="th-sm">Note</th>
                     <th class="th-sm">Budget Purpose</th>
+                    <th class="th-sm">Justification</th>
+                    <th class="th-sm">#Attending</th>
                     <th class="th-sm">Total</th>
                     <th class="th-sm">Item1</th>
                     <th class="th-sm">Cost1</th>
@@ -40,40 +45,43 @@
                     <th class="th-sm">Cost6</th>
                     <th class="th-sm">Item7</th>
                     <th class="th-sm">Cost7</th>
-                    <th class="th-sm">Justification</th>
-                    <th class="th-sm">#Attending</th>
+
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in logs)
                 {
-                    <tr>
-                        <td><b>@item.Status</b></td>
-                        <td>@item.TravelFoodDepartment</td>
-                        <td>@item.EmployeeName</td>
-                        <td>@item.EventDate</td>
-                        <td>@item.EventDescription</td>
-                        <td>@item.BudgetNumbers</td>
-                        <td>@item.BudgetPurpose</td>
-                        <td>@item.Total</td>
-                        <td>@item.ItemName1</td>
-                        <td>@item.ItemCost1</td>
-                        <td>@item.ItemName2</td>
-                        <td>@item.ItemCost2</td>
-                        <td>@item.ItemName3</td>
-                        <td>@item.ItemCost3</td>
-                        <td>@item.ItemName4</td>
-                        <td>@item.ItemCost4</td>
-                        <td>@item.ItemName5</td>
-                        <td>@item.ItemCost5</td>
-                        <td>@item.ItemName6</td>
-                        <td>@item.ItemCost6 </td>
-                        <td>@item.ItemName7</td>
-                        <td>@item.ItemCost7</td>
-                        <td>@item.Justification</td>
-                        <td>@item.NumberAttending</td>
+                <tr>
+                    <td><b>@item.Status</b></td>
+                    <td>@item.TravelFoodDepartment</td>
+                    <td>@item.EmployeeName</td>
+                    <td>@item.EventDate</td>
+                    <td>@item.EventDescription</td>
+                    <td>@item.BudgetDeficit</td>
+                    <td>@item.FoodApprovalForm</td>
+                    <td>@item.BudgetNumbers</td>
+                    <td>@item.Note</td>
+                    <td>@item.BudgetPurpose</td>
+                    <td>@item.Justification</td>
+                    <td>@item.NumberAttending</td>
+                    <td>@item.Total</td>
+                    <td>@item.ItemName1</td>
+                    <td>@item.ItemCost1</td>
+                    <td>@item.ItemName2</td>
+                    <td>@item.ItemCost2</td>
+                    <td>@item.ItemName3</td>
+                    <td>@item.ItemCost3</td>
+                    <td>@item.ItemName4</td>
+                    <td>@item.ItemCost4</td>
+                    <td>@item.ItemName5</td>
+                    <td>@item.ItemCost5</td>
+                    <td>@item.ItemName6</td>
+                    <td>@item.ItemCost6 </td>
+                    <td>@item.ItemName7</td>
+                    <td>@item.ItemCost7</td>
 
-                    </tr>
+
+                </tr>
                 }
             </tbody>
         </table>

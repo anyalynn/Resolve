@@ -20,6 +20,9 @@ namespace Resolve.Models
         [Display(Name = "Worker Type")]
         public virtual CWorkerType? CWorkerType { get; set; }
 
+        [Display(Name = "Original SupOrg")]
+        public virtual SupOrg? OSupOrg { get; set; }
+
         [Display(Name = "Proposed SupOrg")]
         public virtual SupOrg? SupOrg { get; set; }
 

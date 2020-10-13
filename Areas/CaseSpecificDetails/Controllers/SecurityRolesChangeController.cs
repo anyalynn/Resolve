@@ -114,6 +114,10 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     securityChange.HireType = null;
 
                 }
+                if (securityChange.IncludeSubordinates==false)
+                {
+                    securityChange.SupervisedAccess = null;
+                }
                 try
                 {
                     IQueryable<SecurityRolesChange> beforeCases = _context.SecurityRolesChange.Where(c => c.CaseID == id).AsNoTracking<SecurityRolesChange>();

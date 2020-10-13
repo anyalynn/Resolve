@@ -29,6 +29,10 @@ namespace Resolve.Models
         Administration,
         [Display(Name = "Clinical")]
         Clinical,
+        [Display(Name = "Discretionary")]
+        Discretionary,
+        [Display(Name = "Endowments")]
+        Endowments,
         [Display(Name = "Research")]
         Research,
         [Display(Name = "Teaching")]
@@ -104,6 +108,9 @@ namespace Resolve.Models
 
         [Display(Name = "Employee Name"), Required]
         public string EmployeeName { get; set; }
+
+        [Display(Name = "Number of Nights")]
+        public string NumNights { get; set; }
 
         [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }

@@ -34,7 +34,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,Budget,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, TravelFoodDepartment, Destination,Note,Reason")] Travel travel)
+        public async Task<IActionResult> Create(int id, [Bind("EmployeeName,NumNights,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate, TravelFoodDepartment, Destination,Note,Reason")] Travel travel)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,Budget,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate,TravelFoodDepartment,Note,Destination,Reason")] Travel travel)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,EmployeeName,NumNights,BudgetPurpose,BudgetNumbers,AirfareCost,RegistrationCost,TransportationCost,OtherCost1,OtherCost2,MealsCost,HotelsCost,Other1,Other2,Total,TravelStartDate,TravelEndDate,TravelFoodDepartment,Note,Destination,Reason")] Travel travel)
 
         {
             if (id != travel.CaseID)
@@ -103,7 +103,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             BudgetNumbers = beforeCase.BudgetNumbers,
                             BudgetPurpose = beforeCase.BudgetPurpose,
                             TravelFoodDepartment = beforeCase.TravelFoodDepartment,
-                            Total = beforeCase.Total,                           
+                            Total = beforeCase.Total,
+                            NumNights = beforeCase.NumNights,
                             AirfareCost = beforeCase.AirfareCost,
                             RegistrationCost = beforeCase.RegistrationCost,
                             TransportationCost = beforeCase.TransportationCost,
@@ -130,6 +131,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             BudgetPurpose = travel.BudgetPurpose,
                             TravelFoodDepartment = travel.TravelFoodDepartment,
                             Total = travel.Total,
+                            NumNights = travel.NumNights,
                             AirfareCost = travel.AirfareCost,
                             RegistrationCost = travel.RegistrationCost,
                             TransportationCost = travel.TransportationCost,
