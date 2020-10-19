@@ -47,8 +47,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveStartDate = termination.EffectiveStartDate,
                     SupOrg = termination.SupOrg,
                     EmployeeEID = termination.EmployeeEID,
-                    Note = termination.Note,
-                    BudgetNumbers = termination.BudgetNumbers,
+                    Note = termination.Note,                  
                     DetailedDescription = termination.DetailedDescription,
                     Department = termination.Department,
                     JobTitle = termination.JobTitle,
@@ -81,7 +80,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,BudgetNumbers,DetailedDescription,TerminationReason,LeaveWA,Offboarding,ClosePosition")]  Termination termination)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,EffectiveStartDate,EffectiveEndDate,Note,AWorkerType,SupOrg,Department,JobTitle,EmployeeEID,DetailedDescription,TerminationReason,LeaveWA,Offboarding,ClosePosition")]  Termination termination)
         {
             if (id != termination.CaseID)
             {
@@ -130,8 +129,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             SupOrg = beforeCase.SupOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
-                            DetailedDescription = beforeCase.DetailedDescription,
-                            BudgetNumbers = beforeCase.BudgetNumbers,
+                            DetailedDescription = beforeCase.DetailedDescription,                           
                             TerminationReason = beforeCase.TerminationReason,
                             Offboarding = beforeCase.Offboarding,
                             LeaveWA = beforeCase.LeaveWA,
@@ -153,8 +151,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             SupOrg = termination.SupOrg,
                             EmployeeEID = termination.EmployeeEID,
                             Note = termination.Note,
-                            DetailedDescription = termination.DetailedDescription,
-                            BudgetNumbers = termination.BudgetNumbers,
+                            DetailedDescription = termination.DetailedDescription,                            
                             TerminationReason = termination.TerminationReason,
                             Offboarding = termination.Offboarding,
                             LeaveWA = termination.LeaveWA,

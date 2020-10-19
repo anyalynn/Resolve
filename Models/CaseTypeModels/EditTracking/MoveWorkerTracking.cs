@@ -20,11 +20,7 @@ namespace Resolve.Models
         [DataType(DataType.Date)]
         public DateTime EffectiveStartDate { get; set; }
 
-        [Display(Name = "Worker Type")]
-        public virtual CWorkerType? CWorkerType { get; set; }
-
-        [Display(Name = "Hire Type")]
-        public virtual HireType? HireType { get; set; }
+        public virtual FWorkerType? FWorkerType { get; set; }
 
         [Display(Name = "Original SupOrg")]
         public virtual SupOrg? OSupOrg { get; set; }

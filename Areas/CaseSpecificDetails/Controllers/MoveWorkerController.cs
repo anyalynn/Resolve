@@ -42,8 +42,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 {
                     CaseID = id,
                     Name = moveWorker.Name,
-                    CWorkerType = moveWorker.CWorkerType,
-                    HireType=moveWorker.HireType,
+                    FWorkerType = moveWorker.FWorkerType,                  
                     JobTitle=moveWorker.JobTitle,
                     EffectiveStartDate = moveWorker.EffectiveStartDate,
                     SupOrg = moveWorker.SupOrg,
@@ -76,7 +75,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,HireType,JobTitle,EffectiveStartDate,Note,CWorkerType,SupOrg,OSupOrg,EmployeeEID,DetailedDescription")]  MoveWorker moveWorker)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,JobTitle,EffectiveStartDate,Note,FWorkerType,SupOrg,OSupOrg,EmployeeEID,DetailedDescription")]  MoveWorker moveWorker)
         {
             if (id != moveWorker.CaseID)
             {
@@ -106,10 +105,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Status = "old",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
-                            Name = beforeCase.Name,
-                            HireType = beforeCase.HireType,
+                            Name = beforeCase.Name,                            
                             JobTitle = beforeCase.JobTitle,
-                            CWorkerType = beforeCase.CWorkerType,
+                            FWorkerType = beforeCase.FWorkerType,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             OSupOrg = beforeCase.OSupOrg,
                             SupOrg = beforeCase.SupOrg,
@@ -125,10 +123,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Status = "new",
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = moveWorker.CaseID,
-                            Name = moveWorker.Name,
-                            HireType = moveWorker.HireType,
+                            Name = moveWorker.Name,                           
                             JobTitle = moveWorker.JobTitle,
-                            CWorkerType = moveWorker.CWorkerType,
+                            FWorkerType = moveWorker.FWorkerType,
                             EffectiveStartDate = moveWorker.EffectiveStartDate,
                             OSupOrg = moveWorker.OSupOrg,
                             SupOrg = moveWorker.SupOrg,

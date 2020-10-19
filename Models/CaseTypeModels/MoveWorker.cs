@@ -7,6 +7,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Resolve.Models
 {
+    public enum FWorkerType
+    {
+        [Display(Name = "Classified  Staff")]
+        ClassStaff,
+        [Display(Name = "Professional Staff")]
+        ProStaff,
+        [Display(Name = "Student")]
+        Student,
+        [Display(Name = "Faculty")]
+        Faculty
+    }
     public class MoveWorker
     {
         [Required, Key, ForeignKey("Case")]
@@ -18,7 +29,7 @@ namespace Resolve.Models
         public DateTime EffectiveStartDate { get; set; }
 
         [Display(Name = "Worker Type")]
-        public virtual CWorkerType? CWorkerType { get; set; }
+        public virtual FWorkerType? FWorkerType { get; set; }
 
         [Display(Name = "Original SupOrg")]
         public virtual SupOrg? OSupOrg { get; set; }
@@ -28,9 +39,6 @@ namespace Resolve.Models
 
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
-
-        [Display(Name = "Hire Type")]
-        public virtual HireType? HireType { get; set; }
 
         [Display(Name = "Name"), Required]
         public string Name { get; set; }

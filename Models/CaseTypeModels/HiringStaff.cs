@@ -73,7 +73,7 @@ namespace Resolve.Models
     }
     public enum WeeklyHours   
     {
-        [Display(Name = "0")]
+        [Display(Name = "0 (Hourly Positions Only)")]
         Zero,
         [Display(Name = "20")]
         Twenty,
