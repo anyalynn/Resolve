@@ -74,7 +74,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             ScholarResGradHire editCase = _context.ScholarResGradHire.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "ScholarResGradHire", new { id = newid });
             }
             return View(editCase);
         }

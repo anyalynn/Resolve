@@ -73,7 +73,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             FTEChange editCase = _context.FTEChange.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "FTEChange", new { id = newid });
             }
             return View(editCase);
         }

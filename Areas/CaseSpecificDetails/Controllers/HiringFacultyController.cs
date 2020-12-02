@@ -57,7 +57,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             HiringFaculty editCase = _context.HiringFaculty.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "HiringFaculty", new { id = newid });
             }
             return View(editCase);
         }

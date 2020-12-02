@@ -58,7 +58,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             var editCase = _context.FoodEvent.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "FoodEvent", new { id = newid });
             }
             return View(editCase);
         }

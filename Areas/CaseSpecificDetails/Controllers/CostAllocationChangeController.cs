@@ -71,7 +71,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             CostAllocationChange editCase = _context.CostAllocationChange.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "CostAllocationChange", new { id = newid });
             }
             return View(editCase);
         }

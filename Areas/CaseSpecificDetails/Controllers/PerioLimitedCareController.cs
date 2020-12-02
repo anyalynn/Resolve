@@ -56,7 +56,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             PerioLimitedCare editCase = _context.PerioLimitedCare.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "PerioLimitedCare", new { id = newid });
             }
             return View(editCase);
         }

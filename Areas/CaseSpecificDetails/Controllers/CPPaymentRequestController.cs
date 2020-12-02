@@ -66,7 +66,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             CPPaymentRequest editCase = _context.CPPaymentRequest.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "CPPaymentRequest", new { id = newid });
             }
             return View(editCase);
         }

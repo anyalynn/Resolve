@@ -60,7 +60,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             HiringStaff editCase = _context.HiringStaff.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "HiringStaff", new { id = newid });
             }
             return View(editCase);
         }

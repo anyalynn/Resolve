@@ -59,12 +59,14 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+               
             }
             HiringAffiliateFaculty editCase = _context.HiringAffiliateFaculty.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "HiringAffiliateFaculty", new { id = newid });
             }
             return View(editCase);
         }

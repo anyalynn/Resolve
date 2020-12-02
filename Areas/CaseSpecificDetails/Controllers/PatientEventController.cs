@@ -61,7 +61,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             var editCase = _context.PatientEvent.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "PatientEvent", new { id = newid });
             }
             return View(editCase);
         }

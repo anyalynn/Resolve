@@ -68,7 +68,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             MoveWorker editCase = _context.MoveWorker.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "MoveWorker", new { id = newid });
             }
             return View(editCase);
         }

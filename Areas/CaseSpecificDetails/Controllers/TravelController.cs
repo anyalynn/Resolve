@@ -58,7 +58,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             var editCase = _context.Travel.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "Travel", new { id = newid });
             }
             return View(editCase);
         }

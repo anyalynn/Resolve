@@ -71,7 +71,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             EndDateChange editCase = _context.EndDateChange.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "EndDateChange", new { id = newid });
             }
             return View(editCase);
         }

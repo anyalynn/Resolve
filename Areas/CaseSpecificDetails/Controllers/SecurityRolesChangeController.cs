@@ -85,7 +85,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             SecurityRolesChange editCase = _context.SecurityRolesChange.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "SecurityRolesChange", new { id = newid });
             }
             return View(editCase);
         }

@@ -72,7 +72,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             CompBasePayChange editCase = _context.CompBasePayChange.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "CompBasePayChange", new { id = newid });
             }
             return View(editCase);
         }

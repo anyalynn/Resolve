@@ -14,7 +14,7 @@ namespace Resolve.Models
         public int CaseID { get; set; }
         public Case Case { get; set; }
 
-        [Display(Name = "Effective End Date")]
+        [Display(Name = "Effective Date")]
         [DataType(DataType.Date)]
         public DateTime? EffectiveEndDate { get; set; }
 

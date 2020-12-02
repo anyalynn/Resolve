@@ -8,9 +8,17 @@
 
   <ItemGroup>
     <Compile Remove="Areas\CaseSpecificDetails\Views\DistributionChange\**" />
+    <Compile Remove="OLDMigrationsOld\**" />
     <Content Remove="Areas\CaseSpecificDetails\Views\DistributionChange\**" />
+    <Content Remove="OLDMigrationsOld\**" />
     <EmbeddedResource Remove="Areas\CaseSpecificDetails\Views\DistributionChange\**" />
+    <EmbeddedResource Remove="OLDMigrationsOld\**" />
     <None Remove="Areas\CaseSpecificDetails\Views\DistributionChange\**" />
+    <None Remove="OLDMigrationsOld\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="OLDMigrationsOld\ResolveCaseContextModelSnapshot.cs" />
   </ItemGroup>
 
 

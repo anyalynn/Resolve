@@ -73,7 +73,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             Termination editCase = _context.Termination.Find(id);
             if (editCase == null)
             {
-                return NotFound();
+                var newid = id;
+                //return NotFound();
+                return RedirectToAction("Create", "Termination", new { id = newid });
             }
             return View(editCase);
         }
