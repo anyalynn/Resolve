@@ -10,7 +10,7 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
@@ -21,7 +21,13 @@
                 </select>
                 <span asp-validation-for="FacAffiliateTitle" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="FacAffiliateCitizenStatus" class="control-label required-field"></label>
+                <select asp-for="FacAffiliateCitizenStatus" asp-items="Html.GetEnumSelectList<FacAffiliateCitizenStatus>()" class="form-control">
+                    <option selected="selected" value="">Please select</option>
+                </select>
+                <span asp-validation-for="FacAffiliateCitizenStatus" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Department" class="control-label required-field"></label>
                 <select asp-for="Department" asp-items="Html.GetEnumSelectList<Department>()" class="form-control">
@@ -34,7 +40,11 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
-
+            <div class="form-group">
+                <label asp-for="AffiliateStudentNetID" class="control-label"></label>
+                <input asp-for="AffiliateStudentNetID" class="form-control" />
+                <span asp-validation-for="AffiliateStudentNetID" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="HireDate" class="control-label required-field"></label>
                 <input asp-for="HireDate" class="form-control" />
@@ -44,7 +54,7 @@
 
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -30,11 +30,13 @@ namespace Resolve.Models
         [Display(Name = "Hire Type")]
         public virtual HireType? HireType { get; set; }
 
-        [Display(Name = "Staff/Student Compensation Allowance Change")]
+        [Display(Name = "Compensation Allowance Change")]
         public virtual AllowanceChange? AllowanceChange { get; set; }
 
         [Display(Name = "Supervisory Organization")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg? SupOrg { get; set; }            
+
+        public string SuperOrg { get; set; }
 
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }

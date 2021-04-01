@@ -47,6 +47,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveStartDate = distChange.EffectiveStartDate,
                     EffectiveEndDate = distChange.EffectiveEndDate,
                     SupOrg = distChange.SupOrg,
+                    SuperOrg = distChange.SupOrgName,
                     EmployeeEID = distChange.EmployeeEID,
                     Note = distChange.Note,
                     BudgetNumbers = distChange.BudgetNumbers,
@@ -89,6 +90,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                distChange.SuperOrg = distChange.SupOrgName;
+
                 if (distChange.AWorkerType.ToString() == "Staff")
                 {
                     distChange.Department = null;
@@ -128,7 +131,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle=beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -148,7 +151,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = distChange.JobTitle,
                             EffectiveStartDate = distChange.EffectiveStartDate,
                             EffectiveEndDate = distChange.EffectiveEndDate,
-                            SupOrg = distChange.SupOrg,
+                            SuperOrg = distChange.SuperOrg,
                             EmployeeEID = distChange.EmployeeEID,
                             Note = distChange.Note,
                             DetailedDescription = distChange.DetailedDescription,

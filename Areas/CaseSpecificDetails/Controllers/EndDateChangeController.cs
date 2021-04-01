@@ -47,6 +47,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveStartDate = endChange.EffectiveStartDate,
                     EffectiveEndDate = endChange.EffectiveEndDate,
                     SupOrg = endChange.SupOrg,
+                    SuperOrg = endChange.SupOrgName,
                     EmployeeEID = endChange.EmployeeEID,
                     Note = endChange.Note,
                     BudgetNumbers = endChange.BudgetNumbers,
@@ -99,7 +100,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     endChange.HireType = null;
 
                 }
-
+                endChange.SuperOrg = endChange.SupOrgName;
 
                 try
                 {
@@ -129,7 +130,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -149,7 +150,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = endChange.JobTitle,
                             EffectiveStartDate = endChange.EffectiveStartDate,
                             EffectiveEndDate = endChange.EffectiveEndDate,
-                            SupOrg = endChange.SupOrg,
+                            SuperOrg = endChange.SuperOrg,
                             EmployeeEID = endChange.EmployeeEID,
                             Note = endChange.Note,
                             DetailedDescription = endChange.DetailedDescription,

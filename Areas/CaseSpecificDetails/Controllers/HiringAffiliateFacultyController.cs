@@ -42,7 +42,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 {
                     CaseID = id,
                     FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle,
+                    FacAffiliateCitizenStatus = hrAffFaculty.FacAffiliateCitizenStatus,
                     Name = hrAffFaculty.Name,
+                    AffiliateStudentNetID = hrAffFaculty.AffiliateStudentNetID,
                     HireDate = hrAffFaculty.HireDate,
                     Department = hrAffFaculty.Department,
                     Note = hrAffFaculty.Note
@@ -73,7 +75,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,FacAffiliateTitle,HireDate,Department,Note")] HiringAffiliateFaculty hrAffFaculty)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,AffiliateStudentNetID,FacAffiliateCitizenStatus,FacAffiliateTitle,HireDate,Department,Note")] HiringAffiliateFaculty hrAffFaculty)
         {
             if (id != hrAffFaculty.CaseID)
             {
@@ -108,6 +110,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Name = beforeCase.Name,
                             FacAffiliateTitle = beforeCase.FacAffiliateTitle,
                             Note = beforeCase.Note,
+                            AffiliateStudentNetID=beforeCase.AffiliateStudentNetID,
+                            FacAffiliateCitizenStatus=beforeCase.FacAffiliateCitizenStatus
                          };
                         _context.Add(old_details);
                         // Adding current details to tracking
@@ -121,6 +125,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Name = hrAffFaculty.Name,                            
                             FacAffiliateTitle = hrAffFaculty.FacAffiliateTitle,
                             Note = hrAffFaculty.Note,
+                            AffiliateStudentNetID = hrAffFaculty.AffiliateStudentNetID,
+                            FacAffiliateCitizenStatus = hrAffFaculty.FacAffiliateCitizenStatus
                         };
                         _context.Add(new_details);
                         // Adding current details to actual Case Type entity

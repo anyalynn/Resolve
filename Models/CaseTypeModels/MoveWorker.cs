@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Resolve.Helpers;
 
 namespace Resolve.Models
 {
@@ -32,10 +33,26 @@ namespace Resolve.Models
         public virtual FWorkerType? FWorkerType { get; set; }
 
         [Display(Name = "Original SupOrg")]
-        public virtual SupOrg? OSupOrg { get; set; }
+        public virtual SupOrg OSupOrg { get; set; }
+
+        public string OSupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(OSupOrg); }
+        }
+
+        [Display(Name = "Original SupOrg")]
+        public string OSuperOrg { get; set; }
 
         [Display(Name = "Proposed SupOrg")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg SupOrg { get; set; }
+
+        public string PSupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(SupOrg); }
+        }
+
+        [Display(Name = "Proposed SupOrg")]
+        public string PSuperOrg { get; set; }
 
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Resolve.Helpers;
 
 namespace Resolve.Models
 {
@@ -156,7 +157,15 @@ namespace Resolve.Models
         public string EmployeeID { get; set; }
 
         [Display(Name = "Supervisory Organization")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg SupOrg { get; set; }
+
+        public string SupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(SupOrg); }
+        }
+
+        [Display(Name = "SupOrg")]
+        public string SuperOrg { get; set; }
 
         [Display(Name = "Proposed Pay Rate")]
         public string PayRate { get; set; }

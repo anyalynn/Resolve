@@ -46,6 +46,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     AWorkerType = termination.AWorkerType,
                     EffectiveStartDate = termination.EffectiveStartDate,
                     SupOrg = termination.SupOrg,
+                    SuperOrg = termination.SupOrgName,
                     EmployeeEID = termination.EmployeeEID,
                     Note = termination.Note,                  
                     DetailedDescription = termination.DetailedDescription,
@@ -101,6 +102,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     termination.HireType = null;
 
                 }
+                termination.SuperOrg = termination.SupOrgName;
                 try
                 {
                     IQueryable<Termination> beforeCases = _context.Termination.Where(c => c.CaseID == id).AsNoTracking<Termination> ();
@@ -128,7 +130,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,                           
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,                           
@@ -150,7 +152,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = termination.Department,
                             JobTitle = termination.JobTitle,
                             EffectiveStartDate = termination.EffectiveStartDate,                            
-                            SupOrg = termination.SupOrg,
+                            SuperOrg = termination.SuperOrg,
                             EmployeeEID = termination.EmployeeEID,
                             Note = termination.Note,
                             DetailedDescription = termination.DetailedDescription,                            

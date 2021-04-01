@@ -12,6 +12,12 @@
                 $("#stafffac").show();
                 $("#scholar").hide();
             }
+            if (MyRequestType == "Faculty") {
+                $("#staff").hide();
+                $("#other").hide();
+                $("#stafffac").show();
+                $("#scholar").hide();
+            }
             else {
                 $("#staff").hide();
                 $("#other").show();
@@ -22,6 +28,12 @@
             $("#EWorkerType").change(function () {
                 if ($(this).find(':selected').text() == "Staff/Student") {
                     $("#staff").show();
+                    $("#other").hide();
+                    $("#stafffac").show();
+                    $("#scholar").hide();
+                }
+                else if ($(this).find(':selected').text() == "Faculty") {
+                    $("#staff").hide();
                     $("#other").hide();
                     $("#stafffac").show();
                     $("#scholar").hide();
@@ -47,7 +59,7 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
@@ -59,7 +71,7 @@
                 <span asp-validation-for="EWorkerType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SupOrg" class="control-label"></label>
+                <label asp-for="SupOrg" class="control-label required-field"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -139,12 +151,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="DetailedDescription" class="control-label"></label>
-                <textarea asp-for="DetailedDescription" class="form-control"></textarea>
+                <textarea asp-for="DetailedDescription" class="form-control area-lg"></textarea>
                 <span asp-validation-for="DetailedDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
 

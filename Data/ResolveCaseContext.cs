@@ -61,6 +61,7 @@ namespace Resolve.Data
         public DbSet<ScholarResGradHireTracking> ScholarResGradHireTracking { get; set; }
         public DbSet<CPPaymentRequest> CPPaymentRequest { get; set; }
         public DbSet<CPPaymentRequestTracking> CPPaymentRequestTracking { get; set; }
+       
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -74,7 +75,8 @@ namespace Resolve.Data
             modelBuilder.Entity<Case>()
                 .HasOne(p => p.CaseType)
                 .WithMany(q => q.Cases)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction);              
+                   
             modelBuilder.Entity<Case>()
             .Property(b => b.CaseCreationTimestamp)
             .HasDefaultValueSql("getdate()");
@@ -129,7 +131,10 @@ namespace Resolve.Data
             modelBuilder.Entity<CaseAttachment>()
             .Property(b => b.AttachmentTimestamp)
             .HasDefaultValueSql("getdate()");
-          
+
+            modelBuilder.Entity<SupOrgs2>()
+           .HasNoKey();
+
             modelBuilder.Entity<Termination>()
               .Property(h => h.Offboarding)
               .HasDefaultValue(0);
@@ -275,6 +280,7 @@ namespace Resolve.Data
             modelBuilder.Entity<HiringStaff>()
                .Property(s => s.Workstudy)
                .HasDefaultValue(0);
+          
         }
     }
 }

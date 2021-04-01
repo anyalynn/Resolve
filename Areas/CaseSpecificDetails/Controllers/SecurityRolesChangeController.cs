@@ -46,7 +46,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     AWorkerType = securityChange.AWorkerType,
                     EffectiveDate = securityChange.EffectiveDate,
                     SupOrg = securityChange.SupOrg,
-                    EmployeeEID = securityChange.EmployeeEID,
+                    SuperOrg = securityChange.SupOrgName,
+                     EmployeeEID = securityChange.EmployeeEID,
                     Note = securityChange.Note,
                     UWNetID = securityChange.UWNetID,
                     SupervisedAccess = securityChange.SupervisedAccess,
@@ -120,6 +121,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 {
                     securityChange.SupervisedAccess = null;
                 }
+                securityChange.SuperOrg = securityChange.SupOrgName;
                 try
                 {
                     IQueryable<SecurityRolesChange> beforeCases = _context.SecurityRolesChange.Where(c => c.CaseID == id).AsNoTracking<SecurityRolesChange>();
@@ -147,7 +149,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,
                             EffectiveDate = beforeCase.EffectiveDate,                            
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             UWNetID = beforeCase.UWNetID,
@@ -181,7 +183,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = securityChange.Department,
                             JobTitle = securityChange.JobTitle,
                             EffectiveDate = securityChange.EffectiveDate,
-                            SupOrg = securityChange.SupOrg,
+                            SuperOrg = securityChange.SuperOrg,
                             EmployeeEID = securityChange.EmployeeEID,
                             Note = securityChange.Note,
                             UWNetID = securityChange.UWNetID,

@@ -46,6 +46,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     AWorkerType = fteChange.AWorkerType,
                     EffectiveEndDate = fteChange.EffectiveEndDate,
                     SupOrg = fteChange.SupOrg,
+                    SuperOrg = fteChange.SupOrgName,
                     EmployeeEID = fteChange.EmployeeEID,
                     Note = fteChange.Note,
                     BudgetNumbers = fteChange.BudgetNumbers,
@@ -101,6 +102,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     fteChange.HireType = null;
 
                 }
+                fteChange.SuperOrg = fteChange.SupOrgName;
                 try
                 {
                     IQueryable<FTEChange> beforeCases = _context.FTEChange.Where(c => c.CaseID == id).AsNoTracking<FTEChange>();
@@ -127,7 +129,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,                            
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -147,7 +149,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = fteChange.Department,
                             JobTitle = fteChange.JobTitle,                          
                             EffectiveEndDate = fteChange.EffectiveEndDate,
-                            SupOrg = fteChange.SupOrg,
+                            SuperOrg = fteChange.SuperOrg,
                             EmployeeEID = fteChange.EmployeeEID,
                             Note = fteChange.Note,
                             DetailedDescription = fteChange.DetailedDescription,

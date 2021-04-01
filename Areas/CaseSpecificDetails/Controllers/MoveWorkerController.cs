@@ -46,9 +46,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     JobTitle=moveWorker.JobTitle,
                     EffectiveStartDate = moveWorker.EffectiveStartDate,
                     SupOrg = moveWorker.SupOrg,
+                    PSuperOrg = moveWorker.PSupOrgName,
                     EmployeeEID = moveWorker.EmployeeEID,
                     Note = moveWorker.Note,
                     OSupOrg = moveWorker.OSupOrg,
+                    OSuperOrg = moveWorker.OSupOrgName,
                     DetailedDescription = moveWorker.DetailedDescription
                 };
                 _context.Add(newCase);
@@ -90,6 +92,9 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                 {
                     IQueryable<MoveWorker> beforeCases = _context.MoveWorker.Where(c => c.CaseID == id).AsNoTracking<MoveWorker>();
                     MoveWorker beforeCase = beforeCases.FirstOrDefault();
+                    moveWorker.OSuperOrg = moveWorker.OSupOrgName;
+                    moveWorker.PSuperOrg = moveWorker.PSupOrgName;
+
                     if (beforeCase == null)
                     {
                         return NotFound();
@@ -111,8 +116,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = beforeCase.JobTitle,
                             FWorkerType = beforeCase.FWorkerType,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
-                            OSupOrg = beforeCase.OSupOrg,
-                            SupOrg = beforeCase.SupOrg,
+                            PSuperOrg = beforeCase.PSuperOrg,
+                            OSuperOrg = beforeCase.OSuperOrg,
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -129,8 +134,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = moveWorker.JobTitle,
                             FWorkerType = moveWorker.FWorkerType,
                             EffectiveStartDate = moveWorker.EffectiveStartDate,
-                            OSupOrg = moveWorker.OSupOrg,
-                            SupOrg = moveWorker.SupOrg,
+                            PSuperOrg = moveWorker.PSuperOrg,
+                            OSuperOrg = moveWorker.OSuperOrg,
                             EmployeeEID = moveWorker.EmployeeEID,
                             Note = moveWorker.Note,
                             DetailedDescription = moveWorker.DetailedDescription,

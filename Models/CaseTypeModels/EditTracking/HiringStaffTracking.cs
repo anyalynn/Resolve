@@ -55,6 +55,8 @@ namespace Resolve.Models
         [Display(Name = "Supervisory Organization")]
         public virtual SupOrg? SupOrg { get; set; }
 
+        public string SuperOrg { get; set; }
+
         [Display(Name = "Proposed Pay Rate")]
         public string PayRate { get; set; }
 

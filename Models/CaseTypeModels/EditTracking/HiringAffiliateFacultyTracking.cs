@@ -16,6 +16,12 @@ namespace Resolve.Models
         public int CaseID { get; set; }
         public Case Case { get; set; }
 
+        [Display(Name = "Citizenship Status")]
+        public virtual FacAffiliateCitizenStatus FacAffiliateCitizenStatus { get; set; }
+
+        [Display(Name = "UW Student Number/ UWNETID")]
+        public string AffiliateStudentNetID { get; set; }
+
         [Display(Name = "Proposed Hire Date")]
         [DataType(DataType.Date)]
         public DateTime HireDate { get; set; }

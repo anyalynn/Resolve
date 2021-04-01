@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Resolve.Helpers;
 
 namespace Resolve.Models
 {
@@ -57,7 +58,7 @@ namespace Resolve.Models
         [Display(Name = "UWPMA/Teamsters117 Longevity Pay")]
         LongevityPay
     }
-
+   
     public class CompAllowanceChange
     {
         [Required, Key, ForeignKey("Case")]
@@ -78,11 +79,18 @@ namespace Resolve.Models
         [Display(Name = "Hire Type")]
         public virtual HireType? HireType { get; set; }
 
-        [Display(Name = "Staff/Student Compensation Allowance Change")]
+        [Display(Name = "Compensation Allowance Change")]
         public virtual AllowanceChange? AllowanceChange { get; set; }
 
         [Display(Name = "Supervisory Organization")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg SupOrg { get; set; }         
+       
+        public string SupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(SupOrg); }
+        }
+        [Display(Name = "SupOrg")]
+        public string SuperOrg { get; set; }        
 
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }

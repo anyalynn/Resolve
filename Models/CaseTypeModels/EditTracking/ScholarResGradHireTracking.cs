@@ -26,11 +26,16 @@ namespace Resolve.Models
         [Display(Name = "Supervisory Organization")]
         public virtual SupOrg? SupOrg { get; set; }
 
+        public string SuperOrg { get; set; }
+
         [Display(Name = "Name"), Required]
         public string Name { get; set; }
 
         [Display(Name = "Budget Numbers")]
         public string BudgetNumbers { get; set; }
+
+        [Display(Name = "Student Number")]
+        public string StudentNumber { get; set; }
 
         [Display(Name = "Additional Notes")]
         [MaxLength(1024)]
@@ -59,6 +64,9 @@ namespace Resolve.Models
 
         [Display(Name = "Request Type")]
         public virtual ScholarReqType? ScholarReqType { get; set; }
+
+        [Display(Name = "Citizenship Status")]
+        public virtual FacAffiliateCitizenStatus? ScholarCitizenStatus { get; set; }
 
     }
 }

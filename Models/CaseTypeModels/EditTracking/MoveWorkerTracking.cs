@@ -28,6 +28,10 @@ namespace Resolve.Models
         [Display(Name = "Proposed SupOrg")]
         public virtual SupOrg? SupOrg { get; set; }
 
+        public string OSuperOrg { get; set; }
+
+        public string PSuperOrg { get; set; }
+
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }
 

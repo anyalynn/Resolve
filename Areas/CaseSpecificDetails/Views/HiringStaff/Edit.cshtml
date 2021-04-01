@@ -90,7 +90,7 @@
 <h4>Staff/Student</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
@@ -185,18 +185,18 @@
             <div id="NotReplace">
                 <div class="form-group">
                     <label for="Justification" class="control-label">What is the business justification for this position?</label>
-                    <textarea asp-for="Justification" class="form-control"></textarea>
+                    <textarea asp-for="Justification" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Justification" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="Barriers" class="control-label">What is the barrier to distributing the workload to existing staff?</label>
-                    <textarea asp-for="Barriers" class="form-control"></textarea>
+                    <textarea asp-for="Barriers" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Barriers" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="Consequences" class="control-label">What are the consequences/impact of not filling the position?</label>
-                    <textarea asp-for="Consequences" class="form-control"></textarea>
+                    <textarea asp-for="Consequences" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Consequences" class="text-danger"></span>
                 </div>
             </div>
@@ -325,7 +325,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
 

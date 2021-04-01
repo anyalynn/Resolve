@@ -45,14 +45,17 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     ScholarReqType = scholarHire.ScholarReqType,
                     DWorkerType = scholarHire.DWorkerType,
                     EffectiveDate = scholarHire.EffectiveDate,
-                    SupOrg = scholarHire.SupOrg,
+                    SupOrg = scholarHire.SupOrg,                    
+                    SuperOrg = scholarHire.SupOrgName,
                     GradJobProfile = scholarHire.GradJobProfile,
                     Note = scholarHire.Note,
                     BudgetNumbers = scholarHire.BudgetNumbers,
+                    StudentNumber = scholarHire.StudentNumber,
                     DetailedDescription = scholarHire.DetailedDescription,
                     Department = scholarHire.Department,
                     JobTitle = scholarHire.JobTitle,
                     ScholarJobProfile = scholarHire.ScholarJobProfile,
+                    ScholarCitizenStatus = scholarHire.ScholarCitizenStatus,
                     NewTitle = scholarHire.NewTitle,
                     StipendAllowance= scholarHire.StipendAllowance,
                     
@@ -83,7 +86,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveDate,ScholarReqType,Note,DWorkerType,SupOrg,Department,JobTitle,GradJobProfile,ScholarJobProfile,StipendAllowance,BudgetNumbers,DetailedDescription,NewTitle")]   ScholarResGradHire scholarHire)
+        public async Task<IActionResult> Edit(int id, [Bind("CaseID,Name,EffectiveDate,StudentNumber,ScholarReqType,Note,DWorkerType,SupOrg,Department,JobTitle,GradJobProfile,ScholarJobProfile,StipendAllowance,BudgetNumbers,DetailedDescription,NewTitle,ScholarCitizenStatus")]   ScholarResGradHire scholarHire)
         {
             if (id != scholarHire.CaseID)
             {
@@ -102,6 +105,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     scholarHire.GradJobProfile = null;
 
                 }
+                scholarHire.SuperOrg = scholarHire.SupOrgName;
                 try
                 {
                     IQueryable<ScholarResGradHire> beforeCases = _context.ScholarResGradHire.Where(c => c.CaseID == id).AsNoTracking<ScholarResGradHire>();
@@ -128,14 +132,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = beforeCase.Department,
                             JobTitle = beforeCase.JobTitle,                            
                             EffectiveDate = beforeCase.EffectiveDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             GradJobProfile = beforeCase.GradJobProfile,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
                             BudgetNumbers = beforeCase.BudgetNumbers,
+                            StudentNumber = beforeCase.StudentNumber,
                             NewTitle = beforeCase.NewTitle,
                             ScholarJobProfile = beforeCase.ScholarJobProfile,
-                            StipendAllowance=beforeCase.StipendAllowance
+                            ScholarCitizenStatus= beforeCase.ScholarCitizenStatus,
+                            StipendAllowance =beforeCase.StipendAllowance
 
                         };
                         _context.Add(old_details);
@@ -150,13 +156,15 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             Department = scholarHire.Department,
                             JobTitle = scholarHire.JobTitle,
                             EffectiveDate = scholarHire.EffectiveDate,
-                            SupOrg = scholarHire.SupOrg,
+                            SuperOrg = scholarHire.SuperOrg,
                             GradJobProfile = scholarHire.GradJobProfile,
                             Note = scholarHire.Note,
                             DetailedDescription = scholarHire.DetailedDescription,
                             BudgetNumbers = scholarHire.BudgetNumbers,
+                            StudentNumber = scholarHire.StudentNumber,
                             NewTitle = scholarHire.NewTitle,
                             ScholarJobProfile = scholarHire.ScholarJobProfile,
+                            ScholarCitizenStatus = scholarHire.ScholarCitizenStatus,
                             StipendAllowance = scholarHire.StipendAllowance
                         };
                         _context.Add(new_details);

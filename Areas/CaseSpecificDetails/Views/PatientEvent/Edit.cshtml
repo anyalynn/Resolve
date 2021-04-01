@@ -10,7 +10,7 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
@@ -103,29 +103,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="EventDescription" class="control-label"></label>  (<span class="text-danger">*1500 words or less</span>)
-                <textarea asp-for="EventDescription" class="form-control"></textarea>
+                <textarea asp-for="EventDescription" class="form-control area-lg"></textarea>
                 <span asp-validation-for="EventDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Causes" class="control-label"></label> (<span class="text-danger">*600 words or less</span>)
-                <textarea asp-for="Causes" class="form-control"></textarea>
+                <textarea asp-for="Causes" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Causes" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ReporterActionTaken" class="control-label"></label> (<span class="text-danger">*600 words or less</span>)
-                <textarea asp-for="ReporterActionTaken" class="form-control"></textarea>
+                <textarea asp-for="ReporterActionTaken" class="form-control area-lg"></textarea>
                 <span asp-validation-for="ReporterActionTaken" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="ManagerActionTaken" class="control-label"></label> (<span class="text-danger">*600 words or less</span>)
-                <textarea asp-for="ManagerActionTaken" class="form-control"></textarea>
+                <textarea asp-for="ManagerActionTaken" class="form-control area-lg"></textarea>
                 <span asp-validation-for="ManagerActionTaken" class="text-danger"></span>
             </div>
 
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
             <div class="form-group">

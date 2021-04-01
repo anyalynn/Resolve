@@ -24,13 +24,16 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
         public IActionResult Index()
         {
+                    
             return View();
         }
 
         public IActionResult Create(int id)
         {
+       
             return View();
         }
+       
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,6 +54,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveStartDate = compallowChange.EffectiveStartDate,
                     EffectiveEndDate = compallowChange.EffectiveEndDate,
                     SupOrg = compallowChange.SupOrg,
+                    SuperOrg=compallowChange.SupOrgName,                   
                     EmployeeEID = compallowChange.EmployeeEID,
                     Note = compallowChange.Note,
                     BudgetNumbers = compallowChange.BudgetNumbers,
@@ -92,18 +96,21 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
-                if(compallowChange.EWorkerType.ToString()=="Staff")
+                if(compallowChange.EWorkerType.ToString()=="Staff" || compallowChange.EWorkerType.ToString() == "Faculty")
                 {
                     compallowChange.ScholarCompAllowanceChange = null;
                     compallowChange.Department = null;
+                    compallowChange.SuperOrg = compallowChange.SupOrgName;
 
                 }
                 else if (compallowChange.EWorkerType.ToString() == "Scholar")
                 {
                     compallowChange.AllowanceChange = null;
                     compallowChange.HireType = null;
+                    compallowChange.SuperOrg = compallowChange.SupOrgName;
 
                 }
+                
                 try
                 {
                     IQueryable<CompAllowanceChange> beforeCases = _context.CompAllowanceChange.Where(c => c.CaseID == id).AsNoTracking<CompAllowanceChange>();
@@ -134,7 +141,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = beforeCase.JobTitle,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
+                          
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -158,7 +166,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             JobTitle = compallowChange.JobTitle,
                             EffectiveStartDate = compallowChange.EffectiveStartDate,
                             EffectiveEndDate = compallowChange.EffectiveEndDate,
-                            SupOrg = compallowChange.SupOrg,
+                            SuperOrg = compallowChange.SuperOrg,
+                         
                             EmployeeEID = compallowChange.EmployeeEID,
                             Note = compallowChange.Note,
                             DetailedDescription = compallowChange.DetailedDescription,

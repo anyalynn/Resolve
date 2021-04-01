@@ -42,6 +42,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             if (ModelState.IsValid)
             {
                 hrStaff.CaseID = id;
+                hrStaff.SuperOrg = hrStaff.SupOrgName;
                 _context.Add(hrStaff);
                 await _context.SaveChangesAsync();
                 var cid = id;
@@ -81,6 +82,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
 
             if (ModelState.IsValid)
             {
+                hrStaff.SuperOrg = hrStaff.SupOrgName;
                 if (hrStaff.StaffWorkerType.ToString() == "Student")
                 {
                     hrStaff.Location = null;
@@ -138,7 +140,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = beforeCase.CaseID,
                             HireDate = beforeCase.HireDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
                             PayRate = beforeCase.PayRate,
                             JobTitle = beforeCase.JobTitle,
                             StaffWorkerType = beforeCase.StaffWorkerType,
@@ -190,7 +192,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CaseAuditID = audit.CaseAuditID,
                             CaseID = hrStaff.CaseID,
                             HireDate = hrStaff.HireDate,
-                            SupOrg = hrStaff.SupOrg,
+                            SuperOrg = hrStaff.SuperOrg,
                             PayRate = hrStaff.PayRate,
                             JobTitle = hrStaff.JobTitle,
                             StaffWorkerType = hrStaff.StaffWorkerType,

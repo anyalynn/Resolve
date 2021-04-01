@@ -60,8 +60,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    @foreach (var item in Model.Cases)
+                                   
+                                    @foreach (var item in Model.Cases.OrderBy(s => s.CaseID))
                                     {
                                         string modified_date = item.CaseCreationTimestamp.ToString("yyyyMMddHHmmss");
                                         string shortDate = item.CaseCreationTimestamp.ToShortDateString();
@@ -112,7 +112,7 @@
                                             <td>@Html.DisplayFor(modelItem => item.CaseType.CaseTypeTitle)</td>
                                         </tr>
                                     }
-                                    @foreach (var item in Model.OnBehalves)
+                                    @foreach (var item in Model.OnBehalves.OrderBy(s => s.CaseID))
                                     {
                                         string modified_date = item.Case.CaseCreationTimestamp.ToString("yyyyMMddHHmmss");
                                         string shortDate = item.Case.CaseCreationTimestamp.ToShortDateString();
@@ -222,7 +222,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.CasesforApproval)
+                                    @foreach (var item in Model.CasesforApproval.OrderBy(s => s.CaseID))
                                     {
                                         string shortDate = item.Case.CaseCreationTimestamp.ToShortDateString();
                                         string modified_date = item.Case.CaseCreationTimestamp.ToString("yyyyMMddHHmmss");
@@ -338,7 +338,7 @@
                                 <tbody>
                                     @foreach (var item in Model.UserGroups)
                                     {
-                                        @foreach (var c in item.LocalGroup.GroupCases)
+                                        @foreach (var c in item.LocalGroup.GroupCases.OrderBy(s => s.CaseID))
                                         {
                                             string modified_date = c.Case.CaseCreationTimestamp.ToString("yyyyMMddHHmmss");
                                             string shortDate = c.Case.CaseCreationTimestamp.ToShortDateString();

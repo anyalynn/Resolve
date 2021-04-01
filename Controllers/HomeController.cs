@@ -195,8 +195,7 @@ namespace Resolve.Controllers
             // Cases created by the User(or on behalf of user), assigned to the User, and assigned to the groups to which the User belongs to
             var UCases = await _context.LocalUser
                 // Created by the User
-                .Include(s => s.Cases.Where(p => p.Processed == 0))
-                
+                .Include(s => s.Cases.Where(p => p.Processed == 0))               
                     .ThenInclude(w => w.CaseType)
                     // Including Approvers
                     .Include(s => s.Cases.Where(p => p.Processed == 0))
@@ -205,12 +204,14 @@ namespace Resolve.Controllers
                     // Created on behalf of the User
                     .Include(s => s.OnBehalves.Where(p => p.Case.Processed == 0))
                         .ThenInclude(s => s.Case)
-                        .ThenInclude(s => s.CaseType)
+                        .ThenInclude(s => s.CaseType) 
+                        
                     // Including Approvers
                     .Include(s => s.OnBehalves.Where(p => p.Case.Processed == 0))
                         .ThenInclude(s => s.Case)
                         .ThenInclude(s => s.Approvers)
                         .ThenInclude(w => w.LocalUser)
+    
                 // Assigned to the User
                 .Include(q => q.CasesforApproval.Where(p => p.Case.Processed == 0 && p.Approved == 0))
                     .ThenInclude(q => q.Case)
@@ -257,6 +258,7 @@ namespace Resolve.Controllers
                 }
             }
             ViewData["group_case_count"] = group_case_count;
+           
            
             return View(UCases);
         }

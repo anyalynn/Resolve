@@ -49,6 +49,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                     EffectiveStartDate = compBasePay.EffectiveStartDate,
                     EffectiveEndDate = compBasePay.EffectiveEndDate,
                     SupOrg = compBasePay.SupOrg,
+                    SuperOrg = compBasePay.SupOrgName,
                     EmployeeEID = compBasePay.EmployeeEID,
                     JobTitle = compBasePay.JobTitle,
                     Note = compBasePay.Note,
@@ -87,9 +88,11 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
             {
                 return NotFound();
             }
-
+           
             if (ModelState.IsValid)
             {
+                compBasePay.SuperOrg = compBasePay.SupOrgName;
+                
                 try
                 {
                     IQueryable<CompBasePayChange> beforeCases = _context.CompBasePayChange.Where(c => c.CaseID == id).AsNoTracking<CompBasePayChange>();
@@ -119,7 +122,8 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CWorkerType = beforeCase.CWorkerType,
                             EffectiveStartDate = beforeCase.EffectiveStartDate,
                             EffectiveEndDate = beforeCase.EffectiveEndDate,
-                            SupOrg = beforeCase.SupOrg,
+                            SuperOrg = beforeCase.SuperOrg,
+                          
                             EmployeeEID = beforeCase.EmployeeEID,
                             Note = beforeCase.Note,
                             DetailedDescription = beforeCase.DetailedDescription,
@@ -140,7 +144,7 @@ namespace Resolve.Areas.CaseSpecificDetails.Controllers
                             CWorkerType = compBasePay.CWorkerType,
                             EffectiveStartDate = compBasePay.EffectiveStartDate,
                             EffectiveEndDate = compBasePay.EffectiveEndDate,
-                            SupOrg = compBasePay.SupOrg,
+                            SuperOrg = compBasePay.SuperOrg,                           
                             EmployeeEID = compBasePay.EmployeeEID,
                             Note = compBasePay.Note,
                             DetailedDescription = compBasePay.DetailedDescription,

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Resolve.Helpers;
 
 namespace Resolve.Models
 {
@@ -87,17 +88,18 @@ namespace Resolve.Models
         [Display(Name = "Staff/Student")]
         Staff,
         [Display(Name = "Postdoctoral Scholar/Resident")]
-        Scholar        
+        Scholar,
+        [Display(Name = "Faculty")]
+        Faculty
     }
 
     
 
     public enum SupOrg
     {
-
-        [Display(Name = "Clinical Accounting: Cash Applications (Cooley, Joel)")] Clinical1,
+        [Display(Name = "Clinical Accounting: Cash Applications (Phantumvanit, Eve)")] Clinical1,
         [Display(Name = "Deans Office: Clinical Affairs (Schwedhelm, E. Ricardo)")] Dean1,
-        [Display(Name = "Deans Office: Compliance (Brown, Robert S.) ")] Dean2,
+        [Display(Name = "Deans Office: Compliance (Brown, Robert S.)")] Dean2,
         [Display(Name = "Deans Office: Compliance JM Student (Brown, Robert S.)")] Dean3,
         [Display(Name = "Deans Office: D1 Simulation JM Student (Croom, Jeffrey R.)")] Dean4,
         [Display(Name = "Deans Office: Deans Office Administration (Farris, Gary E)")] Dean5,
@@ -105,27 +107,28 @@ namespace Resolve.Models
         [Display(Name = "Deans Office: Dental Maintenance (Fox, David G.)")] Dean7,
         [Display(Name = "Deans Office: Derouen Center (Seminario, Ana Lucia)")] Dean8,
         [Display(Name = "Deans Office: Derouen Center JM Student (Seminario, Ana Lucia)")] Dean9,
-        [Display(Name = "Deans Office: Educational Partnerships & Diversity (Gandara, Beatrice K)")] Dean11,
-        [Display(Name = "Deans Office: Educational Partnerships & Diversity JM Contingent Worker (Gandara, Beatrice K)")] Dean12,
-        [Display(Name = "Deans Office: Finance Administration (Farris, Gary E)")] Dean1136,
-        [Display(Name = "Deans Office: Human Resources Operations (Bispham, Renni)")] Dean14,
-        [Display(Name = "Deans Office: Information Management (Farris, Gary E)")] Dean15,
-        [Display(Name = "Deans Office: Qi & Safety (Phillips, Sandra L)")] Dean16,
-        [Display(Name = "Deans Office: School of Dentistry IT (Ruddle, Tom)")] Dean17,
-        [Display(Name = "Deans Office: School of Dentistry IT JM Student (Ruddle, Tom)")] Dean18,
-        [Display(Name = "Deans Office: Student Services (Reang Sperry, Chanira)")] Dean19,
-        [Display(Name = "Deans Office: Student Services JM Student (Reang Sperry, Chanira)")] Dean20,
-        [Display(Name = "Dental Clinic: Clinic Operations (Kim, Mihwa (On Leave))")] Clinic2,
-        [Display(Name = "Dental Clinic: Patient Intake (Kim, Mihwa (On Leave))")] Clinic3,
-        [Display(Name = "Dental Clinic: Patient Intake JM Student (Kim, Mihwa (On Leave))")] Clinic4,
+        [Display(Name = "Deans Office: Educational Partnerships & Diversity (Gandara, Beatrice K)")] Dean10,
+        [Display(Name = "Deans Office: Educational Partnerships & Diversity JM Contingent Worker (Gandara, Beatrice K)")] Dean11,
+        [Display(Name = "Deans Office: Finance Administration (Farris, Gary E)")] Dean12,
+        [Display(Name = "Deans Office: Human Resources Operations (Bispham, Renni)")] Dean13,
+        [Display(Name = "Deans Office: Information Management (Farris, Gary E)")] Dean14,
+        [Display(Name = "Deans Office: Qi & Safety (Phillips, Sandra L)")] Dean15,
+        [Display(Name = "Deans Office: School of Dentistry IT (Ruddle, Tom)")] Dean16,
+        [Display(Name = "Deans Office: School of Dentistry IT JM Student (Ruddle, Tom)")] Dean17,
+        [Display(Name = "Deans Office: Student Services (Reang Sperry, Chanira)")] Dean18,
+        [Display(Name = "Deans Office: Student Services JM Student (Reang Sperry, Chanira)")] Dean19,
+        [Display(Name = "Dental Clinic: Clinic Operations (Kim, Mihwa)")] Clinical2,
+        [Display(Name = "Dental Clinic: Patient Intake (Randel, Bex)")] Clinical3,
+        [Display(Name = "Dental Clinic: Patient Intake JM Student (Robinson, Kira)")] Clinic4,
         [Display(Name = "Dental Clinic: Patient Relations (Phillips, Sandra L)")] Clinic5,
-        [Display(Name = "Dental Clinic: Pre-Doc Clinic Coordination (Kim, Mihwa (On Leave))")] Clinic6,
-        [Display(Name = "Dental Clinic: Pre-Doc Clinic Coordination JM Student (Kim, Mihwa (On Leave))")] Clinic7,
-        [Display(Name = "Dental Clinic: Pre-Doc Clinics (Baird, Christine (On Leave))")] Clinic8,
-        [Display(Name = "Dental Clinic: Sterilization (Harvey, Carol J)")] Clinic9,
-        [Display(Name = "Dental Clinic: Sterilization Magnuson (Ashford-Rimstad, Shelley)")] Endo1,
-        [Display(Name = "Department of Endodontics (Johnson, James D)")] Endo2,
-        [Display(Name = "Department of Endodontics JM Academic (Johnson, James D)")] Endo3,
+        [Display(Name = "Dental Clinic: Pre-Doc Clinic Coordination (Kim, Mihwa)")] Clinic6,
+        [Display(Name = "Dental Clinic: Pre-Doc Clinic Coordination JM Student (Kim, Mihwa)")] Clinic7,
+        [Display(Name = "Dental Clinic: Pre-Doc Clinic_JM-Student (Kendrick, Scarlet E)")] Clinic8,
+        [Display(Name = "Dental Clinic: Pre-Doc Clinics (Kendrick, Scarlet E)")] Clinic9,
+        [Display(Name = "Dental Clinic: Sterilization (Harvey, Carol J)")] Clinic10,
+        [Display(Name = "Dental Clinic: Sterilization Magnuson (Ashford-Rimstad, Shelley)")] Clinic11,
+        [Display(Name = "Department of Endodontics (Johnson, James D)")] Endo1,
+        [Display(Name = "Department of Endodontics JM Academic (Johnson, James D)")] Endo2,
         [Display(Name = "Department of Oral And Maxillo Facial Surgery (Dodson, Thomas B)")] OMS1,
         [Display(Name = "Department of Oral And Maxillo Facial Surgery JM Academic (Dodson, Thomas B)")] OMS2,
         [Display(Name = "Department of Oral And Maxillo Facial Surgery JM Resident/Fellow (Dillon, Jasjit K)")] OMS3,
@@ -143,25 +146,26 @@ namespace Resolve.Models
         [Display(Name = "Department of Orthodontics JM Contingent Worker (Huang, Greg J.)")] Ortho3,
         [Display(Name = "Department of Pediatric Dentistry (Nelson, Travis M.)")] Pedo1,
         [Display(Name = "Department of Pediatric Dentistry JM Academic (Nelson, Travis M.)")] Pedo2,
-        [Display(Name = "Department of Pediatric Dentistry JM Resident/Fellow (Xu, Zheng)")] Pedo3,
+        [Display(Name = "Department of Pediatric Dentistry JM Resident/Fellow (Nelson, Travis M.)")] Pedo3,
         [Display(Name = "Department of Periodontics (Roberts, Frank A.)")] Perio1,
         [Display(Name = "Department of Periodontics JM Academic (Roberts, Frank A.)")] Perio2,
         [Display(Name = "Department of Restorative Dentistry (Chan, Daniel C. N.)")] Restore1,
         [Display(Name = "Department of Restorative Dentistry JM Academic (Chan, Daniel C. N.)")] Restore2,
-        [Display(Name = "Endodontics: Administration (Collins, Margaret M)")] Endo4,
-        [Display(Name = "Endodontics: Grad Endo Clinic (Sanchez, Jazmin)")] Endo5,
-        [Display(Name = "Endodontics: Grad Endo Clinic JM Students (Sanchez, Jazmin)")] Endo6,
+        [Display(Name = "Endodontics: Administration (Collins, Margaret M)")] Endo3,
+        [Display(Name = "Endodontics: Grad Endo Clinic (Sanchez, Jazmin)")] Endo4,
+        [Display(Name = "Endodontics: Grad Endo Clinic JM Students (Sanchez, Jazmin)")] Endo5,
         [Display(Name = "External Affairs: Advancement (Newquist, Randall D)")] Alum1,
         [Display(Name = "External Affairs: Advancement JM Student (Newquist, Randall D)")] Alum2,
         [Display(Name = "External Affairs: Continuing Dental Education (Gee, Sally A.)")] CDE1,
         [Display(Name = "External Affairs: Continuing Dental Education JM Student (Gee, Sally A.)")] CDE2,
         [Display(Name = "Faculty Practice Administration (Eanes, Debbie)")] FAC1,
         [Display(Name = "Finance Admin: Banking Operations (Pike, Pam)")] Fin1,
-        [Display(Name = "Finance Admin: Clinical Coding (Lowe, LaMar Andre)")] Fin2,
-        [Display(Name = "Finance Admin: Dental Central Purchasing (Douglas, Teresa N.)")] CP1,
-        [Display(Name = "Finance Admin: Dental Central Purchasing JM Student (Dunlap, Cheryle S)")] CP2,
-        [Display(Name = "Finance Admin: Revenue Cycles (Lowe, LaMar Andre)")] Fin3,
-        [Display(Name = "Finance Admin:Clinical Services Accounting (Farris, Gary E)")] Fin5,
+        [Display(Name = "Finance Admin: Clinical Coding (Ogdon, Tammy)")] Fin2,
+        [Display(Name = "Finance Admin: Dental Central Purchasing (Douglas, Teresa N.)")] CP4,
+        [Display(Name = "Finance Admin: Dental Central Purchasing JM Student (Dunlap, Cheryle S)")] CP5,
+        [Display(Name = "Finance Admin: Patient Accounts (Zapata, Anastacia)")] Fin3,
+        [Display(Name = "Finance Admin: Revenue Cycles (Lowe, LaMar A.)")] Fin4,
+        [Display(Name = "Finance Admin:Clinical Services Accounting (Phantumvanit, Eve)")] Fin5,
         [Display(Name = "Office of Academic Affairs (Gordon, Sara C)")] Acad1,
         [Display(Name = "Office of Academic Affairs JM Student (Howell, Patricia)")] Acad2,
         [Display(Name = "Office of Regional Affairs (RIDE) (Grant, Jennifer H.)")] RIDE1,
@@ -175,28 +179,30 @@ namespace Resolve.Models
         [Display(Name = "Office of Student Services & Admissions JM Student (Brock, Memory)")] SS3,
         [Display(Name = "Oral Health Sciences: Administation JM Student (Ramsay, Douglas S)")] OHS5,
         [Display(Name = "Oral Health Sciences: Administration (Dean, Maggie)")] OHS6,
-        [Display(Name = "Oral Health Sciences: Maxpro Clinic (Rubenstein, Jeffrey E)")] OH57,
+        [Display(Name = "Oral Health Sciences: Maxpro Clinic (Rubenstein, Jeffrey E)")] OHS7,
         [Display(Name = "Oral Health Sciences: RCDRC (Rothen, Marilynn L.)")] OHS8,
-        [Display(Name = "Oral Health Sciences: Research- Chi JM Resident/Fellow (Ramsay, Douglas S)")] OHS9,
-        [Display(Name = "Oral Health Sciences: Research- Chi JM Student (Chi, Donald L)")] OHS10,
-        [Display(Name = "Oral Health Sciences: Research- Leroux (Leroux, Brian G)")] OHS11,
-        [Display(Name = "Oral Health Sciences: Research- Ramsay (Ramsay, Douglas S)")] OHS12,
-        [Display(Name = "Oral Health Sciences: Research- Silva (Cunha-Cruz, Joana)")] OHS13,
-        [Display(Name = "Oral Health Sciences: Research-Chi Staff (Chi, Donald L)")] OHS14,
-        [Display(Name = "Oral Health Sciences: Research-Silva JM Student (Cunha-Cruz, Joana)")] OHS15,
-        [Display(Name = "Oral Medicine: Administration & OM Clinic (Sebring, Dalila V.)")] OralMed6,
-        [Display(Name = "Oral Surgery: Administration (Paul, Sara E)")] OMS4,
-        [Display(Name = "Oral Surgery: Administration JM Student (Chung, Alyssa)")] OMS5,
-        [Display(Name = "Oral Surgery: AGD_JM_Student (O'Connor, Ryan T.)")] OMS6,
-        [Display(Name = "Oral Surgery: GPR Residency JM Resident/Fellow (O'Connor, Ryan T.)")] OMS7,
-        [Display(Name = "Oral Surgery: OP (Oda, Dolphine)")] OMS8,
-        [Display(Name = "Oral Surgery: OP JM Student (Oda, Dolphine)")] OMS9,
-        [Display(Name = "Oral Surgery: OS Clinical (Paul, Sara E)")] OMS10,
-        [Display(Name = "Oral Surgery: OS Clinical Services (McCloud, Mesha)")] OMS11,
-        [Display(Name = "Oral Surgery: OS Clinical Services JM Student (McCloud, Mesha)")] OMS12,
-        [Display(Name = "Oral Surgery: Patient Services (Cossette, Rebecca C)")] OMS13,
-        [Display(Name = "Oral Surgery: Patient Services JM Student (Cossette, Rebecca C)")] OMS14,
-        [Display(Name = "Oral Surgery-Nursing (Paul, Sara E)")] OMS15,
+        [Display(Name = "Oral Health Sciences: Research - Chi Staff JM Contingent (Chi, Donald L)")] OHS9,
+        [Display(Name = "Oral Health Sciences: Research- Chi JM Resident/Fellow (Ramsay, Douglas S)")] OHS10,
+        [Display(Name = "Oral Health Sciences: Research- Chi JM Student (Chi, Donald L)")] OHS11,
+        [Display(Name = "Oral Health Sciences: Research- Leroux (Leroux, Brian G)")] OHS12,
+        [Display(Name = "Oral Health Sciences: Research- Ramsay (Ramsay, Douglas S)")] OHS13,
+        [Display(Name = "Oral Health Sciences: Research- Silva (Cunha-Cruz, Joana)")] OHS14,
+        [Display(Name = "Oral Health Sciences: Research-Chi Staff (Chi, Donald L)")] OHS15,
+        [Display(Name = "Oral Health Sciences: Research-Silva JM Student (Cunha-Cruz, Joana)")] OHS16,
+        [Display(Name = "Oral Medicine: Administration & OM Clinic (Sebring, Dalila)")] OralMed6,
+        [Display(Name = "Oral Medicine: Administration & OM Clinic JM Student (Sebring, Dalila V)")] OralMed7,
+        [Display(Name = "Oral Medicine: DECOD Clinic (Espinoza, Kimberly)")] DECOD1,
+        [Display(Name = "Oral Surgery: Administration (Dodson, Thomas B)")] OMS4,
+        [Display(Name = "Oral Surgery: AGD_JM_Student (O'Connor, Ryan T.)")] OMS5,
+        [Display(Name = "Oral Surgery: GPR Residency JM Resident/Fellow (O'Connor, Ryan T.)")] OMS6,
+        [Display(Name = "Oral Surgery: OP (Oda, Dolphine)")] OMS7,
+        [Display(Name = "Oral Surgery: OP JM Student (Oda, Dolphine)")] OMS8,
+        [Display(Name = "Oral Surgery: OS Clinical (Dodson, Thomas B)")] OMS9,
+        [Display(Name = "Oral Surgery: OS Clinical Services (McCloud, Mesha)")] OMS10,
+        [Display(Name = "Oral Surgery: OS Clinical Services JM Student (McCloud, Mesha)")] OMS11,
+        [Display(Name = "Oral Surgery: Patient Services (Cossette, Rebecca C)")] OMS12,
+        [Display(Name = "Oral Surgery: Patient Services JM Student (Cossette, Rebecca C)")] OMS13,
+        [Display(Name = "Oral Surgery-Nursing (FADDEN, CYNTHIA)")] OMS14,
         [Display(Name = "Orthodontics: Administrative (Liao, Ellen Aihua)")] Ortho4,
         [Display(Name = "Orthodontics: Administrative JM Student (Liao, Ellen Aihua)")] Ortho5,
         [Display(Name = "Orthodontics: Clinic Admin (Greenlee, Geoffrey M)")] Ortho6,
@@ -204,26 +210,27 @@ namespace Resolve.Models
         [Display(Name = "Orthodontics: Research (Huang, Greg J.)")] Ortho8,
         [Display(Name = "Othodontics: Research JM Student (Huang, Greg J.)")] Ortho9,
         [Display(Name = "Pediatric Dentistry: ABCD Research (Kim, Amy S)")] Pedo4,
-        [Display(Name = " Dentistry: Administration (Coombes, Elizabeth)")] Pedo5,
+        [Display(Name = "Pediatric Dentistry: Administration (Macheso, Gerald)")] Pedo5,
         [Display(Name = "Pediatric Dentistry: CPD Clinic (Coombes, Elizabeth)")] Pedo6,
         [Display(Name = "Pediatric Dentistry: Dental Assistants (Evans, Katie)")] Pedo7,
         [Display(Name = "Pediatric Dentistry: Dental Surgical Center (Evans, Katie)")] Pedo8,
-        [Display(Name = "Pediatric Dentistry: Patient Services (Coombes, Elizabeth)")] Pedo9,
-        [Display(Name = "Pediatric Dentistry: Patient Services JM Student (Coombes, Elizabeth)")] Pedo10,
-        [Display(Name = "Periodontics: Administrative (Collins, Margaret M)")] Perio3,
-        [Display(Name = "Periodontics: Administrative JM Student (Collins, Margaret M)")] Perio4,
-        [Display(Name = "Periodontics: Grad Perio Clinic Staff (Daubert, Diane M.)")] Perio5,
-        [Display(Name = "Periodontics: Research Darveau (Darveau, Richard P.)")] Perio6,
-        [Display(Name = "Periodontics: Research Mclean (McLean, Jeffrey S)")] Perio7,
-        [Display(Name = "Periodontics: Research Mclean JM Resident/Fellow (McLean, Jeffrey S)")] Perio8,
+        [Display(Name = "Pediatric Dentistry: Patient Services (Asplin, Rosanne)")] Pedo9,
+        [Display(Name = "Pediatric Dentistry: Patient Services JM Student (Asplin, Rosanne)")] Pedo10,
+        [Display(Name = "Periodontics: Administrative (Collins, Margaret M)")] Perio4,
+        [Display(Name = "Periodontics: Administrative JM Student (Collins, Margaret M)")] Perio5,
+        [Display(Name = "Periodontics: Grad Perio Clinic Staff (Daubert, Diane M.)")] Perio6,
+        [Display(Name = "Periodontics: Research Darveau (Darveau, Richard P.)")] Perio7,
+        [Display(Name = "Periodontics: Research Mclean (McLean, Jeffrey S)")] Perio8,
+        [Display(Name = "Periodontics: Research Mclean JM Resident/Fellow (McLean, Jeffrey S)")] Perio9,
         [Display(Name = "Restorative Dentistry: Administration (Low, Betty)")] Restore3,
         [Display(Name = "Restorative Dentistry: Administration JM Student (Low, Betty)")] Restore4,
         [Display(Name = "Restorative Dentistry: Grad Pros Clinic Admin (Ramos, Van)")] Restore5,
         [Display(Name = "Restorative Dentistry: Grad Pros Clinic staff (Green, Carole K.)")] Restore6,
-        [Display(Name = "School of Dentistry: (Chiodo, Gary T)")] Dean21,
+        [Display(Name = "School of Dentistry (Chiodo, Gary T)")] Dean21,
         [Display(Name = "Sterilization (White, Chalet)")] Sterile1,
         [Display(Name = "UW Dentistry Campus Dental Center (UWDCDC) (O'Connor, Ryan T.)")] UWDCDC1,
-        [Display(Name = "UW Dentistry Campus Dental Center Operations (O'Connor, Ryan T.)")] UWDCDC2
+        [Display(Name = "UW Dentistry Campus Dental Center Operations (O'Connor, Ryan T.)")] UWDCDC2,
+        [Display(Name = "Other")] Other
 
     }
 
@@ -322,7 +329,15 @@ namespace Resolve.Models
         public virtual BasePayChange? BasePayChange { get; set; }
 
         [Display(Name = "Supervisory Organization")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg SupOrg { get; set; }
+
+        public string SupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(SupOrg); }
+        }
+
+        [Display(Name = "SupOrg")]
+        public string SuperOrg { get; set; }
 
         [Display(Name = "Employee EID")]
         public string EmployeeEID { get; set; }

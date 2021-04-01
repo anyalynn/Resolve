@@ -32,7 +32,7 @@
 <h4>All Worker Types</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group" id="AWorkerType">
@@ -43,7 +43,7 @@
                 <span asp-validation-for="AWorkerType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SupOrg" class="control-label"></label>
+                <label asp-for="SupOrg" class="control-label required-field"></label>
                 <select asp-for="SupOrg" asp-items="Html.GetEnumSelectList<SupOrg>()" class="form-control">
                     <option selected="selected" value="">Please select</option>
                 </select>
@@ -121,12 +121,12 @@
            
             <div class="form-group">
                 <label asp-for="DetailedDescription" class="control-label"></label>
-                <textarea asp-for="DetailedDescription" class="form-control"></textarea>
+                <textarea asp-for="DetailedDescription" class="form-control area-lg"></textarea>
                 <span asp-validation-for="DetailedDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
 

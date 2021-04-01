@@ -21,6 +21,18 @@ namespace Resolve.Models
         AffiliateMedDental
     }
 
+    public enum FacAffiliateCitizenStatus
+    {
+        [Display(Name = "Citizen")]
+        Citizen,
+        [Display(Name = "Permanent Resident")]
+        PermanentResident,
+        [Display(Name = "Foreign National")]
+        ForeignNational,
+        [Display(Name = "Noncitizen National")]
+        NoncitizenNational        
+    }
+
     public class HiringAffiliateFaculty
     {
         [Required, Key, ForeignKey("Case")]
@@ -40,6 +52,12 @@ namespace Resolve.Models
 
         [Display(Name = "Job Title")]
         public virtual FacAffiliateTitle FacAffiliateTitle { get; set; }
-      
+
+        [Display(Name = "Citizenship Status")]
+        public virtual FacAffiliateCitizenStatus FacAffiliateCitizenStatus { get; set; }
+
+        [Display(Name = "UW Student Number/ UWNETID")]
+        public string AffiliateStudentNetID { get; set; }
+
     }
 }

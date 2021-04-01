@@ -39,7 +39,7 @@
 <hr />
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-5">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="CaseID" />
@@ -90,18 +90,18 @@
           
                 <div class="form-group">
                     <label for="Justification" class="control-label required-field">What is the business justification for this position?</label>
-                    <textarea asp-for="Justification" class="form-control"></textarea>
+                    <textarea asp-for="Justification" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Justification" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="Barriers" class="control-label required-field">What is the barrier to distributing the workload to existing faculty/staff?</label>
-                    <textarea asp-for="Barriers" class="form-control"></textarea>
+                    <textarea asp-for="Barriers" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Barriers" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label for="Consequences" class="control-label required-field">What are the consequences/impact of not filling the position?</label>
-                    <textarea asp-for="Consequences" class="form-control"></textarea>
+                    <textarea asp-for="Consequences" class="form-control area-lg"></textarea>
                     <span asp-validation-for="Consequences" class="text-danger"></span>
                 </div>
            
@@ -130,7 +130,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Note" class="control-label"></label>
-                <textarea asp-for="Note" class="form-control"></textarea>
+                <textarea asp-for="Note" class="form-control area-lg"></textarea>
                 <span asp-validation-for="Note" class="text-danger"></span>
             </div>
             <p class="text-danger">*After creating this request, please attach an Affordability Statement, if applicable (refer to<a href="https://uwnetid.sharepoint.com/:b:/r/sites/sod/human-resources/Shared%20Documents/Faculty%20Procedures/Faculty%20Hiring%20Procedures%20V5.0%20071020.pdf?csf=1&web=1&e=IQoxP7"> Faculty Hiring Procedures</a>, see User Guide) </p>

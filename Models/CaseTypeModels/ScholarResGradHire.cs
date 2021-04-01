@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Resolve.Helpers;
 
 namespace Resolve.Models
 {
@@ -57,13 +58,24 @@ namespace Resolve.Models
         public virtual DWorkerType? DWorkerType { get; set; }
 
         [Display(Name = "Supervisory Organization")]
-        public virtual SupOrg? SupOrg { get; set; }
+        public virtual SupOrg SupOrg { get; set; }
+
+        public string SupOrgName
+        {
+            get { return EnumNameHelper.GetDisplayName(SupOrg); }
+        }
+
+        [Display(Name = "SupOrg")]
+        public string SuperOrg { get; set; }
 
         [Display(Name = "Name"), Required]
         public string Name { get; set; }
 
         [Display(Name = "Budget Number(s)")]
         public string BudgetNumbers { get; set; }
+
+        [Display(Name = "Student Number")]
+        public string StudentNumber { get; set; }
 
         [Display(Name = "Additional Notes")]
         [MaxLength(1024)]
@@ -83,6 +95,9 @@ namespace Resolve.Models
 
         [Display(Name = "Stipend/Allowance")]
         public string StipendAllowance { get; set; }
+
+        [Display(Name = "Citizenship Status")]
+        public virtual FacAffiliateCitizenStatus? ScholarCitizenStatus { get; set; }
 
         [Display(Name = "Scholar/Resident Job Profile")]
         public virtual ScholarJobProfile? ScholarJobProfile { get; set; }

@@ -83,3 +83,4 @@ tr.clickable-row {
 }
 
 label.control-label { font-weight:700;}
+textarea.form-control.area-lg {min-height:120px;}
